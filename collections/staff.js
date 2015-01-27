@@ -1,0 +1,1 @@
+ Staff = new Meteor.Collection('staff');
