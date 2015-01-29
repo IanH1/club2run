@@ -1,0 +1,26 @@
+<template name="staffList">
+    {{> staffForm}}
+    <nav class="navbar navbar-default">
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" id="searchCriteria" class="form-control" placeholder="Search..." value="{{staffSearchCriteria}}">
+            </div>
+            <button type="button" id="searchBtn" class="btn btn-success">Search</button>
+            {{#if staffSearchCriteria}}
+                <button type="button" id="resetBtn" class="btn btn-danger">Reset</button>
+            {{/if}}
+            {{#afModal class="btn btn-primary" collection="Staff" operation="insert" title="Add Staff" buttonContent="Save" omitFields="fullName,clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
+                Add
+            {{/afModal}}
+        </form>
+    </nav>
+    <div class="staffs">
+        {{#each staff}}
+            {{> staffItem}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="staffForm">
+    {{> autoformModals collection="Stafs" id="staffForm"}}
+</template>

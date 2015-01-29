@@ -1,0 +1,26 @@
+<template name="officalList">
+    {{> officalForm}}
+    <nav class="navbar navbar-default">
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" id="searchCriteria" class="form-control" placeholder="Search..." value="{{officalSearchCriteria}}">
+            </div>
+            <button type="button" id="searchBtn" class="btn btn-success">Search</button>
+            {{#if officalSearchCriteria}}
+                <button type="button" id="resetBtn" class="btn btn-danger">Reset</button>
+            {{/if}}
+            {{#afModal class="btn btn-primary" collection="Officals" operation="insert" title="Add Offical" buttonContent="Save" omitFields="fullName,clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
+                Add
+            {{/afModal}}
+        </form>
+    </nav>
+    <div class="officals">
+        {{#each offical}}
+            {{> officalItem}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="officalForm">
+    {{> autoformModals collection="Officals" id="officalForm"}}
+</template>

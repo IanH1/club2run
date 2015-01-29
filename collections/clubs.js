@@ -1,1 +1,0 @@
- Clubs = new Meteor.Collection('clubs');

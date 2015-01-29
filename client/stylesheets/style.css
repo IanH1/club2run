@@ -1,94 +1,125 @@
-.grid-block, .main, .post, .comments li, .comment-form {
-background: #fff;
-border-radius: 3px;
-padding: 10px;
-margin-bottom: 10px;
-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
-}
 body {
-background: #eee;
-color: #666666;
+    background: #eee;
+    color: #666666;
 }
-.navbar { margin-bottom: 10px }
+
+.navbar {
+    margin-bottom: 10px;
+}
+
 .navbar .navbar-inner {
-border-radius: 0px 0px 3px 3px;
+    -webkit-border-radius: 0px 0px 3px 3px;
+    -moz-border-radius: 0px 0px 3px 3px;
+    -ms-border-radius: 0px 0px 3px 3px;
+    -o-border-radius: 0px 0px 3px 3px;
+    border-radius: 0px 0px 3px 3px; }
+
+.jumbotron {
+    text-align: center;
 }
-#spinner { height: 300px }
-.post {
-*zoom: 1;
--webkit-transition: all 300ms 0ms;
--webkit-transition-delay: ease-in;
--moz-transition: all 300ms 0ms ease-in;
--o-transition: all 300ms 0ms ease-in;
-transition: all 300ms 0ms ease-in;
-position: relative;
-opacity: 1;
+
+.jumbotron h2 {
+    font-size: 60px;
+    font-weight: 100;
 }
-.post:before, .post:after {
-content: "";
-display: table;
+
+#spinner {
+    height: 300px;
 }
-.post:after { clear: both }
-.post.invisible { opacity: 0 }
-.post .upvote {
-display: block;
-margin: 7px 12px 0 0;
-float: left;
+
+.spinner-container {
+    height: 100px;
+    position: relative;
 }
-.post .post-content { float: left }
-.post .post-content h3 {
-margin: 0;
-line-height: 1.4;
-font-size: 18px;
+
+.member, .team, .event, .staff, .group, .offical {
+    /* For modern browsers */
+    /* For IE 6/7 (trigger hasLayout) */
+    *zoom: 1;
+    position: relative;
+    opacity: 1;
 }
-.post .post-content h3 a {
-display: inline-block;
-margin-right: 5px;
+
+.member:before, .member:after, .team:before, .team:after, .event:before, .event:after, .staff:before, .staff:after, .group:before, .group:after, .offical:before, .offical:after {
+    content: "";
+    display: table;
 }
-.post .post-content h3 span {
-font-weight: normal;
-font-size: 14px;
-display: inline-block;
-color: #aaaaaa;
+
+.member:after, .team:after, .event:after, .staff:after, .group:after, .offical:after {
+    clear: both;
 }
-.post .post-content p { margin: 0 }
-.post .discuss {
-display: block;
-float: right;
-margin-top: 7px;
+
+.member .member-content, .team .team-content, .event .event-content, .staff .staff-content, .group .group-content, .offical .offical-content {
+    float: left;
 }
-.comments {
-list-style-type: none;
-margin: 0;
+
+.member .member-content h3, .team .team-content h3, .event .event-content h3, .staff .staff-content h3, .group .group-content h3, .offical .offical-content h3 {
+    margin: 0;
+    line-height: 1.4;
+    font-size: 18px;
 }
-.comments li h4 {
-font-size: 16px;
-margin: 0;
+
+.member .member-content h3 a, .team .team-content h3 a, .event .event-content h3 a, .staff .staff-content h3 a, .group .group-content h3 a, .offical .offical-content h3 a {
+    display: inline-block;
+    margin-right: 5px;
 }
-.comments li h4 .date {
-font-size: 12px;
-font-weight: normal;
+
+.member .member-content h3 span, .team .team-content h3 span, .event .event-content h3 span, .staff .staff-content h3 span, .group .group-content h3 span, .offical .offical-content span {
+    font-weight: normal;
+    font-size: 14px;
+    display: inline-block;
+    color: #aaaaaa;
 }
-.comments li h4 a { font-size: 12px }
-.comments li p:last-child { margin-bottom: 0 }
+
+.member .member-content p, .team .team-content p, .event .event-content p, .staff .staff-content p, .group .group-content p, .offical .offical-content p {
+    margin: 0;
+}
+
+.errors{
+    position: fixed;
+    z-index: 10000;
+    padding: 10px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    pointer-events: none;
+}
+
+.alert {
+    animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    -webkit-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    -moz-animation: fadeOut 2700ms ease-in 0s 1 forwards;
+    width: 250px;
+    float: right;
+    clear: both;
+    margin-bottom: 5px;
+    pointer-events: auto;
+}
+
+.grid-block, .main, .member, .team, .event, .staff, .group, .offical {
+    background: #fff;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    padding: 10px;
+    margin-bottom: 10px;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15); }
+
+
+
+
+
+
 .dropdown-menu span {
-display: block;
-padding: 3px 20px;
-clear: both;
-line-height: 20px;
-color: #bbb;
-white-space: nowrap;
-}
-.load-more {
-display: block;
-border-radius: 3px;
-background: rgba(0, 0, 0, 0.05);
-text-align: center;
-height: 60px;
-line-height: 60px;
-margin-bottom: 10px;
-}
-.load-more:hover {
-text-decoration: none;
-background: rgba(0, 0, 0, 0.1);
+    display: block;
+    padding: 3px 20px;
+    clear: both;
+    line-height: 20px;
+    color: #bbb;
+    white-space: nowrap;
 }

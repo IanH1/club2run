@@ -1,0 +1,26 @@
+<template name="memberList">
+    {{> memberForm}}
+    <nav class="navbar navbar-default">
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" id="searchCriteria" class="form-control" placeholder="Search..." value="{{memberSearchCriteria}}">
+            </div>
+            <button type="button" id="searchBtn" class="btn btn-success">Search</button>
+            {{#if memberSearchCriteria}}
+                <button type="button" id="resetBtn" class="btn btn-danger">Reset</button>
+            {{/if}}
+            {{#afModal class="btn btn-primary" collection="Members" operation="insert" title="Add Member" buttonContent="Save" omitFields="fullName,clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
+                Add
+            {{/afModal}}
+        </form>
+    </nav>
+    <div class="members">
+        {{#each members}}
+            {{> memberItem}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="memberForm">
+    {{> autoformModals collection="Members" id="memberForm"}}
+</template>

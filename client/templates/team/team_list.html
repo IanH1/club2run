@@ -1,0 +1,26 @@
+<template name="teamList">
+    {{> teamForm}}
+    <nav class="navbar navbar-default">
+        <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+                <input type="text" id="searchCriteria" class="form-control" placeholder="Search..." value="{{teamSearchCriteria}}">
+            </div>
+            <button type="button" id="searchBtn" class="btn btn-success">Search</button>
+            {{#if teamSearchCriteria}}
+                <button type="button" id="resetBtn" class="btn btn-danger">Reset</button>
+            {{/if}}
+            {{#afModal class="btn btn-primary" collection="Teams" operation="insert" title="Add Team" buttonContent="Save" omitFields="clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
+                Add
+            {{/afModal}}
+        </form>
+    </nav>
+    <div class="teams">
+        {{#each teams}}
+            {{> teamItem}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="teamForm">
+    {{> autoformModals collection="Teams" id="teamForm"}}
+</template>

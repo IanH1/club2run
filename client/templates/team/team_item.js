@@ -1,0 +1,2 @@
+Template.teamItem.events({
+});
