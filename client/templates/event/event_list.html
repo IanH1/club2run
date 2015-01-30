@@ -1,26 +1,22 @@
 <template name="eventList">
     {{> eventForm}}
-    <nav class="navbar navbar-default">
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" id="searchCriteria" class="form-control" placeholder="Search..." value="{{eventSearchCriteria}}">
-            </div>
-            <button type="button" id="searchBtn" class="btn btn-success">Search</button>
-            {{#if eventSearchCriteria}}
-                <button type="button" id="resetBtn" class="btn btn-danger">Reset</button>
-            {{/if}}
-            {{#afModal class="btn btn-primary" collection="Events" operation="insert" title="Add Event" buttonContent="Save" omitFields="clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
-                Add
-            {{/afModal}}
-        </form>
-    </nav>
     <div class="events">
-        {{#each events}}
-            {{> eventItem}}
-        {{/each}}
+        {{> tabular table=TabularTables.Event class="table table-striped table-bordered table-condensed"}}
     </div>
 </template>
 
 <template name="eventForm">
     {{> autoformModals collection="Events" id="eventForm"}}
+</template>
+
+<template name="eventTableUpdateButtonCell">
+    {{#afModal class="btn btn-primary" collection="Events" operation="update" title="Update Event" buttonContent="Update" doc=_id omitFields="fullName,clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
+        Update
+    {{/afModal}}
+</template>
+
+<template name="eventTableDeleteButtonCell">
+    {{#afModal class="btn btn-primary" collection="Events" operation="remove" title="Delete Event" buttonContent="Delete" doc=_id}}
+        Delete
+    {{/afModal}}
 </template>

@@ -1,26 +1,26 @@
 <template name="staffList">
     {{> staffForm}}
-    <nav class="navbar navbar-default">
-        <form class="navbar-form navbar-left" role="search">
-            <div class="form-group">
-                <input type="text" id="searchCriteria" class="form-control" placeholder="Search..." value="{{staffSearchCriteria}}">
-            </div>
-            <button type="button" id="searchBtn" class="btn btn-success">Search</button>
-            {{#if staffSearchCriteria}}
-                <button type="button" id="resetBtn" class="btn btn-danger">Reset</button>
-            {{/if}}
-            {{#afModal class="btn btn-primary" collection="Staff" operation="insert" title="Add Staff" buttonContent="Save" omitFields="fullName,clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
-                Add
-            {{/afModal}}
-        </form>
-    </nav>
     <div class="staffs">
-        {{#each staff}}
-            {{> staffItem}}
-        {{/each}}
+        {{> tabular table=TabularTables.Staff class="table table-striped table-bordered table-condensed"}}
     </div>
 </template>
 
 <template name="staffForm">
-    {{> autoformModals collection="Stafs" id="staffForm"}}
+    {{> autoformModals collection="Staff" id="staffForm"}}
+</template>
+
+<template name="staffTableUpdateButtonCell">
+    <div class="text-center">
+        {{#afModal class="btn btn-primary" collection="Staff" operation="update" title="Update Staff" buttonContent="Update" doc=_id omitFields="fullName,clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
+            Update
+        {{/afModal}}
+    </div>
+</template>
+
+<template name="staffTableDeleteButtonCell">
+    <div class="text-center">
+        {{#afModal class="btn btn-primary" collection="Staff" operation="remove" title="Delete Staff" buttonContent="Delete" doc=_id}}
+            Delete
+        {{/afModal}}
+    </div>
 </template>

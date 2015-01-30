@@ -23,6 +23,11 @@ body {
     font-weight: 100;
 }
 
+.table-striped tbody > tr:nth-child(odd) > td,
+.table-striped tbody > tr:nth-child(odd) > th {
+    background-color: #ffffff;
+}
+
 #spinner {
     height: 300px;
 }

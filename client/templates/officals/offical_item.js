@@ -1,2 +1,0 @@
-Template.officalItem.events({
-});

@@ -5,17 +5,8 @@ Template.staffList.helpers({
         } else {
             return Staff.find({}, {sort: {fullName: 1}});
         }
-    },
-    staffSearchCriteria: function() {
-        return Session.get("staffSearchCriteria");
     }
 });
 
 Template.staffList.events({
-    'click #searchBtn': function(e, tpl) {
-        Session.set('staffSearchCriteria', tpl.find("#searchCriteria").value);
-    },
-    'click #resetBtn': function(e, tpl) {
-        Session.set('staffSearchCriteria', null);
-    }
 });

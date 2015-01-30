@@ -1,0 +1,1 @@
+Template.registerHelper('TabularTables', TabularTables);
