@@ -5,6 +5,7 @@ body {
 
 .navbar {
     margin-bottom: 10px;
+    background-color: white;
 }
 
 .navbar .navbar-inner {
@@ -13,6 +14,10 @@ body {
     -ms-border-radius: 0px 0px 3px 3px;
     -o-border-radius: 0px 0px 3px 3px;
     border-radius: 0px 0px 3px 3px; }
+
+.navbar .navbar-brand {
+    margin-top: -15px;
+}
 
 .jumbotron {
     text-align: center;
