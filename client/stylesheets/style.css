@@ -1,11 +1,12 @@
 body {
-    background: #eee;
     color: #666666;
+    background-color: black;
+    margin-top: 0;
 }
 
 .navbar {
     margin-bottom: 10px;
-    background-color: white;
+    background-image: url('navbar-background.gif');
 }
 
 .navbar .navbar-inner {
@@ -21,12 +22,36 @@ body {
 
 .jumbotron {
     text-align: center;
+    background-image : url('C2RcropSmall.gif');
+    height: 600px;
+}
+
+.jumbotron h1 {
+    font-size: 80px;
+    color: black;
 }
 
 .jumbotron h2 {
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 100;
+    color: red;
 }
+
+.jumbotron a {
+    font-size: 70px;
+    font-weight: 100;
+    background-color: red;
+}
+
+.jumbotron p {
+    color:green;
+}
+
+
+.col-md-3 h3 {
+    color:white;
+}
+.col-md-3 
 
 .table-striped tbody > tr:nth-child(odd) > td,
 .table-striped tbody > tr:nth-child(odd) > th {
@@ -119,10 +144,6 @@ body {
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
     -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15);
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.15); }
-
-
-
-
 
 
 .dropdown-menu span {
