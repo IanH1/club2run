@@ -26,7 +26,7 @@ if (Clubs.find().count() === 0) {
 if (Teams.find().count() === 0) {
 
     Teams.insert({
-        name: "Sunbury and Walton Girls 16 and Under A Squad",
+        name: "Sunbury and Walton Girls A Squad",
         ageRange: "Under 16",
         sex: "F",
         manager: davidId,
