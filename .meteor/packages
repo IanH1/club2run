@@ -11,13 +11,13 @@ iron:router
 sacha:spin
 ian:accounts-ui-bootstrap-3
 accounts-password
-audit-argument-checks
 aldeed:collection2
 aldeed:autoform
 yogiben:autoform-modals
 autopublish
 aldeed:tabular
 momentjs:moment
-less
 twbs:bootstrap
 fortawesome:fontawesome
+aldeed:simple-schema
+yogiben:autoform-map

@@ -29,17 +29,17 @@
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">5</span>
+                                <span class="label label-warning">{{notificationCount}}</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">You have 4 notifications</li>
+                                <li class="header">You have {{notificationCount}} notifications</li>
                                 <li>
                                     <ul class="menu">
-                                        {{> notificationWidget}}
-                                        {{> notificationWidget}}
-                                        {{> notificationWidget}}
-                                        {{> notificationWidget}}
-                                        {{> notificationWidget}}
+                                        {{#if notificationCount}}
+                                            {{#each notifications}}
+                                                {{> notificationWidget}}
+                                            {{/each}}
+                                        {{/if}}
                                     </ul>
                                 </li>
                                 <li class="footer"><a href="#">View all</a></li>
@@ -97,7 +97,7 @@
 <template name="notificationWidget">
     <li>
         <a href="#">
-            <i class="fa fa-users text-aqua"></i> Example Notification
+            <i class="fa fa-flag text-aqua"></i> {{summary}}
         </a>
     </li>
 </template>

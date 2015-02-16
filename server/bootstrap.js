@@ -1,5 +1,5 @@
 if (Meteor.users.find().count() === 0) {
-    dd = Accounts.createUser({
+    Accounts.createUser({
         username: "david",
         email: "davidmulligan@btopenworld.com",
         password: "password"
