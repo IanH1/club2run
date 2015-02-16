@@ -6,7 +6,6 @@
 
 meteor-platform
 insecure
-mizzao:bootstrap-3
 underscore
 iron:router
 sacha:spin
@@ -19,3 +18,6 @@ yogiben:autoform-modals
 autopublish
 aldeed:tabular
 momentjs:moment
+less
+twbs:bootstrap
+fortawesome:fontawesome

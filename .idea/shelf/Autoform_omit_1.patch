@@ -1,0 +1,201 @@
+Index: client/templates/member/member_list.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- client/templates/member/member_list.html	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ client/templates/member/member_list.html	(revision )
+@@ -10,7 +10,7 @@
+ </template>
+ 
+ <template name="memberTableUpdateButtonCell">
+-    {{#afModal class="btn btn-primary" collection="Members" operation="update" title="Update Member" buttonContent="Update" doc=_id omitFields="fullName,clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
++    {{#afModal class="btn btn-primary" collection="Members" operation="update" title="Update Member" buttonContent="Update" doc=_id}}
+         Update
+     {{/afModal}}
+ </template>
+\ No newline at end of file
+Index: lib/collections/clubs.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/collections/clubs.js	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ lib/collections/clubs.js	(revision )
+@@ -71,6 +71,9 @@
+     createdOn: {
+         type: Date,
+         label: "Created Date",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             if (this.isInsert) {
+                 return new Date();
+@@ -80,6 +83,9 @@
+     //createdBy: {
+     //    type: SimpleSchema.RegEx.Id,
+     //    label: "Created By",
++    //autoform : {
++    //    omit: true
++    //},
+     //    autoValue: function () {
+     //        if (this.isInsert) {
+     //            return Meteor.userId();
+@@ -89,6 +95,9 @@
+     modifiedOn: {
+         type: Date,
+         label: "Modified Date",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             return new Date();
+         }
+@@ -96,6 +105,9 @@
+     //modifiedBy: {
+     //    type: SimpleSchema.RegEx.Id,
+     //    label: "Modified By",
++    //autoform : {
++    //    omit: true
++    //},
+     //    autoValue: function () {
+     //        return Meteor.userId();
+     //    }
+\ No newline at end of file
+Index: client/templates/team/team_list.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- client/templates/team/team_list.html	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ client/templates/team/team_list.html	(revision )
+@@ -11,7 +11,7 @@
+ 
+ <template name="teamTableUpdateButtonCell">
+     <div class="text-center">
+-        {{#afModal class="btn btn-primary" collection="Teams" operation="update" title="Update Team" buttonContent="Update" doc=_id omitFields="clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
++        {{#afModal class="btn btn-primary" collection="Teams" operation="update" title="Update Team" buttonContent="Update" doc=_id}}
+             Update
+         {{/afModal}}
+     </div>
+Index: client/templates/officals/offical_list.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- client/templates/officals/offical_list.html	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ client/templates/officals/offical_list.html	(revision )
+@@ -11,7 +11,7 @@
+ 
+ <template name="officalTableUpdateButtonCell">
+     <div class="text-center">
+-        {{#afModal class="btn btn-primary" collection="Offical" operation="update" title="Update Offical" buttonContent="Update" doc=_id omitFields="fullName,clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
++        {{#afModal class="btn btn-primary" collection="Offical" operation="update" title="Update Offical" buttonContent="Update" doc=_id}}
+             Update
+         {{/afModal}}
+     </div>
+\ No newline at end of file
+Index: lib/tabular.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/tabular.js	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ lib/tabular.js	(revision )
+@@ -71,7 +71,8 @@
+                     return "";
+                 }
+             }
+-        }, {
++        },
++        {
+             data: "endTime",
+             title: "End Date/Time",
+             render: function (val, type, doc) {
+\ No newline at end of file
+Index: client/templates/staff/staff_list.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- client/templates/staff/staff_list.html	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ client/templates/staff/staff_list.html	(revision )
+@@ -11,7 +11,7 @@
+ 
+ <template name="staffTableUpdateButtonCell">
+     <div class="text-center">
+-        {{#afModal class="btn btn-primary" collection="Staff" operation="update" title="Update Staff" buttonContent="Update" doc=_id omitFields="fullName,clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
++        {{#afModal class="btn btn-primary" collection="Staff" operation="update" title="Update Staff" buttonContent="Update" doc=_id}}
+             Update
+         {{/afModal}}
+     </div>
+\ No newline at end of file
+Index: lib/collections/officials.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/collections/officials.js	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ lib/collections/officials.js	(revision )
+@@ -14,6 +14,9 @@
+     fullName: {
+         type: String,
+         label: "Full Name",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             return this.field("firstName").value + ' ' + this.field("lastName").value;
+         }
+@@ -26,6 +29,9 @@
+     },
+     clubId: {
+         type: SimpleSchema.RegEx.Id,
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             if (this.isInsert) {
+                 return Clubs.findOne()._id
+@@ -35,6 +41,9 @@
+     createdOn: {
+         type: Date,
+         label: "Created Date",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             if (this.isInsert) {
+                 return new Date;
+@@ -44,6 +53,9 @@
+     //createdBy: {
+     //    type: SimpleSchema.RegEx.Id,
+     //    label: "Created By",
++    //autoform : {
++    //    omit: true
++    //},
+     //    autoValue: function () {
+     //        if (this.isInsert) {
+     //            return Meteor.userId();
+@@ -53,6 +65,9 @@
+     modifiedOn: {
+         type: Date,
+         label: "Modified Date",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             return new Date;
+         }
+@@ -60,6 +75,9 @@
+     //modifiedBy: {
+     //    type: SimpleSchema.RegEx.Id,
+     //    label: "Modified By",
++    //autoform : {
++    //    omit: true
++    //},
+     //    autoValue: function () {
+     //        return Meteor.userId();
+     //    }
+\ No newline at end of file

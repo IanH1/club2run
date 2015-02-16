@@ -1,0 +1,11 @@
+<template name="memberList">
+    {{> autoformModals collection="Members" id="memberForm"}}
+    {{> tabular table=TabularTables.Member class="table dataTable table-striped table-bordered table-condensed"}}
+</template>
+
+<template name="memberTableActionButtonCell">
+    <a href="{{pathFor 'memberEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
+    {{#afModal class="btn btn-xs btn-danger btn-delete" collection="Members" operation="remove" title="Delete Member" doc=_id}}
+        <i class="fa fa-times"></i>
+    {{/afModal}}
+</template>

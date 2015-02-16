@@ -1,0 +1,211 @@
+Index: lib/collections/staff.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/collections/staff.js	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ lib/collections/staff.js	(revision )
+@@ -14,6 +14,9 @@
+     fullName: {
+         type: String,
+         label: "Full Name",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             return this.field("firstName").value + " " + this.field("lastName").value;
+         }
+@@ -27,6 +30,9 @@
+     },
+     clubId: {
+         type: SimpleSchema.RegEx.Id,
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             if (this.isInsert) {
+                 return Clubs.findOne()._id
+@@ -36,6 +42,9 @@
+     createdOn: {
+         type: Date,
+         label: "Created Date",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             if (this.isInsert) {
+                 return new Date;
+@@ -45,6 +54,9 @@
+     //createdBy: {
+     //    type: SimpleSchema.RegEx.Id,
+     //    label: "Created By",
++    //autoform : {
++    //    omit: true
++    //},
+     //    autoValue: function () {
+     //        if (this.isInsert) {
+     //            return Meteor.userId();
+@@ -54,6 +66,9 @@
+     modifiedOn: {
+         type: Date,
+         label: "Modified Date",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             return new Date;
+         }
+@@ -61,6 +76,9 @@
+     //modifiedBy: {
+     //    type: SimpleSchema.RegEx.Id,
+     //    label: "Modified By",
++    //autoform : {
++    //    omit: true
++    //},
+     //    autoValue: function () {
+     //        return Meteor.userId();
+     //    }
+\ No newline at end of file
+Index: lib/collections/events.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/collections/events.js	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ lib/collections/events.js	(revision )
+@@ -124,6 +124,9 @@
+     },
+     clubId: {
+         type: SimpleSchema.RegEx.Id,
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             if (this.isInsert) {
+                 return Clubs.findOne()._id
+@@ -133,6 +136,9 @@
+     createdOn: {
+         type: Date,
+         label: "Created Date",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             if (this.isInsert) {
+                 return new Date;
+@@ -142,6 +148,9 @@
+     //createdBy: {
+     //    type: SimpleSchema.RegEx.Id,
+     //    label: "Created By",
++    //autoform : {
++    //    omit: true
++    //},
+     //    autoValue: function () {
+     //        if (this.isInsert) {
+     //            return Meteor.userId();
+@@ -151,6 +160,9 @@
+     modifiedOn: {
+         type: Date,
+         label: "Modified Date",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             return new Date;
+         }
+@@ -158,6 +170,9 @@
+     //modifiedBy: {
+     //    type: SimpleSchema.RegEx.Id,
+     //    label: "Modified By",
++    //autoform : {
++    //    omit: true
++    //},
+     //    autoValue: function () {
+     //        return Meteor.userId();
+     //    }
+\ No newline at end of file
+Index: client/templates/event/event_list.html
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- client/templates/event/event_list.html	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ client/templates/event/event_list.html	(revision )
+@@ -10,7 +10,7 @@
+ </template>
+ 
+ <template name="eventTableUpdateButtonCell">
+-    {{#afModal class="btn btn-primary" collection="Events" operation="update" title="Update Event" buttonContent="Update" doc=_id omitFields="fullName,clubId,createdOn,createdBy,modifiedOn,modifiedBy"}}
++    {{#afModal class="btn btn-primary" collection="Events" operation="update" title="Update Event" buttonContent="Update" doc=_id}}
+         Update
+     {{/afModal}}
+ </template>
+\ No newline at end of file
+Index: lib/collections/members.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/collections/members.js	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ lib/collections/members.js	(revision )
+@@ -14,6 +14,9 @@
+     fullName: {
+         type: String,
+         label: "Full Name",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             return this.field("firstName").value + " " + this.field("lastName").value;
+         }
+@@ -91,6 +94,9 @@
+     },
+     clubId: {
+         type: SimpleSchema.RegEx.Id,
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             if (this.isInsert) {
+                 return Clubs.findOne()._id
+@@ -100,6 +106,9 @@
+     createdOn: {
+         type: Date,
+         label: "Created Date",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             if (this.isInsert) {
+                 return new Date;
+@@ -109,6 +118,9 @@
+     //createdBy: {
+     //    type: SimpleSchema.RegEx.Id,
+     //    label: "Created By",
++    //autoform : {
++    //    omit: true
++    //},
+     //    autoValue: function () {
+     //        if (this.isInsert) {
+     //            return Meteor.userId();
+@@ -118,6 +130,9 @@
+     modifiedOn: {
+         type: Date,
+         label: "Modified Date",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             return new Date;
+         }
+@@ -125,6 +140,9 @@
+     //modifiedBy: {
+     //    type: SimpleSchema.RegEx.Id,
+     //    label: "Modified By",
++    //autoform : {
++    //    omit: true
++    //},
+     //    autoValue: function () {
+     //        return Meteor.userId();
+     //    }
+\ No newline at end of file

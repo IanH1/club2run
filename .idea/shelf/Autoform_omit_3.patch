@@ -1,0 +1,58 @@
+Index: lib/collections/teams.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/collections/teams.js	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ lib/collections/teams.js	(revision )
+@@ -62,6 +62,9 @@
+     },
+     clubId: {
+         type: SimpleSchema.RegEx.Id,
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             if (this.isInsert) {
+                 return Clubs.findOne()._id
+@@ -71,6 +74,9 @@
+     createdOn: {
+         type: Date,
+         label: "Created Date",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             if (this.isInsert) {
+                 return new Date;
+@@ -80,6 +86,9 @@
+     //createdBy: {
+     //    type: SimpleSchema.RegEx.Id,
+     //    label: "Created By",
++    //autoform : {
++    //    omit: true
++    //},
+     //    autoValue: function () {
+     //        if (this.isInsert) {
+     //            return Meteor.userId();
+@@ -89,6 +98,9 @@
+     modifiedOn: {
+         type: Date,
+         label: "Modified Date",
++        autoform : {
++            omit: true
++        },
+         autoValue: function () {
+             return new Date;
+         }
+@@ -96,6 +108,9 @@
+     //modifiedBy: {
+     //    type: SimpleSchema.RegEx.Id,
+     //    label: "Modified By",
++    //autoform : {
++    //    omit: true
++    //},
+     //    autoValue: function () {
+     //        return Meteor.userId();
+     //    }
+\ No newline at end of file

@@ -1,0 +1,111 @@
+<template name="header">
+    <header class="main-header">
+        <a href="{{pathFor 'home'}}" class="logo"><b>Club2Run</b></a>
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    {{#if currentUser}}
+                        <li class="dropdown messages-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope-o"></i>
+                                <span class="label label-success">4</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 4 messages</li>
+                                <li>
+                                    <ul class="menu">
+                                        {{> messageWidget}}
+                                        {{> messageWidget}}
+                                        {{> messageWidget}}
+                                        {{> messageWidget}}
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">See All Messages</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown notifications-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning">5</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 4 notifications</li>
+                                <li>
+                                    <ul class="menu">
+                                        {{> notificationWidget}}
+                                        {{> notificationWidget}}
+                                        {{> notificationWidget}}
+                                        {{> notificationWidget}}
+                                        {{> notificationWidget}}
+                                    </ul>
+                                </li>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown tasks-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-flag-o"></i>
+                                <span class="label label-danger">9</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header">You have 9 tasks</li>
+                                <li>
+                                    <ul class="menu">
+                                        {{> taskWidget}}
+                                        {{> taskWidget}}
+                                        {{> taskWidget}}
+                                        {{> taskWidget}}
+                                        {{> taskWidget}}
+                                        {{> taskWidget}}
+                                        {{> taskWidget}}
+                                        {{> taskWidget}}
+                                        {{> taskWidget}}
+                                    </ul>
+                                </li>
+                                <li class="footer">
+                                    <a href="#">View all tasks</a>
+                                </li>
+                            </ul>
+                        </li>
+                    {{/if}}
+                    {{> loginButtons}}
+                </ul>
+            </div>
+        </nav>
+    </header>
+</template>
+
+<template name="_loginButtonsAdditionalLoggedInDropdownActions">
+    <button class="btn btn-default btn-block" id="login-buttons-edit-profile">Edit profile</button>
+</template>
+
+<template name="messageWidget">
+    <li>
+        <a href="#">
+            <div class="pull-left">
+                <img src="user2-160x160.jpg" class="img-circle" alt="User Image"/>
+            </div>
+            <h4>Support Team<small><i class="fa fa-clock-o"></i> 5 mins</small></h4>
+            <p>Example message.</p>
+        </a>
+    </li>
+</template>
+
+<template name="notificationWidget">
+    <li>
+        <a href="#">
+            <i class="fa fa-users text-aqua"></i> Example Notification
+        </a>
+    </li>
+</template>
+
+<template name="taskWidget">
+    <li>
+        <a href="#">
+            <h3>Task Title<small class="pull-right">20%</small></h3>
+        </a>
+    </li>
+</template>

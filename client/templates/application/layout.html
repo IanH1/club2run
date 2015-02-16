@@ -1,9 +1,128 @@
 <template name="layout">
-    <div class="container">
+    <div class="wrapper">
         {{> header}}
-        {{> errors}}
-        <div id="main" class="row-fluid">
-            {{> yield}}
+        <aside class="main-sidebar">
+            {{#if currentUser}}
+                {{> navigationMenu}}
+            {{/if}}
+        </aside>
+        <div class="content-wrapper">
+            {{#if currentUser}}
+                <section class="content-header">
+                    {{#if collectionObject}}
+                        <h1>{{collectionObject.label}}<small>{{collectionMode}}</small></h1>
+                    {{else}}
+                        <h1>{{currentClub.name}}<small>Home</small></h1>
+                    {{/if}}
+                    <ol class="breadcrumb">
+                        <li><a href="{{pathFor 'home'}}"><i class="fa fa-globe"></i>{{currentClub.name}}</a></li>
+                        {{#if collectionObject}}
+                            <li><a href="{{pathFor 'memberList'}}"><i class="fa {{collectionObject.icon}}"></i>{{collectionObject.label}}</a></li>
+                        {{/if}}
+                    </ol>
+                </section>
+            {{/if}}
+            <section class="content">
+                {{> yield }}
+            </section>
         </div>
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 0.1
+            </div>
+            <strong>Copyright &copy; 2014-2015 <a href="http://club2run.com">Club 2 Run Ltd</a>.</strong> All rights reserved.
+        </footer>
     </div>
+</template>
+
+<template name="navigationMenu">
+    <section class="sidebar">
+        <div class="user-panel">
+            <div class="pull-left info">
+                <p>{{currentUser.profile.fullName}}</p>
+                <p>{{currentClub.name}}</p>
+                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+            </div>
+        </div>
+        <form action="#" method="get" class="sidebar-form">
+            <div class="input-group">
+                <input type="text" name="query" class="form-control" placeholder="Search..."/>
+                    <span class="input-group-btn">
+                        <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                    </span>
+            </div>
+        </form>
+        <ul class="sidebar-menu">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="treeview">
+                <a href="{{pathFor 'home'}}">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="treeview">
+                <a href="{{pathFor 'club'}}">
+                    <i class="fa fa-globe"></i>
+                    <span>Club</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{pathFor 'clubEdit'}}"><i class="fa fa-edit"></i> Update</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span>Member</span>
+                    <span class="label label-primary pull-right">150</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{pathFor 'memberList'}}"><i class="fa fa-table"></i> View All</a></li>
+                    <li><a href="{{pathFor 'memberCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-users"></i>
+                    <span>Teams</span>
+                    <span class="label label-primary pull-right">5</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{pathFor 'teamList'}}"><i class="fa fa-table"></i> View All</a></li>
+                    <li><a href="{{pathFor 'teamCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-calendar"></i>
+                    <span>Matches</span>
+                    <span class="label label-primary pull-right">9</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{pathFor 'matchList'}}"><i class="fa fa-table"></i> View All</a></li>
+                    <li><a href="{{pathFor 'matchCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-bullseye"></i>
+                    <span>Officals</span>
+                    <span class="label label-primary pull-right">10</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{pathFor 'officalList'}}"><i class="fa fa-table"></i> View All</a></li>
+                    <li><a href="{{pathFor 'officalCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                </ul>
+            </li>
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-gears"></i>
+                    <span>Staff</span>
+                    <span class="label label-primary pull-right">15</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{pathFor 'staffList'}}"><i class="fa fa-table"></i> View All</a></li>
+                    <li><a href="{{pathFor 'staffCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
 </template>

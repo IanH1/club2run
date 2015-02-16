@@ -1,0 +1,84 @@
+<template name="profile">
+    {{#autoForm id='updateProfile' collection=Users doc=currentUser type='update'}}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Profile</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.firstName'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.lastName'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.gender' options=genderOptions}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.avatar'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='profile.bio' rows=2}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Contact</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.telephone1'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.telephone2'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.address.line1'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.address.line2'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.address.line3'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.address.line4'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.address.city'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.address.county'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.address.postCode'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.address.country'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+            <button type="button" class="btn btn-default cancel">Cancel</button>
+        </div>
+    {{/autoForm}}
+</template>

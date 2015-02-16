@@ -1,26 +1,11 @@
 <template name="staffList">
-    {{> staffForm}}
-    <div class="staffs">
-        {{> tabular table=TabularTables.Staff class="table table-striped table-bordered table-condensed"}}
-    </div>
+    {{> autoformModals collection="Staffs" id="staffForm"}}
+    {{> tabular table=TabularTables.Staff class="table dataTable table-striped table-bordered table-condensed"}}
 </template>
 
-<template name="staffForm">
-    {{> autoformModals collection="Staff" id="staffForm"}}
-</template>
-
-<template name="staffTableUpdateButtonCell">
-    <div class="text-center">
-        {{#afModal class="btn btn-primary" collection="Staff" operation="update" title="Update Staff" buttonContent="Update" doc=_id}}
-            Update
-        {{/afModal}}
-    </div>
-</template>
-
-<template name="staffTableDeleteButtonCell">
-    <div class="text-center">
-        {{#afModal class="btn btn-primary" collection="Staff" operation="remove" title="Delete Staff" buttonContent="Delete" doc=_id}}
-            Delete
-        {{/afModal}}
-    </div>
+<template name="staffTableActionButtonCell">
+    <a href="{{pathFor 'staffEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
+    {{#afModal class="btn btn-xs btn-danger btn-delete" collection="Staff" operation="remove" title="Delete Staff" doc=_id}}
+        <i class="fa fa-times"></i>
+    {{/afModal}}
 </template>

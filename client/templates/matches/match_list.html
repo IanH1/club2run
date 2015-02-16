@@ -1,0 +1,11 @@
+<template name="matchList">
+    {{> autoformModals collection="Matches" id="matchForm"}}
+    {{> tabular table=TabularTables.Match class="table dataTable table-striped table-bordered table-condensed"}}
+</template>
+
+<template name="matchTableActionButtonCell">
+    <a href="{{pathFor 'matchEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
+    {{#afModal class="btn btn-xs btn-danger btn-delete" collection="Matches" operation="remove" title="Delete Match" doc=_id}}
+        <i class="fa fa-times"></i>
+    {{/afModal}}
+</template>

@@ -1,0 +1,18 @@
+Index: client/stylesheets/style.css
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- client/stylesheets/style.css	(revision 979fa444e548f769de474e89371e409ccd56b602)
++++ client/stylesheets/style.css	(revision )
+@@ -1,6 +1,9 @@
+ body {
+     background: #eee;
+     color: #666666;
++
++font-size: 10px;
++
+ }
+ 
+ .navbar {
+\ No newline at end of file

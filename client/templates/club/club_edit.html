@@ -1,0 +1,96 @@
+<template name="clubEdit">
+    {{#autoForm id='editClub' collection='Clubs' doc=currentClub type="update"}}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Details</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='name'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='type' options=clubTypeOptions}}
+                    </div>
+                    <div class="col-xs-6">
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='teamColours'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='associations'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Contact</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='email'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='telephone1'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='telephone2'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='address.line1'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='address.line2'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='address.line3'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='address.line4'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='address.city'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='address.county'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='address.postCode'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='address.country'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='websiteUrl'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+            <button type="button" class="btn btn-default cancel">Cancel</button>
+        </div>
+    {{/autoForm}}
+</template>
