@@ -5,17 +5,14 @@ Template.registerHelper('TabularTables', TabularTables);
 Template.registerHelper('currentClub', function() {
     return Clubs.findOne( {_id : Meteor.user().profile.clubId} );
 });
-
 Template.registerHelper('collectionItems', function() {
     return _.map(collectionItems, function(obj) {
         return obj;
     })
 });
-
 Template.registerHelper('collectionObject', function() {
     return Session.get("collectionObject");
 });
-
 Template.registerHelper('collectionMode', function() {
     return Session.get("collectionMode");
 });
@@ -58,4 +55,11 @@ Template.registerHelper("clubTypeOptions", function() {
         {label: 'Hockey', value: 'Hockey'},
         {label: 'Rugby Union', value: 'Rugby Union'}
     ];
+});
+
+Template.registerHelper("checkedIf", function(val) {
+    return val ? 'checked' : '';
+});
+Template.registerHelper("prettifyDate", function(timestamp) {
+    return moment(new Date(timestamp)).fromNow();
 });

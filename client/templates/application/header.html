@@ -48,21 +48,17 @@
                         <li class="dropdown tasks-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">9</span>
+                                <span class="label label-danger">{{taskCount}}</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">You have 9 tasks</li>
+                                <li class="header">You have {{taskCount}} outstanding tasks</li>
                                 <li>
                                     <ul class="menu">
-                                        {{> taskWidget}}
-                                        {{> taskWidget}}
-                                        {{> taskWidget}}
-                                        {{> taskWidget}}
-                                        {{> taskWidget}}
-                                        {{> taskWidget}}
-                                        {{> taskWidget}}
-                                        {{> taskWidget}}
-                                        {{> taskWidget}}
+                                        {{#if taskCount}}
+                                            {{#each tasks}}
+                                                {{> taskWidget}}
+                                            {{/each}}
+                                        {{/if}}
                                     </ul>
                                 </li>
                                 <li class="footer">
@@ -96,7 +92,7 @@
 
 <template name="notificationWidget">
     <li>
-        <a href="#">
+        <a href="#" class="notification-item">
             <i class="fa fa-flag text-aqua"></i> {{summary}}
         </a>
     </li>
@@ -104,8 +100,8 @@
 
 <template name="taskWidget">
     <li>
-        <a href="#">
-            <h3>Task Title<small class="pull-right">20%</small></h3>
+        <a href="#" class="task-item">
+            <i class="fa fa-flag text-aqua"></i> {{text}}
         </a>
     </li>
 </template>
