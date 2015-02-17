@@ -1,6 +1,6 @@
 <template name="teamList">
     {{> autoformModals collection="Teams" id="teamForm"}}
-    {{> tabular table=TabularTables.Team class="table dataTable table-striped table-bordered table-condensed"}}
+    {{> tabular table=TabularTables.Team class="table dataTable table-striped table-bordered table-condensed" selector=tabularSelector}}
 </template>
 
 <template name="teamTableActionButtonCell">

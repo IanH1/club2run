@@ -1,6 +1,6 @@
 <template name="staffList">
     {{> autoformModals collection="Staffs" id="staffForm"}}
-    {{> tabular table=TabularTables.Staff class="table dataTable table-striped table-bordered table-condensed"}}
+    {{> tabular table=TabularTables.Staff class="table dataTable table-striped table-bordered table-condensed" selector=tabularSelector}}
 </template>
 
 <template name="staffTableActionButtonCell">

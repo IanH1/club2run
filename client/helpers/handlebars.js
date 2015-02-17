@@ -3,7 +3,7 @@ Template.registerHelper('Users', Meteor.users);
 Template.registerHelper('TabularTables', TabularTables);
 
 Template.registerHelper('currentClub', function() {
-    return Clubs.findOne( {_id : Meteor.user().profile.clubId} );
+    return Clubs.findOne();
 });
 Template.registerHelper('collectionItems', function() {
     return _.map(collectionItems, function(obj) {

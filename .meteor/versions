@@ -6,7 +6,6 @@ aldeed:simple-schema@1.1.0
 aldeed:tabular@1.0.5
 anti:i18n@0.4.3
 application-configuration@1.0.4
-autopublish@1.0.2
 autoupdate@1.1.5
 base64@1.0.2
 binary-heap@1.0.2

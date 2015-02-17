@@ -1,6 +1,6 @@
 <template name="memberList">
     {{> autoformModals collection="Members" id="memberForm"}}
-    {{> tabular table=TabularTables.Member class="table dataTable table-striped table-bordered table-condensed"}}
+    {{> tabular table=TabularTables.Member class="table dataTable table-striped table-bordered table-condensed" selector=tabularSelector}}
 </template>
 
 <template name="memberTableActionButtonCell">
