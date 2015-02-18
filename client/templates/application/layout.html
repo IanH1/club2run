@@ -9,17 +9,8 @@
         <div class="content-wrapper">
             {{#if currentUser}}
                 <section class="content-header">
-                    {{#if collectionObject}}
-                        <h1>{{collectionObject.label}}<small>{{collectionMode}}</small></h1>
-                    {{else}}
-                        <h1>{{currentClub.name}}<small>Home</small></h1>
-                    {{/if}}
-                    <ol class="breadcrumb">
-                        <li><a href="{{pathFor 'home'}}"><i class="fa fa-globe"></i>{{currentClub.name}}</a></li>
-                        {{#if collectionObject}}
-                            <li><a href="{{pathFor 'memberList'}}"><i class="fa {{collectionObject.icon}}"></i>{{collectionObject.label}}</a></li>
-                        {{/if}}
-                    </ol>
+                    <h1>{{currentClub.name}}<small>Home</small></h1>
+                    {{> breadcrumbWidget}}
                 </section>
             {{/if}}
             <section class="content">
@@ -129,4 +120,12 @@
             </li>
         </ul>
     </section>
+</template>
+
+<template name="breadcrumbWidget">
+    <ol class="breadcrumb">
+        {{#each Breadcrumb}}
+            <li class="{{cssClasses}}"><a href="{{url}}">{{title}}</a></li>
+        {{/each}}
+    </ol>
 </template>

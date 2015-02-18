@@ -8,6 +8,14 @@ Meteor.publish('club', function() {
     return this.ready();
 });
 
+Meteor.publish('matches', function() {
+    return Matches.find({}, {sort: {startDateTime: -1}});
+});
+
+Meteor.publish('members', function() {
+    return Members.find({}, {sort: {fullName: 1}});
+});
+
 Meteor.publish('messages', function() {
     if (this.userId) {
         var clubId = Meteor.users.findOne(this.userId).profile.clubId;
@@ -28,6 +36,14 @@ Meteor.publish('notifications', function() {
     return this.ready();
 });
 
+Meteor.publish('officals', function() {
+    return Officals.find({}, {sort: {fullName: 1}});
+});
+
+Meteor.publish('staff', function() {
+    return Staff.find({}, {sort: {fullName: 1}});
+});
+
 Meteor.publish('tasks', function() {
     if (this.userId) {
         var clubId = Meteor.users.findOne(this.userId).profile.clubId;
@@ -36,6 +52,10 @@ Meteor.publish('tasks', function() {
         }
     }
     return this.ready();
+});
+
+Meteor.publish('teams', function() {
+    return Teams.find({}, {sort: {name: 1}});
 });
 
 Meteor.publish("userStatus", function() {

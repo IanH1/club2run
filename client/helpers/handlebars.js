@@ -5,17 +5,6 @@ Template.registerHelper('TabularTables', TabularTables);
 Template.registerHelper('currentClub', function() {
     return Clubs.findOne();
 });
-Template.registerHelper('collectionItems', function() {
-    return _.map(collectionItems, function(obj) {
-        return obj;
-    })
-});
-Template.registerHelper('collectionObject', function() {
-    return Session.get("collectionObject");
-});
-Template.registerHelper('collectionMode', function() {
-    return Session.get("collectionMode");
-});
 
 Template.registerHelper('notificationCount', function() {
     return Notifications.find({read: {$ne: true}}).count();
