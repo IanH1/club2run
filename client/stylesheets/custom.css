@@ -15,3 +15,21 @@ position: relative;
 #iron-router-progress.spinner:before {
     border-color : #00ff00;
 }
+
+.errors {
+    bottom: 0px;
+    left: 0px;
+    padding: 10px;
+    position: fixed;
+    pointer-events: none;
+    top: 0px;
+    right: 0px;
+    z-index: 10000;
+}
+.errors .alert {
+    clear: both;
+    float: right;
+    margin-bottom: 5px;
+    pointer-events: auto;
+    width: 250px;
+}
