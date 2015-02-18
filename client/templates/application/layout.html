@@ -105,7 +105,7 @@
                 <a href="#">
                     <i class="fa fa-bullseye"></i>
                     <span>Officals</span>
-                    <span class="label label-primary pull-right">{{currentClub.officialCount}}</span>
+                    <span class="label label-primary pull-right">{{currentClub.stats.officialCount}}</span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{pathFor 'officalList'}}"><i class="fa fa-table"></i> View All</a></li>
@@ -116,7 +116,7 @@
                 <a href="#">
                     <i class="fa fa-gears"></i>
                     <span>Staff</span>
-                    <span class="label label-primary pull-right">{{currentClub.staffCount}}</span>
+                    <span class="label label-primary pull-right">{{currentClub.stats.staffCount}}</span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{pathFor 'staffList'}}"><i class="fa fa-table"></i> View All</a></li>
