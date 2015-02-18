@@ -8,7 +8,6 @@ meteor-platform
 insecure
 underscore
 iron:router
-sacha:spin
 ian:accounts-ui-bootstrap-3
 accounts-password
 aldeed:collection2
@@ -21,3 +20,5 @@ fortawesome:fontawesome
 aldeed:simple-schema
 yogiben:autoform-map
 matb33:collection-hooks
+multiply:iron-router-progress
+sacha:spin
