@@ -17,6 +17,13 @@ Template.registerHelper('collectionMode', function() {
     return Session.get("collectionMode");
 });
 
+Template.registerHelper('notificationCount', function() {
+    return Notifications.find({read: {$ne: true}}).count();
+});
+Template.registerHelper('taskCount', function() {
+    return Tasks.find({complete: {$ne: true}}).count();
+});
+
 // Form option values
 Template.registerHelper("genderOptions", function() {
     return [

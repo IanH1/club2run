@@ -72,7 +72,7 @@
                 <a href="#">
                     <i class="fa fa-user"></i>
                     <span>Member</span>
-                    <span class="label label-primary pull-right">150</span>
+                    <span class="label label-primary pull-right">{{currentClub.memberCount}}</span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{pathFor 'memberList'}}"><i class="fa fa-table"></i> View All</a></li>
@@ -83,7 +83,7 @@
                 <a href="#">
                     <i class="fa fa-users"></i>
                     <span>Teams</span>
-                    <span class="label label-primary pull-right">5</span>
+                    <span class="label label-primary pull-right">{{currentClub.teamCount}}</span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{pathFor 'teamList'}}"><i class="fa fa-table"></i> View All</a></li>
@@ -94,7 +94,7 @@
                 <a href="#">
                     <i class="fa fa-calendar"></i>
                     <span>Matches</span>
-                    <span class="label label-primary pull-right">9</span>
+                    <span class="label label-primary pull-right">{{currentClub.matchCount}}</span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{pathFor 'matchList'}}"><i class="fa fa-table"></i> View All</a></li>
@@ -105,7 +105,7 @@
                 <a href="#">
                     <i class="fa fa-bullseye"></i>
                     <span>Officals</span>
-                    <span class="label label-primary pull-right">10</span>
+                    <span class="label label-primary pull-right">{{currentClub.officialCount}}</span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{pathFor 'officalList'}}"><i class="fa fa-table"></i> View All</a></li>
@@ -116,7 +116,7 @@
                 <a href="#">
                     <i class="fa fa-gears"></i>
                     <span>Staff</span>
-                    <span class="label label-primary pull-right">15</span>
+                    <span class="label label-primary pull-right">{{currentClub.staffCount}}</span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{pathFor 'staffList'}}"><i class="fa fa-table"></i> View All</a></li>

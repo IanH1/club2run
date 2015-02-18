@@ -1,15 +1,9 @@
 Template.header.helpers({
     notifications: function() {
-        return Notifications.find({clubId: Meteor.user().profile.clubId, read: false});
-    },
-    notificationCount: function(){
-        return Notifications.find({clubId: Meteor.user().profile.clubId, read: false}).count();
+        return Notifications.find({read: false}, {sort: {createdOn: -1}});
     },
     tasks: function() {
-        return Tasks.find({clubId: Meteor.user().profile.clubId, complete: {$ne: true}});
-    },
-    taskCount: function(){
-        return Tasks.find({clubId: Meteor.user().profile.clubId, complete: {$ne: true}}).count();
+        return Tasks.find({complete: {$ne: true}});
     }
 });
 
