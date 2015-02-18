@@ -41,7 +41,11 @@
             <div class="pull-left info">
                 <p>{{currentUser.profile.fullName}}</p>
                 <p>{{currentClub.name}}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                {{#if online}}
+                    <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                {{else}}
+                    <a href="#"><i class="fa fa-circle text-danger"></i> Offline</a>
+                {{/if}}
             </div>
         </div>
         <form action="#" method="get" class="sidebar-form">
@@ -104,19 +108,19 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-bullseye"></i>
-                    <span>Officals</span>
-                    <span class="label label-primary pull-right">{{currentClub.stats.officialCount}}</span>
+                    <span>Officials</span>
+                    <span class="label label-primary pull-right">{{currentClub.officialCount}}</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{pathFor 'officalList'}}"><i class="fa fa-table"></i> View All</a></li>
-                    <li><a href="{{pathFor 'officalCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                    <li><a href="{{pathFor 'officialList'}}"><i class="fa fa-table"></i> View All</a></li>
+                    <li><a href="{{pathFor 'officialCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
                 </ul>
             </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-gears"></i>
                     <span>Staff</span>
-                    <span class="label label-primary pull-right">{{currentClub.stats.staffCount}}</span>
+                    <span class="label label-primary pull-right">{{currentClub.staffCount}}</span>
                 </a>
                 <ul class="treeview-menu">
                     <li><a href="{{pathFor 'staffList'}}"><i class="fa fa-table"></i> View All</a></li>

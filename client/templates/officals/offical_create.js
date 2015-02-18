@@ -1,11 +1,11 @@
-Template.officalCreate.events({
+Template.officialCreate.events({
     'click .cancel': function(e, tpl) {
-        Router.go('officalList');
+        Router.go('officialList');
     }
 });
 
-AutoForm.addHooks('createOffical', {
+AutoForm.addHooks('createOfficial', {
     onSuccess: function() {
-        Router.go('officalList');
+        Router.go('officialList');
     }
 });

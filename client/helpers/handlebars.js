@@ -46,7 +46,7 @@ Template.registerHelper("ageOptions", function() {
         {label: 'Adult', value: 'Adult'}
     ];
 });
-Template.registerHelper("officalOptions", function() {
+Template.registerHelper("officialOptions", function() {
     return [
         {label: 'Umpire', value: 'Umpire'}
     ];

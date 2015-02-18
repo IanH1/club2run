@@ -1,11 +1,11 @@
-Template.officalEdit.events({
+Template.officialEdit.events({
     'click .cancel': function(e, tpl) {
-        Router.go('officalList');
+        Router.go('officialList');
     }
 });
 
-AutoForm.addHooks('editOffical', {
+AutoForm.addHooks('editOfficial', {
     onSuccess: function() {
-        Router.go('officalList');
+        Router.go('officialList');
     }
 });

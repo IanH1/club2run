@@ -1,11 +1,11 @@
-<template name="officalList">
-    {{> autoformModals collection="Officals" id="officalForm"}}
-    {{> tabular table=TabularTables.Offical class="table dataTable table-striped table-bordered table-condensed" selector=tabularSelector}}
+<template name="officialList">
+    {{> autoformModals collection="Officials" id="officialForm"}}
+    {{> tabular table=TabularTables.Official class="table dataTable table-striped table-bordered table-condensed" selector=tabularSelector}}
 </template>
 
-<template name="officalTableActionButtonCell">
-    <a href="{{pathFor 'officalEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-    {{#afModal class="btn btn-xs btn-danger btn-delete" collection="Officals" operation="remove" title="Delete Offical" doc=_id}}
+<template name="officialTableActionButtonCell">
+    <a href="{{pathFor 'officialEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
+    {{#afModal class="btn btn-xs btn-danger btn-delete" collection="Officials" operation="remove" title="Delete Official" doc=_id}}
         <i class="fa fa-times"></i>
     {{/afModal}}
 </template>
