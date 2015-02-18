@@ -10,20 +10,21 @@
                     {{#if currentUser}}
                         <li class="dropdown messages-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope-o"></i>
-                                <span class="label label-success">4</span>
+                                <i class="fa fa-comments-o"></i>
+                                <span class="label label-success">{{messageCount}}</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">You have 4 messages</li>
+                                <li class="header">You have {{messageCount}} messages</li>
                                 <li>
                                     <ul class="menu">
-                                        {{> messageWidget}}
-                                        {{> messageWidget}}
-                                        {{> messageWidget}}
-                                        {{> messageWidget}}
+                                        {{#each messages}}
+                                            {{> messageWidget}}
+                                        {{/each}}
                                     </ul>
                                 </li>
-                                <li class="footer"><a href="#">See All Messages</a></li>
+                                <li class="footer">
+                                    <a href="{{pathFor 'club'}}">See All Messages</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="dropdown notifications-menu">
@@ -40,7 +41,9 @@
                                         {{/each}}
                                     </ul>
                                 </li>
-                                <li class="footer"><a href="#" class="dismiss-all">Dismiss all</a></li>
+                                <li class="footer">
+                                    <a href="{{pathFor 'club'}}">View all notifications</a>
+                                </li>
                             </ul>
                         </li>
                         <li class="dropdown tasks-menu">
@@ -58,7 +61,7 @@
                                     </ul>
                                 </li>
                                 <li class="footer">
-                                    <a href="#">View all tasks</a>
+                                    <a href="{{pathFor 'club'}}">View all tasks</a>
                                 </li>
                             </ul>
                         </li>
@@ -77,11 +80,12 @@
 <template name="messageWidget">
     <li>
         <a href="#">
-            <div class="pull-left">
-                <img src="user2-160x160.jpg" class="img-circle" alt="User Image"/>
+            <i class="fa fa-wechat text-aqua"></i> {{author}}
+            <br>
+            <small>{{message}}</small>
+            <div class="pull-right">
+                <small>{{dateFromNow createdOn}}</small>
             </div>
-            <h4>Support Team<small><i class="fa fa-clock-o"></i> 5 mins</small></h4>
-            <p>Example message.</p>
         </a>
     </li>
 </template>
@@ -89,7 +93,10 @@
 <template name="notificationWidget">
     <li>
         <a href="#" class="notification-item">
-            <i class="fa fa-flag text-aqua"></i> {{description}}
+            <i class="fa fa-bell-o text-aqua"></i> {{description}}
+            <div class="pull-right">
+                <small>{{dateFromNow createdOn}}</small>
+            </div>
         </a>
     </li>
 </template>
@@ -98,6 +105,9 @@
     <li>
         <a href="#" class="task-item">
             <i class="fa fa-flag text-aqua"></i> {{text}}
+            <div class="pull-right">
+                <small>{{dateFromNow createdOn}}</small>
+            </div>
         </a>
     </li>
 </template>

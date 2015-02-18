@@ -1,8 +1,18 @@
-Meteor.publish('tasks', function() {
+Meteor.publish('club', function() {
     if (this.userId) {
         var clubId = Meteor.users.findOne(this.userId).profile.clubId;
         if (clubId) {
-            return Tasks.find({clubId: clubId}, {sort: {createdOn: -1}});
+            return Clubs.find({_id: clubId});
+        }
+    }
+    return this.ready();
+});
+
+Meteor.publish('messages', function() {
+    if (this.userId) {
+        var clubId = Meteor.users.findOne(this.userId).profile.clubId;
+        if (clubId) {
+            return Messages.find({clubId: clubId}, {sort: {createdOn: 1}});
         }
     }
     return this.ready();
@@ -18,11 +28,11 @@ Meteor.publish('notifications', function() {
     return this.ready();
 });
 
-Meteor.publish('club', function() {
+Meteor.publish('tasks', function() {
     if (this.userId) {
         var clubId = Meteor.users.findOne(this.userId).profile.clubId;
         if (clubId) {
-            return Clubs.find({_id: clubId});
+            return Tasks.find({clubId: clubId}, {sort: {createdOn: -1}});
         }
     }
     return this.ready();

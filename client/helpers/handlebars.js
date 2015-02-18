@@ -20,6 +20,9 @@ Template.registerHelper('collectionMode', function() {
 Template.registerHelper('notificationCount', function() {
     return Notifications.find({read: {$ne: true}}).count();
 });
+Template.registerHelper('messageCount', function() {
+    return Messages.find().count();
+});
 Template.registerHelper('taskCount', function() {
     return Tasks.find({complete: {$ne: true}}).count();
 });
@@ -67,6 +70,9 @@ Template.registerHelper("clubTypeOptions", function() {
 Template.registerHelper("checkedIf", function(val) {
     return val ? 'checked' : '';
 });
-Template.registerHelper("prettifyDate", function(timestamp) {
+Template.registerHelper("dateFromNow", function(timestamp) {
     return moment(new Date(timestamp)).fromNow();
+});
+Template.registerHelper("dateFormat", function(timestamp) {
+    return moment(new Date(timestamp)).format("MMMM Do YYYY, HH:mm:ss");
 });
