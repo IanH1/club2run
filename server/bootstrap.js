@@ -1,14 +1,18 @@
 if (Meteor.users.find().count() === 0) {
-    Accounts.createUser({
+    davidId = Accounts.createUser({
         username: "david",
         email: "davidmulligan@btopenworld.com",
-        password: "password"
+        password: "password",
+        profile: { firstName: "David", lastName: "Mulligan" }
     });
-    Accounts.createUser({
+    ianId = Accounts.createUser({
         username: "ian",
         email: "ian@ian.com",
-        password: "password"
+        password: "password",
+        profile: { fullName: "Ian Humphreys" }
     });
+    Roles.addUsersToRoles(davidId, ['admin'], Roles.GLOBAL_GROUP);
+    Roles.addUsersToRoles(ianId, ['admin'], Roles.GLOBAL_GROUP);
 }
 
 if (Clubs.find().count() === 0) {
@@ -31,7 +35,12 @@ if (Clubs.find().count() === 0) {
             country: "UK",
             longitude: "",
             latitude: ""
-        }
+        },
+        memberCount: 0,
+        teamCount: 0,
+        matchCount: 0,
+        officialCount: 0,
+        staffCount: 0
     });
     Meteor.users.update({ _id: Meteor.users.findOne({ username: 'david' })._id }, { $set: { 'profile.clubId': clubId}} );
     Meteor.users.update({ _id: Meteor.users.findOne({ username: 'ian' })._id }, { $set: { 'profile.clubId': clubId}} );
