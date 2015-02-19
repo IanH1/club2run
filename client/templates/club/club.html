@@ -87,6 +87,28 @@
                     {{/afModal}}
                 </div>
             </div>
+
+            <div class="box box-warning">
+                <div class="box-header">
+                    <i class="fa fa-bell-o"></i>
+                    <h3 class="box-title">Notification List ({{notificationCount}})</h3>
+                </div>
+                <div class="box-body">
+                    <ul class="todo-list">
+                        {{#each notifications}}
+                            <li>
+                                <span class="text">{{description}}</span>
+                                <small> - {{dateFromNow createdOn}}</small>
+                                <div class="tools">
+                                    {{#afModal class="btn btn-xs btn-danger btn-delete" collection="Notifications" operation="remove" title="Delete Notification" doc=_id}}
+                                        <i class="fa fa-trash-o"></i>
+                                    {{/afModal}}
+                                </div>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+            </div>
         </section>
     </div>
 </template>
