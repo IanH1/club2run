@@ -1,7 +1,9 @@
 <template name="layout">
     <div class="wrapper">
         {{> header}}
-        {{> errorsWidget}}
+        <div class="errors">
+            {{> flashMessages}}
+        </div>
         <aside class="main-sidebar">
             {{#if currentUser}}
                 {{> navigationMenu}}
@@ -121,21 +123,6 @@
             </li>
         </ul>
     </section>
-</template>
-
-<template name="errorsWidget">
-    <div class="errors">
-        {{#each errors}}
-            {{> errorWidget}}
-        {{/each}}
-    </div>
-</template>
-
-<template name="errorWidget">
-    <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <strong>Error!</strong> {{message}}
-    </div>
 </template>
 
 <template name="breadcrumbWidget">

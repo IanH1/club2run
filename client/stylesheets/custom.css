@@ -1,12 +1,3 @@
-#spinner {
-height: 300px;
-}
-
-.spinner-container {
-height: 100px;
-position: relative;
-}
-
 #iron-router-progress {
     background-color : #00ff00;
     box-shadow       : 0 0 5px #00ff00;
@@ -26,10 +17,11 @@ position: relative;
     right: 0px;
     z-index: 10000;
 }
+
 .errors .alert {
     clear: both;
     float: right;
     margin-bottom: 5px;
     pointer-events: auto;
-    width: 250px;
+    width: 400px;
 }

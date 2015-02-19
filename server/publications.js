@@ -13,7 +13,12 @@ Meteor.publish('matches', function() {
 });
 
 Meteor.publish('members', function() {
-    return Members.find({}, {sort: {fullName: 1}});
+    if (this.userId) {
+        var clubId = Meteor.users.findOne(this.userId).profile.clubId;
+        if (clubId) {
+            return Members.find({clubId: clubId}, {sort: {fullName: 1}});
+        }
+    }
 });
 
 Meteor.publish('messages', function() {
@@ -41,6 +46,12 @@ Meteor.publish('officals', function() {
 });
 
 Meteor.publish('staff', function() {
+    //if (this.userId) {
+    //    var clubId = Meteor.users.findOne(this.userId).profile.clubId;
+    //    if (clubId) {
+    //        return Notifications.find({clubId: clubId}, {sort: {createdOn: -1}});
+    //    }
+    //}
     return Staff.find({}, {sort: {fullName: 1}});
 });
 

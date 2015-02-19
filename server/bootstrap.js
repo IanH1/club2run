@@ -3,7 +3,7 @@ if (Meteor.users.find().count() === 0) {
         username: "david",
         email: "davidmulligan@btopenworld.com",
         password: "password",
-        profile: { firstName: "David", lastName: "Mulligan" }
+        profile: { firstName: "David", lastName: "Mulligan", fullName: "David Mulligan" }
     });
     ianId = Accounts.createUser({
         username: "ian",

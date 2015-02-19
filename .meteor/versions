@@ -15,7 +15,9 @@ blaze-tools@1.0.2
 boilerplate-generator@1.0.2
 callback-hook@1.0.2
 check@1.0.4
+chhib:selectize-bootstrap-3@0.0.1
 coffeescript@1.0.5
+comerc:autoform-selectize@2.2.2
 ddp@1.0.14
 deps@1.0.6
 ejson@1.0.5
@@ -38,6 +40,7 @@ iron:location@1.0.7
 iron:middleware-stack@1.0.7
 iron:router@1.0.7
 iron:url@1.0.7
+jeremy:selectize@0.12.0
 jquery@1.11.3
 json@1.0.2
 launch-screen@1.0.1
@@ -56,7 +59,9 @@ mobile-status-bar@1.0.2
 momentjs:moment@2.8.4
 monbro:iron-router-breadcrumb@1.0.6
 mongo@1.0.11
+mongo-livedata@1.0.7
 mpowaga:string-template@0.1.0
+mrt:flash-messages@1.0.0
 mrt:googlemaps@0.0.2
 multiply:iron-router-progress@1.0.1
 npm-bcrypt@0.7.7
