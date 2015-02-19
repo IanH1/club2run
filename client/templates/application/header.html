@@ -11,10 +11,10 @@
                         <li class="dropdown messages-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-comments-o"></i>
-                                <span class="label label-success">{{messageCount}}</span>
+                                <span class="label label-success">{{currentClub.messageCount}}</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">You have {{messageCount}} messages</li>
+                                <li class="header">You have {{currentClub.messageCount}} messages</li>
                                 <li>
                                     <ul class="menu">
                                         {{#each messages}}
@@ -30,10 +30,10 @@
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">{{notificationCount}}</span>
+                                <span class="label label-warning">{{currentClub.notificationCount}}</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">You have {{notificationCount}} notifications</li>
+                                <li class="header">You have {{currentClub.notificationCount}} notifications</li>
                                 <li>
                                     <ul class="menu">
                                         {{#each notifications}}
@@ -49,10 +49,10 @@
                         <li class="dropdown tasks-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">{{taskCount}}</span>
+                                <span class="label label-danger">{{currentClub.taskCount}}</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="header">You have {{taskCount}} outstanding tasks</li>
+                                <li class="header">You have {{currentClub.taskCount}} outstanding tasks</li>
                                 <li>
                                     <ul class="menu">
                                         {{#each tasks}}

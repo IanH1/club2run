@@ -1,3 +1,7 @@
+if (Roles.getAllRoles().count() === 0) {
+    Roles.createRole('club_admin');
+}
+
 if (Meteor.users.find().count() === 0) {
     davidId = Accounts.createUser({
         username: "david",
@@ -11,8 +15,6 @@ if (Meteor.users.find().count() === 0) {
         password: "password",
         profile: { fullName: "Ian Humphreys" }
     });
-    Roles.addUsersToRoles(davidId, ['admin'], Roles.GLOBAL_GROUP);
-    Roles.addUsersToRoles(ianId, ['admin'], Roles.GLOBAL_GROUP);
 }
 
 if (Clubs.find().count() === 0) {
@@ -40,8 +42,13 @@ if (Clubs.find().count() === 0) {
         teamCount: 0,
         matchCount: 0,
         officialCount: 0,
-        staffCount: 0
+        staffCount: 0,
+        messageCount: 0,
+        notificationCount: 0,
+        taskCount: 0
     });
     Meteor.users.update({ _id: Meteor.users.findOne({ username: 'david' })._id }, { $set: { 'profile.clubId': clubId}} );
     Meteor.users.update({ _id: Meteor.users.findOne({ username: 'ian' })._id }, { $set: { 'profile.clubId': clubId}} );
+    Roles.addUsersToRoles(davidId, ['club_user', 'club_admin'], clubId);
+    Roles.addUsersToRoles(ianId, ['club_user', 'club_admin'], clubId);
 }

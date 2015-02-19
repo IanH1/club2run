@@ -6,21 +6,11 @@ Template.registerHelper('currentClub', function() {
     return Clubs.findOne();
 });
 
-Template.registerHelper('notificationCount', function() {
-    return Notifications.find({read: {$ne: true}}).count();
-});
-Template.registerHelper('messageCount', function() {
-    return Messages.find().count();
-});
-Template.registerHelper('taskCount', function() {
-    return Tasks.find({complete: {$ne: true}}).count();
-});
-
 // Form option values
 Template.registerHelper("genderOptions", function() {
     return [
-        {label: 'Male', value: 'M'},
-        {label: 'Female', value: 'F'}
+        {label: 'Male', value: 'Male'},
+        {label: 'Female', value: 'Female'}
     ];
 });
 Template.registerHelper("ethinicityOptions", function() {
