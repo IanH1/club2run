@@ -1,3 +1,7 @@
+Meteor.publish('profilePictures', function() {
+    return ProfilePictures.find();
+});
+
 Meteor.publish('club', function() {
     if (this.userId) {
         var clubId = Meteor.users.findOne(this.userId).profile.clubId;

@@ -25,3 +25,7 @@
     pointer-events: auto;
     width: 400px;
 }
+
+.dataTables_length select.input-sm {
+    line-height: 20px;
+}

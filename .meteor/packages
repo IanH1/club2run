@@ -7,7 +7,6 @@
 meteor-platform
 underscore
 iron:router
-ian:accounts-ui-bootstrap-3
 accounts-password
 aldeed:collection2
 aldeed:autoform
@@ -28,3 +27,9 @@ mrt:flash-messages
 jeremy:selectize
 chhib:selectize-bootstrap-3
 comerc:autoform-selectize
+ian:accounts-ui-bootstrap-3@=1.2.21
+cfs:gridfs
+cfs:standard-packages
+yogiben:autoform-file
+yogiben:user-helpers
+yogiben:helpers
