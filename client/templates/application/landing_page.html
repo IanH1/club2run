@@ -1,10 +1,11 @@
 <template name="landingPage">
     <div class="jumbotron">
-        <div class="container">
-            <h1>Have you got a ... <em>Club2Run?</em></h1>
-        </div>
     </div>
-    <div class="row">
+    
+    <div class="container">
+      {{> carousel}}
+      <!-- Example row of columns -->
+      <div class="row">
         <div class="col-md-3">
             <h3>Administrators</h3>
             <p>Most amateur club admin roles have to rely on inadequate tools for the job.  Whether it be spreadsheets,  an Access database, files full of paper or email heavy processes.  Club2Run is engineered to streamline all the common club admin tasks, secure your data in the cloud and to make your lives easier as a result. </p>
@@ -21,5 +22,7 @@
             <h3>Guests</h3>
             <p>Guests or current registered members of a Club2Run can search our comprehensive database for potential clubs in their area that specialises in their field of interest. Useful club details and contact information are quickly found and Club2Run makes joining the chosen club an online breeze.</p>
         </div>
-    </div>
+        <hr>
+    </div> 
+    </div> <!-- /container -->
 </template>
