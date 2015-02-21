@@ -49,6 +49,6 @@ if (Clubs.find().count() === 0) {
     });
     Meteor.users.update({ _id: Meteor.users.findOne({ username: 'david' })._id }, { $set: { 'profile.clubId': clubId}} );
     Meteor.users.update({ _id: Meteor.users.findOne({ username: 'ian' })._id }, { $set: { 'profile.clubId': clubId}} );
-    Roles.addUsersToRoles(davidId, ['club_user', 'club_admin'], clubId);
-    Roles.addUsersToRoles(ianId, ['club_user', 'club_admin'], clubId);
+    Roles.addUsersToRoles(davidId, ['club_user', 'club_admin'], Roles.GLOBAL_GROUP);
+    Roles.addUsersToRoles(ianId, ['club_user', 'club_admin'], Roles.GLOBAL_GROUP);
 }
