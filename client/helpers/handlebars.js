@@ -77,13 +77,3 @@ Template.registerHelper("clubTypeOptions", function() {
         {label: 'Rugby Union', value: 'Rugby Union'}
     ];
 });
-
-Template.registerHelper("checkedIf", function(val) {
-    return val ? 'checked' : '';
-});
-Template.registerHelper("dateFromNow", function(timestamp) {
-    return moment(new Date(timestamp)).fromNow();
-});
-Template.registerHelper("dateFormat", function(timestamp) {
-    return moment(new Date(timestamp)).format("MMMM Do YYYY, HH:mm:ss");
-});

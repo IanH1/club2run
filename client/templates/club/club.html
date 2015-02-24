@@ -13,7 +13,7 @@
                             <img src="./user4-128x128.jpg" alt="user image" class="online"/>
                             <p class="message">
                                 <a href="#" class="name">
-                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{dateFormat createdOn}}</small>{{author}}
+                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{formatDate createdOn}}</small>{{author}}
                                 </a>
                                 {{message}}
                             </p>
@@ -68,7 +68,7 @@
                             <li>
                                 <input type="checkbox" class="taskItem" {{checkedIf complete}}/>
                                 <span class="text">{{text}}</span>
-                                <small> - {{dateFromNow createdOn}}</small>
+                                <small> - {{formatDateFromNow createdOn}}</small>
                                 <div class="tools">
                                     {{#afModal class="btn btn-xs btn-primary btn-edit" collection="Tasks" operation="update" title="Edit Task" doc=_id}}
                                         <i class="fa fa-edit"></i>
@@ -98,7 +98,7 @@
                         {{#each notifications}}
                             <li>
                                 <span class="text">{{description}}</span>
-                                <small> - {{dateFromNow createdOn}}</small>
+                                <small> - {{formatDateFromNow createdOn}}</small>
                                 <div class="tools">
                                     {{#afModal class="btn btn-xs btn-danger btn-delete" collection="Notifications" operation="remove" title="Delete Notification" doc=_id}}
                                         <i class="fa fa-trash-o"></i>

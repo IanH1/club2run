@@ -39,8 +39,8 @@ if (Clubs.find().count() === 0) {
             latitude: ""
         }
     });
-    Meteor.users.update({ _id: Meteor.users.findOne({ username: 'david' })._id }, { $set: { 'profile.clubId': clubId}} );
-    Meteor.users.update({ _id: Meteor.users.findOne({ username: 'ian' })._id }, { $set: { 'profile.clubId': clubId}} );
+    Meteor.users.update({ _id: Meteor.users.findOne({ username: 'david' })._id }, { $set: { 'profile.clubId': clubId, 'emails.0.verified': true}});
+    Meteor.users.update({ _id: Meteor.users.findOne({ username: 'ian' })._id }, { $set: { 'profile.clubId': clubId, 'emails.0.verified': true}});
     Roles.addUsersToRoles(davidId, ['club_user', 'club_admin'], Roles.GLOBAL_GROUP);
     Roles.addUsersToRoles(ianId, ['club_user', 'club_admin'], Roles.GLOBAL_GROUP);
 }

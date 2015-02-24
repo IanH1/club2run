@@ -1,5 +1,29 @@
 Meteor.methods({
-    'uploadFile': function(fileId, filename) {
+    sendEmail: function(doc) {
+
+        // Important server-side check for security and data integrity
+        //check(doc, Schema.contact);
+        this.unblock();
+
+        var options = {
+            apiKey: 'key-5a73f6fcbe8f3385087d841c667880a1',
+            domain: 'www.club2run.com'
+        }
+        var NigerianPrinceGun = new Mailgun(options);
+        NigerianPrinceGun.send({
+            'to': 'david@eurekatechnology.co.uk',
+            'from': 'no-reply@club2run.com',
+            'html': '<html><head></head><body>This is a test</body></html>',
+            'text': 'This is a test',
+            'subject': 'testSubject',
+            'tags': [
+                'some',
+                'test',
+                'tags'
+            ]
+        });
+    },
+    uploadFile: function(fileId, filename) {
         if (this.userId) {
             var userId = this.userId;
             var clubId = Meteor.users.findOne(this.userId).profile.clubId;
@@ -36,7 +60,6 @@ Meteor.methods({
                         })
 
                 }, 1000)
-
             }
         }
     }
