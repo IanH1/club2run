@@ -6,6 +6,38 @@ Template.registerHelper('currentClub', function() {
     return Clubs.findOne();
 });
 
+Template.registerHelper('matchCount', function() {
+    return Matches.find().count();
+});
+
+Template.registerHelper('memberCount', function() {
+    return Members.find().count();
+});
+
+Template.registerHelper('messageCount', function() {
+    return Messages.find().count();
+});
+
+Template.registerHelper('notificationCount', function() {
+    return Notifications.find().count();
+});
+
+Template.registerHelper('officialCount', function() {
+    return Officials.find().count();
+});
+
+Template.registerHelper('staffCount', function() {
+    return Staff.find().count();
+});
+
+Template.registerHelper('taskCount', function() {
+    return Tasks.find().count();
+});
+
+Template.registerHelper('teamCount', function() {
+    return Teams.find().count();
+});
+
 // Form option values
 Template.registerHelper("genderOptions", function() {
     return [
