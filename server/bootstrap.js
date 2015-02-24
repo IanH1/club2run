@@ -52,3 +52,5 @@ if (Clubs.find().count() === 0) {
     Roles.addUsersToRoles(davidId, ['club_user', 'club_admin'], Roles.GLOBAL_GROUP);
     Roles.addUsersToRoles(ianId, ['club_user', 'club_admin'], Roles.GLOBAL_GROUP);
 }
+
+Members.remove({});

@@ -17,7 +17,7 @@ Template.club.events({
     'click .taskItem': function(e) {
         Tasks.update(this._id, {$set: {complete: $(event.target).is(':checked')}});
     },
-    'submit form': function(e){
+    'submit form': function(e) {
         e.preventDefault();
 
         var fullName = Meteor.user().profile.firstName + " " + Meteor.user().profile.lastName;
