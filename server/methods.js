@@ -7,15 +7,15 @@ Meteor.methods({
 
         var options = {
             apiKey: 'key-5a73f6fcbe8f3385087d841c667880a1',
-            domain: 'www.club2run.com'
+            domain: 'mg.club2run.com'
         }
-        var NigerianPrinceGun = new Mailgun(options);
-        NigerianPrinceGun.send({
-            'to': 'david@eurekatechnology.co.uk',
+        var Emailer = new Mailgun(options);
+        Emailer.send({
+            'to': 'davidmulligan@btopenworld.com',
             'from': 'no-reply@club2run.com',
-            'html': '<html><head></head><body>This is a test</body></html>',
-            'text': 'This is a test',
-            'subject': 'testSubject',
+            'html': '<html><head></head><body>' + doc.message + '</body></html>',
+            'text': doc.message,
+            'subject': doc.subject,
             'tags': [
                 'some',
                 'test',
