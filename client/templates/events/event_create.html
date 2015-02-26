@@ -1,6 +1,22 @@
 <template name="eventCreate">
     {{#autoForm id='createEvent' schema=Schema.EventSchema type="method" meteormethod="insertEvent"}}
-        {{> afFieldInput name="type" value=eventType type="hidden"}}
+        {{#if eventType}}
+            {{> afFieldInput name="type" value=eventType type="hidden"}}
+        {{else}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Event</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {{> afQuickField name='type' options=eventTypeOptions}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+
         {{#if afFieldValueIs name="type" value="match"}}
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -25,7 +41,14 @@
                             {{> afQuickField name='startDateTime' type='datetime-local' value=eventDate}}
                         </div>
                         <div class="col-xs-6">
+                            {{> afQuickField name='endDateTime' type='datetime-local' value=eventDate}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
                             {{> afQuickField name='match.meetupDateTime' type='datetime-local'}}
+                        </div>
+                        <div class="col-xs-6">
                         </div>
                     </div>
                     <div class="row">

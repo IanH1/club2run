@@ -1,0 +1,180 @@
+Index: lib/collections/events.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/collections/events.js	(revision )
++++ lib/collections/events.js	(revision )
+@@ -0,0 +1,1 @@
++Events = new Mongo.Collection('events');
+\ No newline at end of file
+Index: server/methods.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- server/methods.js	(date 1424790800000)
++++ server/methods.js	(revision )
+@@ -7,7 +7,7 @@
+ 
+         var options = {
+             apiKey: 'key-5a73f6fcbe8f3385087d841c667880a1',
+-            domain: 'www.club2run.com'
++            domain: 'mg.club2run.com'
+         }
+         var NigerianPrinceGun = new Mailgun(options);
+         NigerianPrinceGun.send({
+\ No newline at end of file
+Index: lib/schema.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- lib/schema.js	(date 1424790800000)
++++ lib/schema.js	(revision )
+@@ -948,4 +948,142 @@
+         }
+     }
+ });
+-Teams.attachSchema(Schema.TeamSchema);
+\ No newline at end of file
++Teams.attachSchema(Schema.TeamSchema);
++
++
++
++
++//
++//Schema.EventMatchSchema = new SimpleSchema({
++//    team: {
++//        type: String,
++//        regEx: SimpleSchema.RegEx.Id,
++//        label: "Team",
++//        autoform: {
++//            options: function () {
++//                var options = [];
++//                Teams.find({}, {sort: {name: 1}}).forEach(function(element) {
++//                    options.push({
++//                        label: element.name, value: element._id
++//                    })
++//                });
++//                return options;
++//            }
++//        }
++//    },
++//    opponent: {
++//        type: String,
++//        label: "Opponents",
++//        max: 100,
++//        optional: true
++//    },
++//    competition: {
++//        type: String,
++//        label: "Competition",
++//        max: 100,
++//        optional: true
++//    },
++//    opponentCoaches: {
++//        type: [String],
++//        label: "Away Coaches",
++//        max: 100,
++//        optional: true
++//    },
++//    meetupDateTime: {
++//        type: Date,
++//        label: "Meetup Time",
++//        optional: true
++//    },
++//    officials: {
++//        type: Array,
++//        label: "Officials",
++//        optional: true,
++//        autoform: {
++//            options: function () {
++//                var options = [];
++//                Officials.find({}, {sort: {fullName: 1}}).forEach(function (element) {
++//                    options.push({
++//                        label: element.fullName, value: element._id
++//                    })
++//                });
++//                return options;
++//            }
++//        }
++//    },
++//    "officials.$": {
++//        type: SimpleSchema.RegEx.Id
++//    }
++//});
++//
++//Schema.EventSchema = new SimpleSchema({
++//    type: {
++//        type: String,
++//        label: 'Type',
++//        max: 10,
++//        allowedValues: ["Match"]
++//    },
++//    startDateTime: {
++//        type: Date,
++//        label: "Start Date/Time"
++//    },
++//    endDateTime: {
++//        type: Date,
++//        label: "Start Date/Time",
++//        optional: true
++//    },
++//    location: {
++//        type: Schema.AddressSchema,
++//        label: "Location",
++//        optional: true
++//    },
++//    comments: {
++//        type: String,
++//        label: "Comments",
++//        max: 200,
++//        optional: true
++//    },
++//    clubId: {
++//        type: String,
++//        regEx: SimpleSchema.RegEx.Id,
++//        autoValue: function () {
++//            if (Meteor.isClient && this.isInsert) {
++//                return Meteor.user().profile.clubId
++//            }
++//        }
++//    },
++//    createdOn: {
++//        type: Date,
++//        autoValue: function () {
++//            if (Meteor.isClient && this.isInsert) {
++//                return new Date;
++//            }
++//        }
++//    },
++//    createdBy: {
++//        type: String,
++//        regEx: SimpleSchema.RegEx.Id,
++//        autoValue: function () {
++//            if (Meteor.isClient && this.isInsert) {
++//                return Meteor.userId();
++//            }
++//        }
++//    },
++//    modifiedOn: {
++//        type: Date,
++//        autoValue: function () {
++//            if (Meteor.isClient) {
++//                return new Date;
++//            }
++//        }
++//    },
++//    modifiedBy: {
++//        type: String,
++//        regEx: SimpleSchema.RegEx.Id,
++//        autoValue: function () {
++//            if (Meteor.isClient) {
++//                return Meteor.userId();
++//            }
++//        }
++//    }
++//});
++//Events.attachSchema(Schema.EventSchema);
+\ No newline at end of file

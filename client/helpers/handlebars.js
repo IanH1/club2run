@@ -79,6 +79,8 @@ Template.registerHelper("clubTypeOptions", function() {
 });
 Template.registerHelper("eventTypeOptions", function() {
     return [
-        {label: 'Match', value: 'match'}
+        {label: 'Match', value: 'match'},
+        {label: 'Training', value: 'training'},
+        {label: 'Meeting', value: 'meeting'}
     ];
 });

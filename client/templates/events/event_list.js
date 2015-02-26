@@ -22,7 +22,7 @@ Template.eventList.helpers({
     dayClickHandler: function() {
         return function(date, allDay, jsEvent, view) {
             Session.set("eventDate", date.format());
-            Router.go('eventCreate', {eventType: 'match'});
+            Router.go('eventCreate');
         };
     },
     events: function() {
@@ -30,7 +30,7 @@ Template.eventList.helpers({
             var events = Events.find().map(function(event) {
                 return {
                     id: event._id,
-                    title: event.type,
+                    title: event.description,
                     start: moment(event.startDateTime),
                     end: moment(event.endDateTime),
                     allDay: event.endDateTime == null
