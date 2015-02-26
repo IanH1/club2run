@@ -1,11 +1,3 @@
 <template name="eventList">
-    {{> autoformModals collection="Events" id="eventForm"}}
-    {{> tabular table=TabularTables.Event class="table dataTable table-striped table-bordered table-condensed" selector=tabularSelector}}
-</template>
-
-<template name="eventTableActionButtonCell">
-    <a href="{{pathFor 'eventEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-    {{#afModal class="btn btn-xs btn-danger btn-delete" collection="Events" operation="remove" title="Delete Event" doc=_id}}
-        <i class="fa fa-times"></i>
-    {{/afModal}}
+    {{> fullcalendar header=headerOptions defaultView='agendaWeek' class="eventCalendar" events=events eventClick=eventClickHandler dayClick=dayClickHandler}}
 </template>

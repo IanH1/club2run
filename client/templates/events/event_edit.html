@@ -52,6 +52,14 @@
                             {{> afQuickField name='training.team'}}
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            {{> afQuickField name='startDateTime' type='datetime-local'}}
+                        </div>
+                        <div class="col-xs-6">
+                            {{> afQuickField name='endDateTime' type='datetime-local'}}
+                        </div>
+                    </div>
                 </div>
             </div>
         {{/if}}
@@ -64,6 +72,14 @@
                     <div class="row">
                         <div class="col-xs-12">
                             {{> afQuickField name='meeting.title'}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            {{> afQuickField name='startDateTime' type='datetime-local'}}
+                        </div>
+                        <div class="col-xs-6">
+                            {{> afQuickField name='endDateTime' type='datetime-local'}}
                         </div>
                     </div>
                 </div>
@@ -123,6 +139,7 @@
         <div>
             <button type="submit" class="btn btn-primary">Update</button>
             <button type="reset" class="btn btn-default">Reset</button>
+            <button type="button" class="btn btn-danger delete">Delete</button>
             <button type="button" class="btn btn-default cancel">Cancel</button>
         </div>
     {{/autoForm}}

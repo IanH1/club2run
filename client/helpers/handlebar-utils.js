@@ -20,7 +20,7 @@ Template.registerHelper('formatDateTime', function(datetime) {
 
 Template.registerHelper("formatDateFromNow", function(datetime) {
     if (moment && datetime) {
-        return moment(new Date(timestamp)).fromNow();
+        return moment(new Date(datetime)).fromNow();
     } else {
         return datetime;
     }

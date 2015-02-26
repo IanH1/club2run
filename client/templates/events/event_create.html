@@ -22,7 +22,7 @@
                     </div>
                     <div class="row">
                         <div class="col-xs-6">
-                            {{> afQuickField name='startDateTime' type='datetime-local'}}
+                            {{> afQuickField name='startDateTime' type='datetime-local' value=eventDate}}
                         </div>
                         <div class="col-xs-6">
                             {{> afQuickField name='match.meetupDateTime' type='datetime-local'}}
@@ -52,6 +52,14 @@
                             {{> afQuickField name='training.team'}}
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            {{> afQuickField name='startDateTime' type='datetime-local' value=eventDate}}
+                        </div>
+                        <div class="col-xs-6">
+                            {{> afQuickField name='endDateTime' type='datetime-local' value=eventDate}}
+                        </div>
+                    </div>
                 </div>
             </div>
         {{/if}}
@@ -64,6 +72,14 @@
                     <div class="row">
                         <div class="col-xs-12">
                             {{> afQuickField name='meeting.title'}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            {{> afQuickField name='startDateTime' type='datetime-local' value=eventDate}}
+                        </div>
+                        <div class="col-xs-6">
+                            {{> afQuickField name='endDateTime' type='datetime-local' value=eventDate}}
                         </div>
                     </div>
                 </div>
