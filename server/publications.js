@@ -12,14 +12,14 @@ Meteor.publish('club', function() {
     return this.ready();
 });
 
-Meteor.publish('matches', function() {
+Meteor.publish('events', function() {
     if (this.userId) {
         var clubId = Meteor.users.findOne(this.userId).profile.clubId;
         if (clubId && Roles.userIsInRole(this.userId, ['club_user'], Roles.GLOBAL_GROUP)) {
-            return Clubs.find({_id: clubId});
+            return Events.find({clubId: clubId}, {sort: {startDateTime: -1}});
         }
     }
-    return Matches.find({clubId: clubId}, {sort: {startDateTime: -1}});
+    return this.ready();
 });
 
 Meteor.publish('members', function() {
@@ -29,6 +29,7 @@ Meteor.publish('members', function() {
             return Members.find({clubId: clubId}, {sort: {fullName: 1}});
         }
     }
+    return this.ready();
 });
 
 Meteor.publish('messages', function() {
@@ -55,24 +56,24 @@ Meteor.publish('officals', function() {
     if (this.userId) {
         var clubId = Meteor.users.findOne(this.userId).profile.clubId;
         if (clubId && Roles.userIsInRole(this.userId, ['club_user'], Roles.GLOBAL_GROUP)) {
-            return Clubs.find({_id: clubId});
+            return Officals.find({clubId: clubId}, {sort: {fullName: 1}});
         }
     }
-    return Officals.find({clubId: clubId}, {sort: {fullName: 1}});
+    return this.ready();
 });
 
-Meteor.publish(null, function (){
-    return Meteor.roles.find({})
+Meteor.publish(null, function() {
+    return Meteor.roles.find({});
 })
 
 Meteor.publish('staff', function() {
     if (this.userId) {
         var clubId = Meteor.users.findOne(this.userId).profile.clubId;
         if (clubId && Roles.userIsInRole(this.userId, ['club_user'], Roles.GLOBAL_GROUP)) {
-            return Clubs.find({_id: clubId});
+            return Staff.find({clubId: clubId}, {sort: {fullName: 1}});
         }
     }
-    return Staff.find({clubId: clubId}, {sort: {fullName: 1}});
+    return this.ready();
 });
 
 Meteor.publish('tasks', function() {
@@ -89,10 +90,10 @@ Meteor.publish('teams', function() {
     if (this.userId) {
         var clubId = Meteor.users.findOne(this.userId).profile.clubId;
         if (clubId && Roles.userIsInRole(this.userId, ['club_user'], Roles.GLOBAL_GROUP)) {
-            return Clubs.find({_id: clubId});
+            return Teams.find({clubId: clubId}, {sort: {name: 1}});
         }
     }
-    return Teams.find({clubId: clubId}, {sort: {name: 1}});
+    return this.ready();
 });
 
 Meteor.publish("userStatus", function() {

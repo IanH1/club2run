@@ -92,12 +92,14 @@
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-calendar"></i>
-                    <span>Matches</span>
-                    <span class="label label-primary pull-right">{{matchCount}}</span>
+                    <span>Events</span>
+                    <span class="label label-primary pull-right">{{eventCount}}</span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{pathFor 'matchList'}}"><i class="fa fa-table"></i> View All</a></li>
-                    <li><a href="{{pathFor 'matchCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                    <li><a href="{{pathFor 'eventList'}}"><i class="fa fa-table"></i> View All</a></li>
+                    <li><a href="{{pathFor 'eventCreate' eventType="match"}}"><i class="fa fa-edit"></i> Create Match</a></li>
+                    <li><a href="{{pathFor 'eventCreate' eventType="training"}}"><i class="fa fa-edit"></i> Create Training</a></li>
+                    <li><a href="{{pathFor 'eventCreate' eventType="meeting"}}"><i class="fa fa-edit"></i> Create Meeting</a></li>
                 </ul>
             </li>
             <li class="treeview">

@@ -6,8 +6,8 @@ Template.registerHelper('currentClub', function() {
     return Clubs.findOne();
 });
 
-Template.registerHelper('matchCount', function() {
-    return Matches.find().count();
+Template.registerHelper('eventCount', function() {
+    return Events.find().count();
 });
 
 Template.registerHelper('memberCount', function() {
@@ -75,5 +75,10 @@ Template.registerHelper("clubTypeOptions", function() {
         {label: 'Football', value: 'Football'},
         {label: 'Hockey', value: 'Hockey'},
         {label: 'Rugby Union', value: 'Rugby Union'}
+    ];
+});
+Template.registerHelper("eventTypeOptions", function() {
+    return [
+        {label: 'Match', value: 'match'}
     ];
 });

@@ -1,0 +1,129 @@
+<template name="eventCreate">
+    {{#autoForm id='createEvent' schema=Schema.EventSchema type="method" meteormethod="insertEvent"}}
+        {{> afFieldInput name="type" value=eventType type="hidden"}}
+        {{#if afFieldValueIs name="type" value="match"}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Match</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {{> afQuickField name='match.team'}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            {{> afQuickField name='match.opponent'}}
+                        </div>
+                        <div class="col-xs-6">
+                            {{> afQuickField name='match.competition'}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            {{> afQuickField name='startDateTime' type='datetime-local'}}
+                        </div>
+                        <div class="col-xs-6">
+                            {{> afQuickField name='match.meetupDateTime' type='datetime-local'}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {{> afQuickField name='match.opponentCoaches'}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {{> afQuickField name='match.officials'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+        {{#if afFieldValueIs name="type" value="training"}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Training</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {{> afQuickField name='training.team'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+        {{#if afFieldValueIs name="type" value="meeting"}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Meeting</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            {{> afQuickField name='meeting.title'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Location</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='location.line1'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='location.line2'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='location.line3'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='location.line4'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='location.city'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='location.county'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='location.postCode'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='location.country'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Additional Information</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='addInfo' rows=2}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+            <button type="button" class="btn btn-default cancel">Cancel</button>
+        </div>
+    {{/autoForm}}
+</template>

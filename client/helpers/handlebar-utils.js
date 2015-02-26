@@ -33,3 +33,7 @@ Template.registerHelper("checkedIf", function(val) {
 Template.registerHelper('checkRole', function(userId, roleName) {
     return (Roles.userIsInRole(userId, [roleName]) || Roles.userIsInRole(userId,['admin']));
 });
+
+Template.registerHelper('equals', function (val1, val2) {
+    return val1 === val2;
+});
