@@ -1,5 +1,5 @@
 <template name="staffCreate">
-    {{#autoForm id='createStaff' collection='Staff' type='insert'}}
+    {{#autoForm id='createStaff' schema=Schema.StaffSchema type="method" meteormethod="insertStaff"}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Details</h3>

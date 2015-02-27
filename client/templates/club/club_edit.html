@@ -1,5 +1,5 @@
 <template name="clubEdit">
-    {{#autoForm id='editClub' collection='Clubs' doc=currentClub type="update"}}
+    {{#autoForm id='editClub' schema=Schema.ClubSchema type="method" meteormethod="updateClub" doc=currentClub}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Details</h3>

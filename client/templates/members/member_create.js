@@ -6,6 +6,7 @@ Template.memberCreate.events({
 
 AutoForm.addHooks('createMember', {
     onSuccess: function() {
+        FlashMessages.sendSuccess("Member successfully created.");
         Router.go('memberList');
     }
 });

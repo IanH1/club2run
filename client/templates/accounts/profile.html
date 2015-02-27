@@ -1,5 +1,5 @@
 <template name="profile">
-    {{#autoForm id='updateProfile' collection=Users doc=currentUser type='update'}}
+    {{#autoForm id='updateProfile' schema=Schema.UserProfile type="method" meteormethod="updateProfile" doc=currentUser.profile}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Profile</h3>
@@ -7,15 +7,15 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='profile.firstName'}}
+                        {{> afQuickField name='firstName'}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='profile.lastName'}}
+                        {{> afQuickField name='lastName'}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afFieldInput name="profile.picture" label="Avatar" remove-label="Remove"}}
+                        {{> afFieldInput name="picture" label="Avatar" remove-label="Remove"}}
                     </div>
                     <div class="col-xs-6">
                     </div>
@@ -29,42 +29,42 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='profile.homeTelephone'}}
+                        {{> afQuickField name='homeTelephone'}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='profile.mobileTelephone'}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        {{> afQuickField name='profile.address.line1'}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{> afQuickField name='profile.address.line2'}}
+                        {{> afQuickField name='mobileTelephone'}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='profile.address.line3'}}
+                        {{> afQuickField name='address.line1'}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='profile.address.line4'}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        {{> afQuickField name='profile.address.city'}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{> afQuickField name='profile.address.county'}}
+                        {{> afQuickField name='address.line2'}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='profile.address.postCode'}}
+                        {{> afQuickField name='address.line3'}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='profile.address.country'}}
+                        {{> afQuickField name='address.line4'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='address.city'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='address.county'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='address.postCode'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='address.country'}}
                     </div>
                 </div>
             </div>

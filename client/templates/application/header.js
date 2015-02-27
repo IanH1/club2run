@@ -10,9 +10,13 @@ Template.header.helpers({
     }
 });
 
-Template.header.events({
+Template.notificationWidget.events({
     'click .notification-item': function() {
-        Notifications.update(this._id, {$set: {read: true}});
+        Meteor.call('readNotification', this._id, function(error, result) {
+            if (error) {
+                FlashMessages.sendError(error.reason);
+            }
+        });
     }
 });
 

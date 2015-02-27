@@ -1,11 +1,7 @@
 <template name="teamList">
-    {{> autoformModals collection="Teams" id="teamForm"}}
     {{> tabular table=TabularTables.Team class="table dataTable table-striped table-bordered table-condensed" selector=tabularSelector}}
 </template>
 
 <template name="teamTableActionButtonCell">
     <a href="{{pathFor 'teamEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-    {{#afModal class="btn btn-xs btn-danger btn-delete" collection="Teams" operation="remove" title="Delete Team" doc=_id}}
-        <i class="fa fa-times"></i>
-    {{/afModal}}
 </template>

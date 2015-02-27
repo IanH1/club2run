@@ -3,12 +3,17 @@ Template.eventEdit.events({
         Router.go('eventList');
     },
     'click .delete': function(event, template) {
-        Meteor.call('deleteEvent', this._id, this.type, function(error, result) {
-            if (error) {
-                FlashMessages.sendError(error.reason);
-            } else {
-                FlashMessages.sendSuccess("Event successfully deleted.");
-                Router.go('eventList');
+        var eventId = this._id;
+        bootbox.confirm("Are you sure you want to delete " + this.description + "?", function(result) {
+            if (result) {
+                Meteor.call('deleteEvent', eventId, function(error, result) {
+                    if (error) {
+                        FlashMessages.sendError(error.reason);
+                    } else {
+                        FlashMessages.sendSuccess("Event successfully deleted.");
+                        Router.go('eventList');
+                    }
+                });
             }
         });
     }

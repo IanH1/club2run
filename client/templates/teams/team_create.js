@@ -6,6 +6,7 @@ Template.teamCreate.events({
 
 AutoForm.addHooks('createTeam', {
     onSuccess: function() {
+        FlashMessages.sendSuccess("Team successfully created.");
         Router.go('teamList');
     }
 });

@@ -52,11 +52,11 @@ Meteor.publish('notifications', function() {
     return this.ready();
 });
 
-Meteor.publish('officals', function() {
+Meteor.publish('officials', function() {
     if (this.userId) {
         var clubId = Meteor.users.findOne(this.userId).profile.clubId;
         if (clubId && Roles.userIsInRole(this.userId, ['club_user'], Roles.GLOBAL_GROUP)) {
-            return Officals.find({clubId: clubId}, {sort: {fullName: 1}});
+            return Officials.find({clubId: clubId}, {sort: {fullName: 1}});
         }
     }
     return this.ready();

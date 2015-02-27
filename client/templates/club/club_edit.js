@@ -6,6 +6,7 @@ Template.clubEdit.events({
 
 AutoForm.addHooks('editClub', {
     onSuccess: function() {
+        FlashMessages.sendSuccess("Club successfully updated.");
         Router.go('club');
     }
 });

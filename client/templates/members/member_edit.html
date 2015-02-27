@@ -1,5 +1,5 @@
 <template name="memberEdit">
-    {{#autoForm id='editMember' collection='Members' doc=this type="update"}}
+    {{#autoForm id='editMember' schema=Schema.MemberSchema type="method" meteormethod="updateMember" doc=this}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Details</h3>
@@ -112,6 +112,7 @@
             <button type="submit" class="btn btn-primary">Update</button>
             <button type="reset" class="btn btn-default">Reset</button>
             <button type="button" class="btn btn-default cancel">Cancel</button>
+            <button type="button" class="btn btn-danger delete">Delete</button>
         </div>
     {{/autoForm}}
 </template>

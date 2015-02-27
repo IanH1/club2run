@@ -13,7 +13,7 @@
                             <img src="./user4-128x128.jpg" alt="user image" class="online"/>
                             <p class="message">
                                 <a href="#" class="name">
-                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{formatDate createdOn}}</small>{{author}}
+                                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> {{formatDate createdOn}}</small>{{createdBy}}
                                 </a>
                                 {{message}}
                             </p>
@@ -70,21 +70,21 @@
                                 <span class="text">{{text}}</span>
                                 <small> - {{formatDateFromNow createdOn}}</small>
                                 <div class="tools">
-                                    {{#afModal class="btn btn-xs btn-primary btn-edit" collection="Tasks" operation="update" title="Edit Task" doc=_id}}
-                                        <i class="fa fa-edit"></i>
-                                    {{/afModal}}
-                                    {{#afModal class="btn btn-xs btn-danger btn-delete" collection="Tasks" operation="remove" title="Delete Task" doc=_id}}
-                                        <i class="fa fa-trash-o"></i>
-                                    {{/afModal}}
+                                    <!--{{#afModal class="btn btn-xs btn-primary btn-edit" collection="Tasks" operation="update" title="Edit Task" doc=_id}}-->
+                                        <!--<i class="fa fa-edit"></i>-->
+                                    <!--{{/afModal}}-->
+                                    <!--{{#afModal class="btn btn-xs btn-danger btn-delete" collection="Tasks" operation="remove" title="Delete Task" doc=_id}}-->
+                                        <!--<i class="fa fa-trash-o"></i>-->
+                                    <!--{{/afModal}}-->
                                 </div>
                             </li>
                         {{/each}}
                     </ul>
                 </div>
                 <div class="box-footer clearfix no-border">
-                    {{#afModal class="btn btn-default pull-right" collection="Tasks" title="Create Task" operation="insert"}}
-                        <i class="fa fa-plus"></i> Add task
-                    {{/afModal}}
+                    <!--{{#afModal class="btn btn-default pull-right" collection="Tasks" title="Create Task" operation="insert"}}-->
+                        <!--<i class="fa fa-plus"></i> Add task-->
+                    <!--{{/afModal}}-->
                 </div>
             </div>
 

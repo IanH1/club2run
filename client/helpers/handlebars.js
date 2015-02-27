@@ -19,7 +19,7 @@ Template.registerHelper('messageCount', function() {
 });
 
 Template.registerHelper('notificationCount', function() {
-    return Notifications.find().count();
+    return Notifications.find({read: false}).count();
 });
 
 Template.registerHelper('officialCount', function() {

@@ -20,7 +20,10 @@ Template.club.events({
     'submit form': function(e) {
         e.preventDefault();
 
-        var fullName = Meteor.user().profile.firstName + " " + Meteor.user().profile.lastName;
-        Messages.insert({message: e.target.message.value, author: fullName});
+        Meteor.call('insertMessage', {message: e.target.message.value}, function(error, result) {
+            if (error) {
+                FlashMessages.sendError(error.reason);
+            }
+        });
     }
 });
