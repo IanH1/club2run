@@ -105,6 +105,9 @@
             <button type="reset" class="btn btn-default">Reset</button>
             <button type="button" class="btn btn-default cancel">Cancel</button>
             <button type="button" class="btn btn-danger delete">Delete</button>
+            {{#if not userId}}
+                <button type="button" class="btn btn-default create-user">Create User</button>
+            {{/if}}
         </div>
     {{/autoForm}}
 </template>

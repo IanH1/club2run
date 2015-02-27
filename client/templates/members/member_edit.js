@@ -1,8 +1,5 @@
 Template.memberEdit.events({
-    'click .cancel': function(e, tpl) {
-        Router.go('memberList');
-    },
-    'click .delete': function(event, template) {
+    'click .delete': function() {
         var memberId = this._id;
         bootbox.confirm("Are you sure you want to delete " + this.fullName + "?", function(result) {
             if (result) {
@@ -16,6 +13,24 @@ Template.memberEdit.events({
                 });
             }
         });
+    },
+    'click .create-user': function() {
+        var memberId = this._id;
+        bootbox.confirm("Are you sure you want to create a user for this member " + this.fullName + "?", function(result) {
+            if (result) {
+                Meteor.call('createNewUserFromMember', memberId, function(error) {
+                    if (error) {
+                        FlashMessages.sendError(error.reason);
+                    } else {
+                        FlashMessages.sendSuccess("User successfully created.");
+                        Router.go('memberList');
+                    }
+                });
+            }
+        });
+    },
+    'click .cancel': function(e, tpl) {
+        Router.go('memberList');
     }
 });
 

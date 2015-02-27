@@ -37,3 +37,7 @@ Template.registerHelper('checkRole', function(userId, roleName) {
 Template.registerHelper('equals', function (val1, val2) {
     return val1 === val2;
 });
+
+Template.registerHelper('not', function(val) {
+    return (!val);
+});

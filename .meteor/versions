@@ -33,6 +33,7 @@ cfs:upload-http@0.0.19
 cfs:worker@0.1.3
 check@1.0.4
 chhib:selectize-bootstrap-3@0.0.1
+cmather:handlebars-server@0.2.0
 coffeescript@1.0.5
 comerc:autoform-selectize@2.2.2
 ddp@1.0.14
@@ -121,4 +122,5 @@ yogiben:autoform-file@0.2.0
 yogiben:autoform-map@0.0.3
 yogiben:autoform-modals@0.2.9
 yogiben:helpers@0.0.5
+yogiben:pretty-email@0.0.3
 yogiben:user-helpers@0.0.8
