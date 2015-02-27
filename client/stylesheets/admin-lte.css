@@ -12,95 +12,8 @@
  */
 html,
 body {
-    min-height: 100%;
-    color: #666666;
-    background-color: #32424A;
-    margin-top: 0;
+  min-height: 100%;
 }
-
-.navbar {
-    margin-bottom: 10px;
-    background-color: #438ce6;
-}
-
-.navbar .navbar-inner {
-    -webkit-border-radius: 0px 0px 3px 3px;
-    -moz-border-radius: 0px 0px 3px 3px;
-    -ms-border-radius: 0px 0px 3px 3px;
-    -o-border-radius: 0px 0px 3px 3px;
-    border-radius: 0px 0px 3px 3px; }
-
-.navbar .navbar-brand {
-    margin-top: -15px;
-}
-
-.jumbotron {
-    text-align: center;
-    background-image : url('jump-C2R.gif');
-    height: 600px;
-}
-
-.jumbotron h1 {
-    font-size: 70px;
-    color: #32424A;
-}
-
-.jumbotron h2 {
-    font-size: 50px;
-    font-weight: 100;
-    color: red;
-}
-
-.jumbotron a {
-    font-size: 60px;
-    font-weight: 100;
-    background-color: red;
-}
-
-.jumbotron p {
-    color:green;
-}
-
-
-.col-md-3 h3 {
-    color:red;
-}
-
-.col-md-3 p {
-    color:#2D2D2D;
-}
-.col-md-3 
-
-.table-striped tbody > tr:nth-child(odd) > td,
-.table-striped tbody > tr:nth-child(odd) > th {
-    background-color: #ffffff;
-}
-
-#spinner {
-    height: 300px;
-}
-
-.#carousel {
-  border:   2px solid white;
-  width:    1165px;
-  position: relative;
-  top:      0px;
-  left:     -25px;
-}
-
-#carousel div {
-  width:    1150px;
-}
-
-.slick-prev:before, .slick-next:before {
-  color:    silver;
-}
-
-.spinner-container {
-    height: 100px;
-    position: relative;
-}
-
 .layout-boxed html,
 .layout-boxed body {
   height: 100%;
@@ -135,7 +48,7 @@ body {
   position: relative;
 }
 .layout-boxed {
-  background: url('boxed-bg.jpg') repeat fixed;
+  background: url('../../../../../Downloads/AdminLTE-master%202/dist/img/boxed-bg.jpg') repeat fixed;
 }
 /*
  * Content Wrapper - contins main content

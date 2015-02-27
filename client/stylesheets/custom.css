@@ -1,3 +1,19 @@
+#carousel {
+    border:   2px solid white;
+    width:    1165px;
+    position: relative;
+    top:      0px;
+    left:     -25px;
+}
+
+#carousel div {
+    width:    1150px;
+}
+
+.slick-prev:before, .slick-next:before {
+    color:    silver;
+}
+
 #iron-router-progress {
     background-color : #00ff00;
     box-shadow       : 0 0 5px #00ff00;
