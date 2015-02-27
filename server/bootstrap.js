@@ -27,10 +27,8 @@ if (Clubs.find().count() === 0) {
         websiteUrl: "http://www.swhawks.com",
         telephone: "07740812613",
         address: {
-            line1: "The Pavilion",
-            line2: "St Pauls Catholic College",
-            line3: "The Ridings",
-            line4: "Green Street",
+            line1: "The Pavilion, St Pauls Catholic College",
+            line2: "The Ridings, Green Street",
             city: "Sunbury-On-Thames",
             county: "Surrey",
             postCode: "TW16 6NX",
