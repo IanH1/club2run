@@ -20,7 +20,6 @@ cfs:collection@0.5.3
 cfs:collection-filters@0.2.3
 cfs:data-man@0.0.4
 cfs:file@0.1.15
-cfs:filesystem@0.1.1
 cfs:gridfs@0.0.27
 cfs:http-methods@0.0.27
 cfs:http-publish@0.0.13
@@ -38,7 +37,6 @@ coffeescript@1.0.5
 comerc:autoform-selectize@2.2.2
 ddp@1.0.14
 deps@1.0.6
-dsyko:meteor-node-csv@0.3.7
 ejson@1.0.5
 email@1.0.5
 fastclick@1.0.2
@@ -47,10 +45,11 @@ fortawesome:fontawesome@4.2.0_2
 geojson-utils@1.0.2
 gfk:mailgun-api@1.0.0
 handlebars@1.0.2
+harrison:papa-parse@1.0.10
 html-tools@1.0.3
 htmljs@1.0.3
 http@1.0.10
-ian:accounts-ui-bootstrap-3@1.2.21
+ian:accounts-ui-bootstrap-3@1.2.33
 id-map@1.0.2
 iron:controller@1.0.7
 iron:core@1.0.7
