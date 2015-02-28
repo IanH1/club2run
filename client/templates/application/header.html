@@ -66,8 +66,8 @@
                             </ul>
                         </li>
                     {{/if}}
-                    <li>
-                    {{> profileThumb _id=currentUser._id}}
+                    <li class="profile-picture">
+                        <img class="online" src="{{profileThumbSrc currentUser._id}}">
                     </li>
                     {{> loginButtons}}
                 </ul>

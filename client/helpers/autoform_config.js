@@ -1,7 +1,5 @@
 AutoForm.addHooks(null, {
-    onError: function(operation, error, template) {
-
-        // Display an error message
+    onError: function(operation, error) {
         FlashMessages.sendError(error.message);
     }
 });

@@ -36,7 +36,7 @@ Meteor.publish('messages', function() {
     if (this.userId) {
         var clubId = Meteor.users.findOne(this.userId).profile.clubId;
         if (clubId && Roles.userIsInRole(this.userId, ['club_user'], Roles.GLOBAL_GROUP)) {
-            return Messages.find({clubId: clubId}, {sort: {createdOn: 1}});
+            return Messages.find({clubId: clubId}, {sort: {createdOn: -1}});
         }
     }
     return this.ready();
