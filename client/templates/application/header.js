@@ -1,6 +1,17 @@
 Template.header.helpers({
-    notifications: function() {
-        return Notifications.find({read: false}, {sort: {createdOn: -1}});
+    notifications: function(options) {
+        if (options instanceof Spacebars.kw && options.hash) {
+            if (options.hash.limit != null) {
+                limit = options.hash.limit;
+            }
+            if (options.hash.unreadFirst != null) {
+                order = { read: 1, createdOn: -1 };
+            }
+        } else {
+            limit = 0;
+            order = { createdOn: -1 };
+        }
+        return Notifications.find({}, {limit: limit, sort: order});
     },
     messages: function() {
         return Messages.find({}, {sort: {createdOn: -1}});

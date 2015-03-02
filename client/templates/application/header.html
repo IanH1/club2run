@@ -11,7 +11,11 @@
                         <li class="dropdown messages-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-comments-o"></i>
-                                <span class="label label-success">{{messageCount}}</span>
+                                {{#if messageCount}}
+                                    <span class="label label-success">{{messageCount}}</span>
+                                {{else}}
+                                    <span class="label label-success"></span>
+                                {{/if}}
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header">You have {{messageCount}} messages</li>
@@ -30,13 +34,17 @@
                         <li class="dropdown notifications-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">{{notificationCount}}</span>
+                                {{#if notificationCount}}
+                                    <span class="label label-warning">{{notificationCount}}</span>
+                                {{else}}
+                                    <span class="label label-warning"></span>
+                                {{/if}}
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header">You have {{notificationCount}} notifications</li>
                                 <li>
                                     <ul class="menu">
-                                        {{#each notifications}}
+                                        {{#each notifications limit=15 unreadFirst=true}}
                                             {{> notificationWidget}}
                                         {{/each}}
                                     </ul>
@@ -49,7 +57,11 @@
                         <li class="dropdown tasks-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">{{taskCount}}</span>
+                                {{#if taskCount}}
+                                    <span class="label label-danger">{{taskCount}}</span>
+                                {{else}}
+                                    <span class="label label-danger"></span>
+                                {{/if}}
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header">You have {{taskCount}} outstanding tasks</li>
@@ -65,10 +77,10 @@
                                 </li>
                             </ul>
                         </li>
+                        <li class="profile-picture">
+                            <img class="online" src="{{profileThumbSrc currentUser._id}}">
+                        </li>
                     {{/if}}
-                    <li class="profile-picture">
-                        <img class="online" src="{{profileThumbSrc currentUser._id}}">
-                    </li>
                     {{> loginButtons}}
                 </ul>
             </div>
@@ -94,9 +106,13 @@
 </template>
 
 <template name="notificationWidget">
-    <li>
+    <li class="{{#if not read}}new{{/if}}">
         <a href="#" class="notification-item">
-            <i class="fa fa-bell-o text-aqua"></i> {{_id}} {{description}}
+            {{#if link}}
+                <a href="{{pathFor link _id=linkId}}"><i class="fa fa-bell-o text-aqua"></i> {{description}}</a>
+            {{else}}
+                <i class="fa fa-bell-o text-aqua"></i> {{description}}
+            {{/if}}
             <div class="pull-right">
                 <small>{{formatDateFromNow createdOn}}</small>
             </div>

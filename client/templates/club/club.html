@@ -31,28 +31,7 @@
 
         <section class="col-lg-6">
             {{> taskBox}}
-
-            <div class="box box-warning">
-                <div class="box-header">
-                    <i class="fa fa-bell-o"></i>
-                    <h3 class="box-title">Notification List ({{notificationCount}})</h3>
-                </div>
-                <div class="box-body">
-                    <ul class="todo-list">
-                        {{#each notifications}}
-                            <li>
-                                <span class="text">{{description}}</span>
-                                <small> - {{formatDateFromNow createdOn}}</small>
-                                <div class="tools">
-                                    {{#afModal class="btn btn-xs btn-danger btn-delete" collection="Notifications" operation="remove" title="Delete Notification" doc=_id}}
-                                        <i class="fa fa-trash-o"></i>
-                                    {{/afModal}}
-                                </div>
-                            </li>
-                        {{/each}}
-                    </ul>
-                </div>
-            </div>
+            {{> notificationBox}}
         </section>
     </div>
 </template>
@@ -102,7 +81,7 @@
         <div class="box-header">
             <i class="fa fa-flag-o"></i>
             <h3 class="box-title">Task List ({{taskCountOutstanding}})</h3>
-            <div class="pull-right hide-completed">Hide Completed Tasks <input type="checkbox" checked="{{hideCompleted}}" /></div>
+            <div class="pull-right hide-completed-tasks">Hide Completed Tasks <input type="checkbox" checked="{{hideCompletedTasks}}" /></div>
         </div>
         <div class="box-body">
             <ul class="todo-list">
@@ -140,4 +119,35 @@
             </div>
         </div>
     </form>
+</template>
+
+<template name="notificationBox">
+    <div class="box box-warning">
+        <div class="box-header">
+            <i class="fa fa-bell-o"></i>
+            <h3 class="box-title">Notification List ({{notificationCount}})</h3>
+            <div class="pull-right hide-read-notifications">Hide Read Notifications <input type="checkbox" checked="{{hideReadNotifications}}" /></div>
+        </div>
+        <div class="box-body">
+            <ul class="todo-list">
+                {{#each notifications}}
+                    {{> notification}}
+                {{/each}}
+            </ul>
+        </div>
+    </div>
+</template>
+
+<template name="notification">
+    <li class="notification-item {{#if not read}}new{{/if}}">
+        {{#if link}}
+            <a href="{{pathFor link _id=linkId}}"><span class="text">{{description}}</span></a>
+        {{else}}
+            <span class="text">{{description}}</span>
+        {{/if}}
+        <small> - {{formatDateFromNow createdOn}}</small>
+        <div class="tools">
+            <i class="fa fa-trash-o notification-delete"></i>
+        </div>
+    </li>
 </template>

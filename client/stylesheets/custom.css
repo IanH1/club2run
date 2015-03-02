@@ -34,6 +34,14 @@
     border-color : #00ff00;
 }
 
+.navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li.new {
+    background-color: #d9edf7;
+}
+
+.todo-list > li.new {
+    background-color: #d9edf7;
+}
+
 .errors {
     bottom: 0px;
     left: 0px;

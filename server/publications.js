@@ -46,7 +46,7 @@ Meteor.publish('notifications', function() {
     if (this.userId) {
         var clubId = Meteor.users.findOne(this.userId).profile.clubId;
         if (clubId && Roles.userIsInRole(this.userId, ['club_user'], Roles.GLOBAL_GROUP)) {
-            return Notifications.find({clubId: clubId}, {sort: {createdOn: -1}});
+            return Notifications.find({createdBy: this.userId, clubId: clubId}, {sort: {createdOn: -1}});
         }
     }
     return this.ready();
