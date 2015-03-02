@@ -77,9 +77,11 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="profile-picture">
-                            <img class="online" src="{{profileThumbSrc currentUser._id}}">
-                        </li>
+                        {{#if currentUser.profile.picture}}
+                            <li class="profile-picture">
+                                <img class="online" src="{{profileThumbSrc currentUser._id}}">
+                            </li>
+                        {{/if}}
                     {{/if}}
                     {{> loginButtons}}
                 </ul>
