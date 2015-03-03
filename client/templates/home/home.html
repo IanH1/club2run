@@ -1,6 +1,18 @@
 <template name="home">
     <div class="row">
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-md-4 col-xs-6">
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>{{articleCount}}</h3>
+                    <p>News</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="{{pathFor 'articleList'}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-6">
             <div class="small-box bg-aqua">
                 <div class="inner">
                     <h3>{{memberCount}}</h3>
@@ -12,7 +24,7 @@
                 <a href="{{pathFor 'memberList'}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-md-4 col-xs-6">
             <div class="small-box bg-green">
                 <div class="inner">
                     <h3>{{teamCount}}</h3>
@@ -24,7 +36,7 @@
                 <a href="{{pathFor 'teamList'}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-md-4 col-xs-6">
             <div class="small-box bg-yellow">
                 <div class="inner">
                     <h3>{{eventCount}}</h3>
@@ -36,7 +48,7 @@
                 <a href="{{pathFor 'eventList'}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-md-4 col-xs-6">
             <div class="small-box bg-red">
                 <div class="inner">
                     <h3>{{staffCount}}</h3>
@@ -48,9 +60,7 @@
                 <a href="{{pathFor 'staffList'}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-md-4 col-xs-6">
             <div class="small-box bg-navy">
                 <div class="inner">
                     <h3>{{officialCount}}</h3>
@@ -62,7 +72,7 @@
                 <a href="{{pathFor 'officialList'}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-md-4 col-xs-6">
             <div class="small-box bg-purple">
                 <div class="inner">
                     <h3>{{messageCount}}</h3>
@@ -74,7 +84,7 @@
                 <a href="{{pathFor 'club'}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-md-4 col-xs-6">
             <div class="small-box bg-fuchsia">
                 <div class="inner">
                     <h3>{{notificationCount}}</h3>
@@ -86,7 +96,7 @@
                 <a href="{{pathFor 'club'}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
             </div>
         </div>
-        <div class="col-lg-3 col-xs-6">
+        <div class="col-md-4 col-xs-6">
             <div class="small-box bg-teal">
                 <div class="inner">
                     <h3>{{taskCount}}</h3>

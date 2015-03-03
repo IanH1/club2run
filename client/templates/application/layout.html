@@ -66,6 +66,17 @@
                     <li><a href="{{pathFor 'clubEdit'}}"><i class="fa fa-edit"></i> Update</a></li>
                 </ul>
             </li>
+           <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-newspaper-o"></i>
+                    <span>News</span>
+                    <span class="label label-primary pull-right">{{articleCount}}</span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{pathFor 'articleList'}}"><i class="fa fa-table"></i> View All</a></li>
+                    <li><a href="{{pathFor 'articleCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                </ul>
+            </li>
             <li class="treeview">
                 <a href="#">
                     <i class="fa fa-user"></i>

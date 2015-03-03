@@ -83,6 +83,7 @@ momentjs:moment@2.9.0
 monbro:iron-router-breadcrumb@1.0.6
 mongo@1.0.11
 mongo-livedata@1.0.7
+mpowaga:autoform-summernote@0.3.1
 mpowaga:string-template@0.1.0
 mrt:flash-messages@1.0.0
 mrt:googlemaps@0.0.2
@@ -109,6 +110,7 @@ spacebars@1.0.5
 spacebars-compiler@1.0.4
 srp@1.0.2
 stylus@1.0.6
+summernote:standalone@0.6.0_1
 templating@1.0.11
 tracker@1.0.5
 twbs:bootstrap@3.3.2

@@ -96,6 +96,16 @@ Meteor.publish('teams', function() {
     return this.ready();
 });
 
+Meteor.publish('articles', function() {
+    if (this.userId) {
+        var clubId = Meteor.users.findOne(this.userId).profile.clubId;
+        if (clubId && Roles.userIsInRole(this.userId, ['club_user'], Roles.GLOBAL_GROUP)) {
+            return Articles.find({clubId: clubId}, {sort: {createdOn: -1}});
+        }
+    }
+    return this.ready();
+});
+
 Meteor.publish("userStatus", function() {
     return Meteor.users.find({_id: this.userId}, {fields: {'status': 1}});
 });

@@ -1,0 +1,27 @@
+<template name="articleEdit">
+    {{#autoForm id='editArticle' schema=Schema.ArticleSchema type="method" meteormethod="updateArticle" doc=this}}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Article</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='title'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='content'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+            <button type="button" class="btn btn-default cancel">Cancel</button>
+            <button type="button" class="btn btn-danger delete">Delete</button>
+        </div>
+    {{/autoForm}}
+</template>

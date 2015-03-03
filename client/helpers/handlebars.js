@@ -2,8 +2,17 @@ Template.registerHelper('Schema', Schema);
 Template.registerHelper('Users', Meteor.users);
 Template.registerHelper('TabularTables', TabularTables);
 
+Template.registerHelper('currentArticle', function() {
+    return Articles.findOne();
+});
+
 Template.registerHelper('currentClub', function() {
     return Clubs.findOne();
+});
+
+
+Template.registerHelper('articleCount', function() {
+    return Articles.find().count();
 });
 
 Template.registerHelper('eventCount', function() {
@@ -81,6 +90,7 @@ Template.registerHelper("eventTypeOptions", function() {
     return [
         {label: 'Match', value: 'match'},
         {label: 'Training', value: 'training'},
-        {label: 'Meeting', value: 'meeting'}
+        {label: 'Meeting', value: 'meeting'},
+        {label: 'Tournament', value: 'tournament'}
     ];
 });
