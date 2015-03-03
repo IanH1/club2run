@@ -31,7 +31,7 @@ Template.registerHelper('staffCount', function() {
 });
 
 Template.registerHelper('taskCount', function() {
-    return Tasks.find().count();
+    return Tasks.find({complete: {$ne: true}}).count();
 });
 
 Template.registerHelper('teamCount', function() {
