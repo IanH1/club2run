@@ -1,0 +1,68 @@
+<template name="taskPanel">
+    <div class="box box-primary">
+        <div class="box-header">
+            <i class="fa fa-flag-o"></i>
+            <h3 class="box-title">Task List ({{taskCountOutstanding}})</h3>
+            <div class="pull-right hide-completed">Hide Completed Tasks <input type="checkbox" checked="{{hideCompleted}}" /></div>
+        </div>
+        <div class="box-body">
+            <ul class="todo-list">
+                {{#each tasks}}
+                    <li class="{{taskClass}}">
+                        <input type="checkbox" class="task-item" {{checkedIf complete}}/>
+                        <span class="text done">{{text}}</span>
+                        <small> - {{formatDateFromNow createdOn}}</small>
+                        {{#if ownTask}}
+                            <div class="tools">
+                                <i class="fa fa-trash-o task-delete"></i>
+                            </div>
+                        {{/if}}
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="box-footer">
+            <form>
+                <div class="input-group">
+                    <input class="form-control" name="task" placeholder="Create task..."/>
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-primary add-task"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+
+<template name="taskDropdown">
+    <li class="dropdown tasks-menu">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-flag-o"></i>
+            {{#if taskCount}}
+                <span class="label label-danger">{{taskCount}}</span>
+            {{else}}
+                <span class="label label-danger"></span>
+            {{/if}}
+        </a>
+        <ul class="dropdown-menu">
+            <li class="header">You have {{taskCount}} outstanding tasks</li>
+            <li>
+                <ul class="menu">
+                    {{#each tasks}}
+                        <li>
+                            <a href="#" class="task-item">
+                                <i class="fa fa-flag text-aqua"></i> {{text}}
+                                <div class="pull-right">
+                                    <small>{{formatDateFromNow createdOn}}</small>
+                                </div>
+                            </a>
+                        </li>
+                    {{/each}}
+                </ul>
+            </li>
+            <li class="footer">
+                <a href="{{pathFor 'club'}}">View all tasks</a>
+            </li>
+        </ul>
+    </li>
+</template>

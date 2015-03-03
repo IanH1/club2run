@@ -8,67 +8,15 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     {{#if currentUser}}
-                        <li class="dropdown messages-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-comments-o"></i>
-                                <span class="label label-success">{{messageCount}}</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have {{messageCount}} messages</li>
-                                <li>
-                                    <ul class="menu">
-                                        {{#each messages}}
-                                            {{> messageWidget}}
-                                        {{/each}}
-                                    </ul>
-                                </li>
-                                <li class="footer">
-                                    <a href="{{pathFor 'club'}}">See All Messages</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown notifications-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning">{{notificationCount}}</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have {{notificationCount}} notifications</li>
-                                <li>
-                                    <ul class="menu">
-                                        {{#each notifications}}
-                                            {{> notificationWidget}}
-                                        {{/each}}
-                                    </ul>
-                                </li>
-                                <li class="footer">
-                                    <a href="{{pathFor 'club'}}">View all notifications</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="dropdown tasks-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-flag-o"></i>
-                                <span class="label label-danger">{{taskCount}}</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="header">You have {{taskCount}} outstanding tasks</li>
-                                <li>
-                                    <ul class="menu">
-                                        {{#each tasks}}
-                                            {{> taskWidget}}
-                                        {{/each}}
-                                    </ul>
-                                </li>
-                                <li class="footer">
-                                    <a href="{{pathFor 'club'}}">View all tasks</a>
-                                </li>
-                            </ul>
-                        </li>
+                        {{> messageDropdown}}
+                        {{> notificationDropdown}}
+                        {{> taskDropdown}}
+                        {{#if currentUser.profile.picture}}
+                            <li class="profile-picture">
+                                <img class="online" src="{{profileThumbSrc currentUser._id}}">
+                            </li>
+                        {{/if}}
                     {{/if}}
-                    <li class="profile-picture">
-                        <img class="online" src="{{profileThumbSrc currentUser._id}}">
-                    </li>
                     {{> loginButtons}}
                 </ul>
             </div>
@@ -78,39 +26,4 @@
 
 <template name="_loginButtonsAdditionalLoggedInDropdownActions">
     <button class="btn btn-default btn-block" id="login-buttons-edit-profile">Edit profile</button>
-</template>
-
-<template name="messageWidget">
-    <li>
-        <a href="#">
-            <i class="fa fa-wechat text-aqua"></i> {{author}}
-            <br>
-            <small>{{message}}</small>
-            <div class="pull-right">
-                <small>{{formatDateFromNow createdOn}}</small>
-            </div>
-        </a>
-    </li>
-</template>
-
-<template name="notificationWidget">
-    <li>
-        <a href="#" class="notification-item">
-            <i class="fa fa-bell-o text-aqua"></i> {{_id}} {{description}}
-            <div class="pull-right">
-                <small>{{formatDateFromNow createdOn}}</small>
-            </div>
-        </a>
-    </li>
-</template>
-
-<template name="taskWidget">
-    <li>
-        <a href="#" class="task-item">
-            <i class="fa fa-flag text-aqua"></i> {{text}}
-            <div class="pull-right">
-                <small>{{formatDateFromNow createdOn}}</small>
-            </div>
-        </a>
-    </li>
 </template>
