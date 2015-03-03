@@ -2,7 +2,7 @@ Meteor.methods({
     createNewUserFromMember: function(memberId) {
 
         // Check user permissions
-        if (!Meteor.user() || !Roles.userIsInRole(Meteor.user(), ['admin', 'club_admin'], Roles.GLOBAL_GROUP)) {
+        if (!Meteor.user() || !Roles.userIsInRole(Meteor.user(), ['admin', 'club_admin'], Meteor.user().profile.clubId)) {
             throw new Meteor.Error(403, "Access denied")
         }
 

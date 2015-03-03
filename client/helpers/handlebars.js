@@ -2,6 +2,16 @@ Template.registerHelper('Schema', Schema);
 Template.registerHelper('Users', Meteor.users);
 Template.registerHelper('TabularTables', TabularTables);
 
+Template.registerHelper("memberOptions", function() {
+    var options = [];
+    Members.find({}).forEach(function(member) {
+        options.push({
+            label: member.fullName, value: member._id
+        })
+    });
+    return options;
+});
+
 Template.registerHelper('currentArticle', function() {
     return Articles.findOne();
 });
