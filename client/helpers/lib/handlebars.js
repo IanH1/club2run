@@ -4,7 +4,7 @@ Template.registerHelper('TabularTables', TabularTables);
 
 Template.registerHelper("memberOptions", function() {
     var options = [];
-    Members.find({}).forEach(function(member) {
+    Members.find({}, { sort: {fullName: 1} }).forEach(function(member) {
         options.push({
             label: member.fullName, value: member._id
         })
@@ -12,11 +12,11 @@ Template.registerHelper("memberOptions", function() {
     return options;
 });
 
-Template.registerHelper("officialsOptions", function() {
+Template.registerHelper("officialOptions", function() {
     var options = [];
-    Officials.find({}, {sort: {fullName: 1}}).forEach(function (element) {
+    Officials.find({}, {sort: {fullName: 1}}).forEach(function(official) {
         options.push({
-            label: element.fullName, value: element._id
+            label: official.fullName, value: official._id
         })
     });
     return options;
@@ -24,9 +24,9 @@ Template.registerHelper("officialsOptions", function() {
 
 Template.registerHelper("staffOptions", function() {
     var options = [];
-    Staff.find({}, {sort: {fullName: 1}}).forEach(function (element) {
+    Staff.find({}, { sort: {fullName: 1} }).forEach(function(staff) {
         options.push({
-            label: element.fullName, value: element._id
+            label: staff.fullName, value: staff._id
         })
     });
     return options;
@@ -34,9 +34,9 @@ Template.registerHelper("staffOptions", function() {
 
 Template.registerHelper("teamOptions", function() {
     var options = [];
-    Teams.find({}, {sort: {name: 1}}).forEach(function(element) {
+    Teams.find({}, { sort: {name: 1} }).forEach(function(team) {
         options.push({
-            label: element.name, value: element._id
+            label: team.name, value: team._id
         })
     });
     return options;
@@ -75,17 +75,9 @@ Template.registerHelper('staffCount', function() {
 });
 
 Template.registerHelper('taskCount', function() {
-    return Tasks.find({complete: {$ne: true}}).count();
+    return Tasks.find({ complete: {$ne: true} }).count();
 });
 
 Template.registerHelper('teamCount', function() {
     return Teams.find().count();
-});
-
-
-Template.registerHelper("tmpOptions", function() {
-    return [
-        {label: 'Available', value: 'Available'},
-        {label: 'Unavailable', value: 'Unavailable'}
-    ];
 });

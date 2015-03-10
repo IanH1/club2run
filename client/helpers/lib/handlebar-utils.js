@@ -1,15 +1,7 @@
 Template.registerHelper('formatDate', function(datetime) {
     if (moment && datetime) {
-        return moment(datetime).format('DD/MM/YYYY');
-    } else{
-        return datetime;
-    }
-});
-
-Template.registerHelper('formatDate', function(datetime) {
-    if (moment && datetime) {
         if (datetime.getDate() === new Date().getDate()) {
-            return "Today ";
+            return "Today";
         } else{
             return moment(datetime).format("MMMM Do YYYY");
         }
@@ -46,39 +38,30 @@ Template.registerHelper("formatDateFromNow", function(datetime) {
     }
 });
 
-Template.registerHelper("checkedIf", function(val) {
-    return val ? 'checked' : '';
+Template.registerHelper("checkedIf", function(value) {
+    return value ? 'checked' : '';
 });
 
-Template.registerHelper('checkRole', function(userId, roleName) {
-    return (Roles.userIsInRole(userId, [roleName]) || Roles.userIsInRole(userId,['admin']));
+Template.registerHelper('equals', function (value1, value2) {
+    return value1 === value2;
 });
 
-Template.registerHelper('equals', function (val1, val2) {
-    return val1 === val2;
+Template.registerHelper('not', function(value) {
+    return (!value);
 });
 
-Template.registerHelper('not', function(val) {
-    return (!val);
-});
-
-Template.registerHelper('profileThumbSrc', function(_id) {
-    var picture, user;
+Template.registerHelper('profileThumbnailSrc', function(_id) {
     if (typeof Meteor.users !== 'undefined') {
         if (Meteor.users.findOne(_id)) {
-            user = Meteor.users.findOne({
-                _id: _id
-            });
+            user = Meteor.users.findOne(_id);
             if (typeof user.profile !== 'undefined' && typeof user.profile.picture !== 'undefined') {
-                picture = user.profile.picture;
+                var picture = user.profile.picture;
                 if (picture.indexOf('/') > -1) {
                     return picture;
                 } else {
                     if (typeof ProfilePictures !== 'undefined' && ProfilePictures.findOne(user.profile.picture)) {
-                        picture = ProfilePictures.findOne(picture);
-                        return picture.url({
-                            store: 'thumbs'
-                        });
+                        var picture = ProfilePictures.findOne(picture);
+                        return picture.url({ store: 'thumbs' });
                     }
                 }
             }

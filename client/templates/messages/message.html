@@ -7,7 +7,7 @@
         <div class="box-body chat" id="chat-box">
             {{#each messages}}
                 <div class="item">
-                    <img class="online" src="{{profileThumbSrc createdBy}}" alt="Image">
+                    <img class="online" src="{{profileThumbnailSrc createdBy}}" alt="Image">
                     <p class="message">
                     <div class="name">
                         <small class="text-muted pull-right">{{#if ownMessage}}<a href="#" class="delete-message"><i class="fa fa-trash-o"></i></a> | {{/if}}<i class="fa fa-clock-o"></i> {{formatDate createdOn}}</small>{{createdBy}}
