@@ -2,16 +2,16 @@
     {{#if isInRole 'admin' currentUser.profile.clubId}}
         <div class="row-margin">
             <ul class="nav nav-tabs">
-                <li role="presentation"><a href="{{pathFor 'home'}}">Overview</a></li>
+                <li role="presentation"><a href="{{pathFor 'home'}}">Club Overview</a></li>
                 <li role="presentation" class="active"><a href="{{pathFor 'homeUser'}}">Home</a></li>
             </ul>
         </div>
     {{/if}}
     <div class="row">
-        <section class="col-lg-8">
+        <section class="col-lg-6">
             {{> calendarPanel}}
         </section>
-        <section class="col-lg-4">
+        <section class="col-lg-6">
             {{> notificationPanel}}
             {{> messagePanel}}
             {{> taskPanel}}

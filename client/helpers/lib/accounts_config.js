@@ -7,5 +7,5 @@ accountsUIBootstrap3.logoutCallback = function(error) {
     if (error) {
         console.log("Exception thrown when logging out: " + error);
     }
-    Router.go('/');
+    Router.go('home');
 };
