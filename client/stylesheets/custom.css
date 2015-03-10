@@ -64,3 +64,7 @@
 .dataTables_length select.input-sm {
     line-height: 20px;
 }
+
+.row-margin {
+    margin-bottom: 10px
+}

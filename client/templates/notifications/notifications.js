@@ -1,29 +1,3 @@
-Template.notificationPanel.helpers({
-    notifications: function() {
-        return Notifications.find({});
-    },
-    meeting: function() {
-        if (this.meeting && this.meeting.meetingId) {
-            return Events.findOne(this.meeting.meetingId);
-        }
-    }
-});
-
-Template.notificationPanel.events({
-    'click .notification-delete': function() {
-        var notificationId = this._id;
-        bootbox.confirm("Are you sure you want to delete this notification?", function(result) {
-            if (result) {
-                Meteor.call('deleteNotification', notificationId, function(error) {
-                    if (error) {
-                        FlashMessages.sendError(error.reason);
-                    }
-                });
-            }
-        });
-    }
-});
-
 Template.notificationDropdown.helpers({
     notifications: function(options) {
         if (options instanceof Spacebars.kw && options.hash) {

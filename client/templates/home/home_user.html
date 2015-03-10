@@ -1,9 +1,148 @@
 <template name="homeUser">
+    {{#if isInRole 'admin' currentUser.profile.clubId}}
+        <div class="row-margin">
+            <ul class="nav nav-tabs">
+                <li role="presentation"><a href="{{pathFor 'home'}}">Overview</a></li>
+                <li role="presentation" class="active"><a href="{{pathFor 'homeUser'}}">Home</a></li>
+            </ul>
+        </div>
+    {{/if}}
     <div class="row">
         <section class="col-lg-8">
-            {{> notificationPanel}}
+            {{> calendarPanel}}
         </section>
         <section class="col-lg-4">
+            {{> notificationPanel}}
+            {{> messagePanel}}
+            {{> taskPanel}}
         </section>
+    </div>
+</template>
+
+<template name="notificationPanel">
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <i class="fa fa-bell-o"></i>
+            <h3 class="box-title">Notifications ({{notificationCount}})</h3>
+            <div class="box-tools pull-right">
+            </div>
+        </div>
+        {{#if notificationCount}}
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table no-margin">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Created</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {{#each notifications}}
+                            {{#if equals type "meeting"}}
+                                <tr>
+                                    <td><a href="#" data-toggle="modal" data-target="#eventModal">Meeting - {{meeting.meeting.title}}</a></td>
+                                    <td>{{formatDateFromNow createdOn}}</td>
+                                    <td><i class="fa fa-trash-o notification-delete"></i></td>
+                                </tr>
+                                <!--{{> eventViewModal meeting}}-->
+                            {{/if}}
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+</template>
+
+<template name="messagePanel">
+    <div class="box box-success">
+        <div class="box-header with-border">
+            <i class="fa fa-comments-o"></i>
+            <h3 class="box-title">Chat ({{messageCount}})</h3>
+            <div class="box-tools pull-right">
+            </div>
+        </div>
+        {{#if messageCount}}
+            <div class="box-body chat">
+                {{#each messages}}
+                    <div class="item">
+                        <img class="online" src="{{profileThumbnailSrc createdBy}}">
+                        <p class="message">
+                            <div class="name">
+                                <small class="text-muted pull-right">{{#if ownMessage}}<a href="#" class="delete-message"><i class="fa fa-trash-o"></i></a> | {{/if}}<i class="fa fa-clock-o"></i> {{formatDate createdOn}}</small> {{member.profile.fullName}}
+                            </div>
+                            {{message}}
+                        </p>
+                    </div>
+                {{/each}}
+            </div>
+        {{/if}}
+        <div class="box-footer">
+            <form>
+                <div class="input-group">
+                    <input class="form-control" name="message" placeholder="Type message..."/>
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-success add-message"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+
+<template name="taskPanel">
+    <div class="box box-warning">
+        <div class="box-header with-border">
+            <i class="fa fa-flag-o"></i>
+            <h3 class="box-title">Tasks ({{taskCountOutstanding}})</h3>
+            <div class="box-tools pull-right">
+                <div class="hide-completed">Hide Completed Tasks <input type="checkbox" checked="{{hideCompleted}}" /></div>
+            </div>
+        </div>
+        {{#if taskCount}}
+            <div class="box-body tasks">
+                <ul class="todo-list">
+                    {{#each tasks}}
+                        <li class="{{taskClass}}">
+                            <input type="checkbox" class="task-item" {{checkedIf complete}}/>
+                            <span class="text done">{{text}}</span>
+                            <small> - {{formatDateFromNow createdOn}}</small>
+                            {{#if ownTask}}
+                                <div class="tools">
+                                    <i class="fa fa-trash-o task-delete"></i>
+                                </div>
+                            {{/if}}
+                        </li>
+                    {{/each}}
+                </ul>
+            </div>
+        {{/if}}
+        <div class="box-footer">
+            <form>
+                <div class="input-group">
+                    <input class="form-control" name="task" placeholder="Create task..."/>
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-primary add-task"><i class="fa fa-plus"></i></button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>
+
+<template name="calendarPanel">
+    <div class="box box-danger">
+        <div class="box-header">
+            <i class="fa fa-calendar"></i>
+            <h3 class="box-title">Calendar</h3>
+        </div>
+        <div class="box-body no-padding">
+            {{> fullcalendar header=headerOptions defaultView='month' class="eventCalendar" events=events eventClick=eventClickHandler dayClick=dayClickHandler}}
+        </div>
+        <div class="box-footer text-black">
+        </div>
     </div>
 </template>
