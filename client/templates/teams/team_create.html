@@ -12,20 +12,20 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='ageRange' options=ageOptions}}
+                        {{> afQuickField name='ageRange' options="auto"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='gender' options=genderOptions}}
+                        {{> afQuickField name='gender' options="auto"}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        {{> afQuickField name='coaches' type="selectize" multiple=true}}
+                        {{> afQuickField name='coaches' type="selectize" options=teamOptions multiple=true}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        {{> afQuickField name='players' type="selectize" multiple=true}}
+                        {{> afQuickField name='players' type="selectize" options=memberOptions multiple=true}}
                     </div>
                 </div>
             </div>

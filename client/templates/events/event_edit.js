@@ -1,12 +1,12 @@
 Template.eventEdit.events({
-    'click .cancel': function(event, template) {
+    'click .cancel': function() {
         Router.go('eventList');
     },
-    'click .delete': function(event, template) {
+    'click .delete': function() {
         var eventId = this._id;
-        bootbox.confirm("Are you sure you want to delete " + this.description + "?", function(result) {
+        bootbox.confirm("Are you sure you want to delete this event?", function(result) {
             if (result) {
-                Meteor.call('deleteEvent', eventId, function(error, result) {
+                Meteor.call('deleteEvent', eventId, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {

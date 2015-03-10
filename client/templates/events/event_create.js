@@ -8,13 +8,13 @@ Template.eventCreate.helpers({
 });
 
 Template.eventCreate.events({
-    'click .cancel': function(event, template) {
+    'click .cancel': function() {
         Router.go('eventList');
     }
 });
 
 AutoForm.addHooks('createEvent', {
-    onSuccess: function(operation, result, template) {
+    onSuccess: function() {
         FlashMessages.sendSuccess("Event successfully created.");
         Router.go('eventList');
     }

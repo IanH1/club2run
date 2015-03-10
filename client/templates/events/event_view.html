@@ -1,0 +1,16 @@
+<template name="eventViewModal">
+    <div class="modal fade" id="eventModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {{#with event}}
+                    {{#if equals type "Match"}}
+                        {{> matchView}}
+                    {{/if}}
+                    {{#if equals type "Meeting"}}
+                        {{> meetingView}}
+                    {{/if}}
+                {{/with}}
+            </div>
+        </div>
+    </div>
+</template>

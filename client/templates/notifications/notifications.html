@@ -1,27 +1,40 @@
 <template name="notificationPanel">
-    <div class="box box-warning">
-        <div class="box-header">
+    <div class="box box-info">
+        <div class="box-header with-border">
             <i class="fa fa-bell-o"></i>
-            <h3 class="box-title">Notification List ({{notificationCount}})</h3>
-            <div class="pull-right hide-read">Hide Read Notifications <input type="checkbox" checked="{{hideRead}}" /></div>
+            <h3 class="box-title">Notifications ({{notificationCount}})</h3>
+            <div class="box-tools pull-right">
+                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
         </div>
-        <div class="box-body">
-            <ul class="todo-list">
-                {{#each notifications}}
-                    <li class="notification-item {{notificationClass}}">
-                        {{#if link}}
-                            <a href="{{pathFor link _id=linkId}}"><span class="text">{{description}}</span></a>
-                        {{else}}
-                            <span class="text">{{description}}</span>
-                        {{/if}}
-                        <small> - {{formatDateFromNow createdOn}}</small>
-                        <div class="tools">
-                            <i class="fa fa-trash-o notification-delete"></i>
-                        </div>
-                    </li>
-                {{/each}}
-            </ul>
-        </div>
+        {{#if notificationCount}}
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table no-margin">
+                        <thead>
+                            <tr>
+                                <th>Description</th>
+                                <th>Created</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each notifications}}
+                                {{#if equals type "meeting"}}
+                                    <tr>
+                                        <td><a href="#" data-toggle="modal" data-target="#eventModal">Meeting - {{meeting.meeting.title}}</a></td>
+                                        <td>{{formatDateFromNow createdOn}}</td>
+                                        <td><i class="fa fa-trash-o notification-delete"></i></td>
+                                    </tr>
+                                    {{> eventViewModal meeting}}
+                                {{/if}}
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        {{/if}}
     </div>
 </template>
 
@@ -40,7 +53,7 @@
             <li>
                 <ul class="menu">
                     {{#each notifications limit=15 unreadFirst=true}}
-                        <li class="{{notificationClass}}">
+                        <li>
                             <a href="#" class="notification-item">
                                 {{#if link}}
                                     <a href="{{pathFor link _id=linkId}}"><i class="fa fa-bell-o text-aqua"></i> {{description}}</a>

@@ -1,3 +1,30 @@
 <template name="eventList">
-    {{> fullcalendar header=headerOptions defaultView='agendaWeek' class="eventCalendar" events=events eventClick=eventClickHandler dayClick=dayClickHandler}}
+    <div class="panel panel-primary">
+        <div class="panel-heading">Matches</div>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th width="120px">Date</th>
+                    <th width="120px">Time</th>
+                    <th>Team</th>
+                    <th>Opposition</th>
+                    <th width="100px"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each matches}}
+                    <tr>
+                        <td>{{formatDate startDateTime}}</td>
+                        <td>{{formatTime startDateTime}}</td>
+                        <td>{{team.name}}</td>
+                        <td>{{match.opponent}}</td>
+                        <td class="pull-right">
+                            <a href="{{pathFor 'eventEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
+                            <a href="{{pathFor 'matchTeamSelection' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-retweet"></i></a>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
 </template>

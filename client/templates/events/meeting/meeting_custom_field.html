@@ -1,0 +1,44 @@
+<template name="afArrayField_meetingCustomField">
+    <div class="form-group{{#if afFieldIsInvalid name=this.atts.name}} has-error{{/if}}">
+        <label class="control-label" {{afFieldLabelAtts}}>{{afFieldLabelText name=this.atts.name}}</label>
+        {{#if afFieldIsInvalid name=this.atts.name}}
+            <div class="panel-body has-error">
+                <span class="help-block">{{{afFieldMessage name=this.atts.name}}}</span>
+            </div>
+        {{/if}}
+        <ul class="list-group">
+            {{#afEachArrayItem name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
+                <li class="list-group-item autoform-array-item">
+                    <div class="row">
+                        {{> afObjectField name=this.name template="meetingCustomObjectField"}}
+                        <div class="col-xs-1">
+                            <div class="form-group">
+                                <label class="col-sm-12">&nbsp;</label>
+                                {{#if afArrayFieldHasMoreThanMinimum name=../atts.name minCount=../atts.minCount maxCount=../atts.maxCount}}
+                                    <button type="button" class="btn btn-primary autoform-remove-item">Delete</button>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            {{/afEachArrayItem}}
+            {{#if afArrayFieldHasLessThanMaximum name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-primary autoform-add-item" data-autoform-field="{{this.atts.name}}" data-autoform-minCount="{{this.atts.minCount}}" data-autoform-maxCount="{{this.atts.maxCount}}">Add Invitee</button>
+                </li>
+            {{/if}}
+        </ul>
+    </div>
+</template>
+
+<template name="afObjectField_meetingCustomObjectField">
+    {{#if afFieldIsInvalid name=this.atts.name}}
+        <span class="help-block">{{{afFieldMessage name=this.atts.name}}}</span>
+    {{/if}}
+    <div class="col-xs-7">
+        {{> afQuickField name=memberIdFieldName type="selectize" options=memberOptions}}
+    </div>
+    <div class="col-xs-4">
+        {{> afQuickField name=statusFieldName type="selectize" options="auto"}}
+    </div>
+</template>

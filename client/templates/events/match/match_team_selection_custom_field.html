@@ -1,0 +1,25 @@
+<template name="afArrayField_matchCustomField">
+    {{#if afFieldIsInvalid name=this.atts.name}}
+        <div class="panel-body has-error">
+            <span class="help-block">{{{afFieldMessage name=this.atts.name}}}</span>
+        </div>
+    {{/if}}
+    {{#afEachArrayItem name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
+        {{> afObjectField name=this.name template="matchCustomObjectField" options=../atts.options}}
+    {{/afEachArrayItem}}
+</template>
+
+<template name="afObjectField_matchCustomObjectField">
+    {{#if afFieldIsInvalid name=this.atts.name}}
+        <tr>
+            <td colspan="5"><span class="help-block">{{{afFieldMessage name=this.atts.name}}}</span></td>
+        </tr>
+    {{/if}}
+    <tr>
+        <td>{{> afQuickField name=playerIdFieldName type="selectize" options=this.atts.options label=false}}</td>
+        <td>{{> afQuickField name=positionFieldName label=false}}</td>
+        <td>{{> afQuickField name=availabilityFieldName type="selectize" options="auto" label=false}}</td>
+        <td></td>
+        <td></td>
+    </tr>
+</template>

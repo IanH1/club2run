@@ -6,6 +6,26 @@ Template.registerHelper('formatDate', function(datetime) {
     }
 });
 
+Template.registerHelper('formatDate', function(datetime) {
+    if (moment && datetime) {
+        if (datetime.getDate() === new Date().getDate()) {
+            return "Today ";
+        } else{
+            return moment(datetime).format("MMMM Do YYYY");
+        }
+    } else {
+        return datetime;
+    }
+});
+
+Template.registerHelper('formatTime', function(datetime) {
+    if (moment && datetime) {
+        return moment(datetime).format("HH:mm:ss");
+    } else {
+        return datetime;
+    }
+});
+
 Template.registerHelper('formatDateTime', function(datetime) {
     if (moment && datetime) {
         if (datetime.getDate() === new Date().getDate()) {

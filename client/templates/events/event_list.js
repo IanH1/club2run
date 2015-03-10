@@ -7,42 +7,13 @@ Template.eventList.rendered = function() {
 };
 
 Template.eventList.helpers({
-    headerOptions: function() {
-        return {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
-        }
+    matches: function() {
+        return Events.find({type: "Match"});
     },
-    eventClickHandler: function() {
-        return function(reqEvent,jsEvent,view) {
-            Router.go('eventEdit', {_id: reqEvent.id});
-        };
-    },
-    dayClickHandler: function() {
-        return function(date, allDay, jsEvent, view) {
-            Session.set("eventDate", date.format());
-            Router.go('eventCreate');
-        };
-    },
-    events: function() {
-        return function(start, end, tz, callback) {
-            var events = Events.find().map(function(event) {
-                return {
-                    id: event._id,
-                    title: event.description,
-                    start: moment(event.startDateTime),
-                    end: moment(event.endDateTime),
-                    allDay: event.endDateTime == null
-                };
-            });
-            callback(events);
-        };
+    team: function() {
+        return Teams.findOne(this.match.teamId);
     }
 });
 
 Template.eventList.events({
-    'click .refresh': function(event, template) {
-        template.$('.eventCalendar').fullCalendar('refetchEvents');
-    }
 });

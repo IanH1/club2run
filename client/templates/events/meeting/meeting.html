@@ -1,0 +1,34 @@
+<template name="meeting">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Meeting</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    {{> afQuickField name='meeting.title'}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {{> afQuickField name='meeting.details' rows=5}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    {{> afQuickField name='startDateTime' type='datetime-local' value=eventDate}}
+                    <!--{{> afQuickField name='startDateTime' type="bootstrap-datetimepicker" value=eventDate}}-->
+                </div>
+                <div class="col-xs-6">
+                    {{> afQuickField name='endDateTime' type='datetime-local' value=eventDate}}
+                    <!--{{> afQuickField name='endDateTime' type="bootstrap-datetimepicker" value=eventDate}}-->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {{> afArrayField name="meeting.invitees" template="meetingCustomField"}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

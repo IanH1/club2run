@@ -6,56 +6,64 @@ Meteor.publishComposite("club", function(clubId) {
     return {
         find: function() {
             if (this.userId) {
-                if (clubId && Roles.userIsInRole(this.userId, ["admin", "player", "member"], clubId)) {
+                if (clubId && Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
                     return Clubs.find({ _id: clubId });
                 }
             }
         },
         children: [{
             find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["admin", "player", "member"], clubId)) {
+                if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
                     return Articles.find({ clubId: club._id }, { sort: {createdOn: -1 }});
                 }
             }
         }, {
             find: function (club) {
-                if (Roles.userIsInRole(this.userId, ["admin", "player", "member"], clubId)) {
+                if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
                     return Events.find({clubId: club._id}, {sort: {startDateTime: -1}});
                 }
             }
+            ,
+            children: [{
+                find: function(event, club) {
+                    if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
+                        return TeamSelections.find({matchId: event._id, clubId: club._id}, {});
+                    }
+                }
+            }]
         }, {
             find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["member"], clubId)) {
+                if (Roles.userIsInRole(this.userId, ["user"], clubId)) {
                     return Members.find({ clubId: club._id }, { sort: {fullName: 1 }});
                 }
             }
         }, {
             find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["admin", "player", "member"], clubId)) {
+                if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
                     return Messages.find({ clubId: club._id }, { sort: {createdOn: -1 }});
                 }
             }
         }, {
             find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["member"], clubId)) {
+                if (Roles.userIsInRole(this.userId, ["user"], clubId)) {
                     return Notifications.find({ clubId: club._id }, { sort: {createdOn: -1 }});
                 }
             }
         }, {
             find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["admin", "player", "member"], clubId)) {
+                if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
                     return Officials.find({ clubId: club._id }, { sort: {fullName: 1 }});
                 }
             }
         }, {
             find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["member"], clubId)) {
+                if (Roles.userIsInRole(this.userId, ["user"], clubId)) {
                     return Tasks.find({ clubId: club._id }, { sort: {createdOn: -1 }});
                 }
             }
         }, {
             find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["admin", "player", "member"], clubId)) {
+                if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
                     return Teams.find({ clubId: club._id }, { sort: {name: 1 }});
                 }
             }
@@ -67,6 +75,10 @@ Meteor.publishComposite("club", function(clubId) {
             }
         }]
     }
+});
+
+Meteor.publish('teamsel', function() {
+    return TeamSelections.find();
 });
 
 Meteor.publish('profilePictures', function() {

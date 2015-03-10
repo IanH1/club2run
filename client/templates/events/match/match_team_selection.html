@@ -1,0 +1,30 @@
+<template name="matchTeamSelection">
+    {{#autoForm id='teamSelection' schema=Schema.TeamSelectionSchema type="method" meteormethod="updateTeamSelection" doc=this}}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Team Selection for {{team.name}} V {{match.match.opposition}} on {{formatDateTime match.startDateTime}} </h3>
+            </div>
+            <div class="panel-body">
+                {{> afFieldInput name='matchId' type="hidden"}}
+                <table class="table no-margin">
+                    <thead>
+                        <tr>
+                            <td>Player</td>
+                            <td>Position</td>
+                            <td>Availability</td>
+                            <td>Email</td>
+                            <td>SMS</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{> afArrayField name="players" template="matchCustomField" options=playerOptions}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-default cancel">Cancel</button>
+        </div>
+    {{/autoForm}}
+</template>
