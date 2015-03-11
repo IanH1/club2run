@@ -7,7 +7,7 @@ Meteor.publishComposite("club", function(clubId) {
         find: function() {
             if (this.userId) {
                 if (clubId && Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                    return Clubs.find({ _id: clubId });
+                    return Club.find({ _id: clubId });
                 }
             }
         },
@@ -52,7 +52,7 @@ Meteor.publishComposite("club", function(clubId) {
         }, {
             find: function(club) {
                 if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                    return Officials.find({ clubId: club._id }, { sort: {fullName: 1 }});
+                    return Official.find({ clubId: club._id }, { sort: {fullName: 1 }});
                 }
             }
         }, {
@@ -64,7 +64,7 @@ Meteor.publishComposite("club", function(clubId) {
         }, {
             find: function(club) {
                 if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                    return Teams.find({ clubId: club._id }, { sort: {name: 1 }});
+                    return Team.find({ clubId: club._id }, { sort: {name: 1 }});
                 }
             }
         }, {
@@ -82,7 +82,7 @@ Meteor.publish('teamsel', function() {
 });
 
 Meteor.publish('profilePictures', function() {
-    return ProfilePictures.find();
+    return ProfilePicture.find();
 });
 
 Meteor.publish("userStatus", function() {

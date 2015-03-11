@@ -1,7 +1,7 @@
 Template.matchView.helpers({
     team: function() {
         if (this.match.teamId) {
-            return Teams.findOne(this.match.teamId).name;
+            return Team.findOne(this.match.teamId).name;
         }
     },
     player: function() {

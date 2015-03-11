@@ -1,5 +1,5 @@
 Template.officialList.helpers({
-    tabularSelector: function() {
-        return {clubId: Meteor.user().profile.clubId}
+    offcials: function() {
+        return Official.find();
     }
 });

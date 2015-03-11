@@ -1,12 +1,11 @@
 Template.officialCreate.events({
-    'click .cancel': function(e, tpl) {
+    'click .cancel': function() {
         Router.go('officialList');
     }
 });
 
 AutoForm.addHooks('createOfficial', {
     onSuccess: function() {
-        FlashMessages.sendSuccess("Official successfully created.");
         Router.go('officialList');
     }
 });

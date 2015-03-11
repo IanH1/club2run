@@ -34,9 +34,9 @@ if (Meteor.users.find().count() === 0) {
 }
 
 // Setup a test club
-if (Clubs.find().count() === 0) {
+if (Club.find().count() === 0) {
     type = ClubType.findOne({ name: "Hockey" });
-    clubId = Clubs.insert({
+    clubId = Club.insert({
         name: "Sunbury & Walton Hockey Club",
         type: type,
         associations: ["Surrey Hockey Association"],

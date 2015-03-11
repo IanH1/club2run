@@ -8,7 +8,7 @@ Template.matchTeamSelection.helpers({
         if (this.matchId) {
             var teamId = Events.findOne(this.matchId).match.teamId;
             if (teamId) {
-                return Teams.findOne(teamId);
+                return Team.findOne(teamId);
             }
         }
     },
@@ -17,7 +17,7 @@ Template.matchTeamSelection.helpers({
         if (this.matchId) {
             var teamId = Events.findOne(this.matchId).match.teamId;
             if (teamId) {
-                Teams.findOne(teamId).players.forEach(function (playerId) {
+                Team.findOne(teamId).players.forEach(function (playerId) {
                     var player = Members.findOne(playerId);
                     options.push({
                         label: player.fullName, value: player._id

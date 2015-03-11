@@ -1,12 +1,12 @@
 Template.staffEdit.events({
-    'click .cancel': function(e, tpl) {
+    'click .cancel': function() {
         Router.go('staffList');
     },
-    'click .delete': function(event, template) {
+    'click .delete': function() {
         var staffId = this._id;
-        bootbox.confirm("Are you sure you want to delete " + this.fullName + "?", function(result) {
+        bootbox.confirm("Are you sure you want to delete this member of staff?", function(result) {
             if (result) {
-                Meteor.call('deleteStaff', staffId, function(error, result) {
+                Meteor.call('deleteStaff', staffId, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {
@@ -21,7 +21,6 @@ Template.staffEdit.events({
 
 AutoForm.addHooks('editStaff', {
     onSuccess: function() {
-        FlashMessages.sendSuccess("Staff successfully updated.");
         Router.go('staffList');
     }
 });

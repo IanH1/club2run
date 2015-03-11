@@ -2,7 +2,7 @@
     {{#autoForm id='createStaff' schema=Schema.StaffSchema type="method" meteormethod="insertStaff"}}
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Details</h3>
+                <h3 class="panel-title">Staff</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -14,17 +14,24 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-6">
                         {{> afQuickField name='gender' options="auto"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='role' options="auto"}}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
-                        {{> afQuickField name='role' options="auto"}}
+                    <div class="col-xs-6">
+                        {{> afQuickField name='homeTelephone'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='mobileTelephone'}}
                     </div>
                 </div>
             </div>
         </div>
+        {{> address}}
         <div>
             <button type="submit" class="btn btn-primary">Save</button>
             <button type="reset" class="btn btn-default">Reset</button>

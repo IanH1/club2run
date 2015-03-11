@@ -11,7 +11,7 @@ Template.eventList.helpers({
         return Events.find({type: "Match"});
     },
     team: function() {
-        return Teams.findOne(this.match.teamId);
+        return Team.findOne(this.match.teamId);
     }
 });
 

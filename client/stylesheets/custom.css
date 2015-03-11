@@ -68,3 +68,12 @@
 .row-margin {
     margin-bottom: 10px
 }
+
+.skin-blue .panel-primary  {
+    border-color: #3c8dbc !important;
+}
+
+.skin-blue .panel-primary > .panel-heading {
+    background-color: #3c8dbc !important;
+    border-color: #3c8dbc !important;
+}

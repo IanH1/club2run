@@ -59,8 +59,8 @@ Template.registerHelper('profileThumbnailSrc', function(_id) {
                 if (picture.indexOf('/') > -1) {
                     return picture;
                 } else {
-                    if (typeof ProfilePictures !== 'undefined' && ProfilePictures.findOne(user.profile.picture)) {
-                        var picture = ProfilePictures.findOne(picture);
+                    if (typeof ProfilePicture !== 'undefined' && ProfilePicture.findOne(user.profile.picture)) {
+                        var picture = ProfilePicture.findOne(picture);
                         return picture.url({ store: 'thumbs' });
                     }
                 }

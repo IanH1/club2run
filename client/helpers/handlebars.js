@@ -14,7 +14,7 @@ Template.registerHelper("memberOptions", function() {
 
 Template.registerHelper("officialOptions", function() {
     var options = [];
-    Officials.find({}, {sort: {fullName: 1}}).forEach(function(official) {
+    Official.find({}, {sort: {fullName: 1}}).forEach(function(official) {
         options.push({
             label: official.fullName, value: official._id
         })
@@ -34,7 +34,7 @@ Template.registerHelper("staffOptions", function() {
 
 Template.registerHelper("teamOptions", function() {
     var options = [];
-    Teams.find({}, { sort: {name: 1} }).forEach(function(team) {
+    Team.find({}, { sort: {name: 1} }).forEach(function(team) {
         options.push({
             label: team.name, value: team._id
         })
@@ -43,7 +43,7 @@ Template.registerHelper("teamOptions", function() {
 });
 
 Template.registerHelper('currentClub', function() {
-    return Clubs.findOne();
+    return Club.findOne();
 });
 
 Template.registerHelper('articleCount', function() {
@@ -67,7 +67,7 @@ Template.registerHelper('notificationCount', function() {
 });
 
 Template.registerHelper('officialCount', function() {
-    return Officials.find().count();
+    return Official.find().count();
 });
 
 Template.registerHelper('staffCount', function() {
@@ -79,5 +79,5 @@ Template.registerHelper('taskCount', function() {
 });
 
 Template.registerHelper('teamCount', function() {
-    return Teams.find().count();
+    return Team.find().count();
 });

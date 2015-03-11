@@ -1,5 +1,5 @@
 Template.staffList.helpers({
-    tabularSelector: function() {
-        return {clubId: Meteor.user().profile.clubId}
+    staff: function() {
+        return Staff.find();
     }
 });
