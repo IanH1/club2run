@@ -6,7 +6,7 @@ Template.matchView.helpers({
     },
     player: function() {
         if (this.playerId) {
-            return Members.findOne(this.playerId);
+            return Meteor.users.findOne(this.playerId);
         }
     }
 });

@@ -18,7 +18,7 @@ Template.matchTeamSelection.helpers({
             var teamId = Events.findOne(this.matchId).match.teamId;
             if (teamId) {
                 Team.findOne(teamId).players.forEach(function (playerId) {
-                    var player = Members.findOne(playerId);
+                    var player = Meteor.users.findOne(playerId);
                     options.push({
                         label: player.fullName, value: player._id
                     })

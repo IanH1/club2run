@@ -1,12 +1,11 @@
 Template.registerHelper('Schema', Schema);
 Template.registerHelper('Users', Meteor.users);
-Template.registerHelper('TabularTables', TabularTables);
 
-Template.registerHelper("memberOptions", function() {
+Template.registerHelper("userOptions", function() {
     var options = [];
-    Members.find({}, { sort: {fullName: 1} }).forEach(function(member) {
+    Meteor.users.find({}, { sort: {'profile.fullName': 1} }).forEach(function(user) {
         options.push({
-            label: member.fullName, value: member._id
+            label: user.profile.fullName, value: user._id
         })
     });
     return options;
@@ -54,10 +53,6 @@ Template.registerHelper('eventCount', function() {
     return Events.find().count();
 });
 
-Template.registerHelper('memberCount', function() {
-    return Members.find().count();
-});
-
 Template.registerHelper('messageCount', function() {
     return Messages.find().count();
 });
@@ -80,4 +75,8 @@ Template.registerHelper('taskCount', function() {
 
 Template.registerHelper('teamCount', function() {
     return Team.find().count();
+});
+
+Template.registerHelper('userCount', function() {
+    return Meteor.users.find().count();
 });

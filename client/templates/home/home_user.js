@@ -77,7 +77,7 @@ Template.messagePanel.helpers({
     messages: function() {
       return Messages.find({}, { sort: {createdOn: -1} });
     },
-    member: function() {
+    user: function() {
         return Meteor.users.findOne(this.createdBy);
     },
     ownMessage: function() {

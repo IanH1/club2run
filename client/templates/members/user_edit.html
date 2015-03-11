@@ -1,76 +1,77 @@
-<template name="memberEdit">
-    {{#autoForm id='editMember' schema=Schema.MemberSchema type="method" meteormethod="updateMember" doc=this}}
+<template name="userEdit">
+    {{#autoForm id='editUser' schema=Schema.User type="method" meteormethod="updateUser" doc=this}}
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Details</h3>
+                <h3 class="panel-title">User</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='firstName'}}
+                        {{> afQuickField name='profile.firstName'}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='lastName'}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        {{> afQuickField name='dateOfBirth'}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{> afQuickField name='gender' options="auto"}}
+                        {{> afQuickField name='profile.lastName'}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='emergencyContactName'}}
+                        {{> afQuickField name='profile.gender' options="auto"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='emergencyContactTelephone'}}
+                        {{> afQuickField name='profile.dateOfBirth'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='emails.0.address' label="Email"}}
+                        {{> afFieldInput name='emails.0.verified' type="hidden"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.homeTelephone'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.mobileTelephone'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.emergencyContactName'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.emergencyContactTelephone'}}
                     </div>
                 </div>
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Contact</h3>
+                <h3 class="panel-title">Location</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-12">
-                        {{> afQuickField name='email'}}
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.address.line1'}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='profile.address.line2'}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='homeTelephone'}}
+                        {{> afQuickField name='profile.address.city'}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='mobileTelephone'}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        {{> afQuickField name='address.line1'}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{> afQuickField name='address.line2'}}
+                        {{> afQuickField name='profile.address.county'}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='address.city'}}
+                        {{> afQuickField name='profile.address.postCode'}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='address.county'}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        {{> afQuickField name='address.postCode'}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{> afQuickField name='address.country'}}
+                        {{> afQuickField name='profile.address.country'}}
                     </div>
                 </div>
             </div>
@@ -82,20 +83,20 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='ethinicity' options="auto"}}
+                        {{> afQuickField name='profile.ethinicity' options="auto"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='disabilities'}}
+                        {{> afQuickField name='profile.disabilities'}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='allergies'}}
+                        {{> afQuickField name='profile.allergies'}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        {{> afQuickField name='otherComments' rows=2}}
+                        {{> afQuickField name='profile.otherComments' rows=2}}
                     </div>
                 </div>
             </div>
@@ -104,10 +105,7 @@
             <button type="submit" class="btn btn-primary">Update</button>
             <button type="reset" class="btn btn-default">Reset</button>
             <button type="button" class="btn btn-default cancel">Cancel</button>
-            <button type="button" class="btn btn-danger delete">Delete</button>
-            {{#if not userId}}
-                <button type="button" class="btn btn-default create-user">Create User</button>
-            {{/if}}
+            <button type="button" class="btn btn-danger pull-right delete">Delete</button>
         </div>
     {{/autoForm}}
 </template>

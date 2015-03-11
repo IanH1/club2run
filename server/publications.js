@@ -33,8 +33,8 @@ Meteor.publishComposite("club", function(clubId) {
             }]
         }, {
             find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["user"], clubId)) {
-                    return Members.find({ clubId: club._id }, { sort: {fullName: 1 }});
+                if (Roles.userIsInRole(this.userId, ["admin"], clubId)) {
+                    return Meteor.users.find({ 'profile.clubId': club._id }, { sort: {name: 1 }});
                 }
             }
         }, {
@@ -69,7 +69,7 @@ Meteor.publishComposite("club", function(clubId) {
             }
         }, {
             find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["admin", "player", "member"], clubId)) {
+                if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
                     return Staff.find({ clubId: club._id }, { sort: {fullName: 1 }});
                 }
             }

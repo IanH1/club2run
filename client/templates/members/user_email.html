@@ -1,13 +1,13 @@
-<template name="memberEmail">
-    {{#autoForm id='emailMember' schema=Schema.ContactSchema type="method" doc=this meteormethod="sendEmail"}}
+<template name="userEmail">
+    {{#autoForm id='emailUser' schema=Schema.EmailMessage type="method" meteormethod="sendUserEmail" doc=this}}
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Email {{fullName}}</h3>
+                <h3 class="panel-title">Email to {{profile.fullName}}</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">
-                        {{> afQuickField name="email" readonly=true}}
+                        {{> afQuickField name="email" readonly=true value=email}}
                     </div>
                 </div>
                 <div class="row">

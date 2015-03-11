@@ -1,5 +1,5 @@
 Template.officialList.helpers({
-    offcials: function() {
+    officials: function() {
         return Official.find();
     }
 });
