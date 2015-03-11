@@ -1,5 +1,5 @@
 Template.articleList.helpers({
-    tabularSelector: function() {
-        return {clubId: Meteor.user().profile.clubId}
+    articles: function() {
+        return Article.find();
     }
 });

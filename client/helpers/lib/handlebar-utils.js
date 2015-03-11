@@ -50,6 +50,14 @@ Template.registerHelper('not', function(value) {
     return (!value);
 });
 
+Template.registerHelper('trimString', function(value, length) {
+    if (value && value.length > length) {
+        return value.substring(0, length) + "..."
+    } else {
+        return value;
+    }
+});
+
 Template.registerHelper('profileThumbnailSrc', function(_id) {
     if (typeof Meteor.users !== 'undefined') {
         if (Meteor.users.findOne(_id)) {

@@ -47,7 +47,7 @@ Template.registerHelper('currentClub', function() {
 });
 
 Template.registerHelper('articleCount', function() {
-    return Articles.find().count();
+    return Article.find().count();
 });
 
 Template.registerHelper('eventCount', function() {

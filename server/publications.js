@@ -14,7 +14,7 @@ Meteor.publishComposite("club", function(clubId) {
         children: [{
             find: function(club) {
                 if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                    return Articles.find({ clubId: club._id }, { sort: {createdOn: -1 }});
+                    return Article.find({ clubId: club._id }, { sort: {createdOn: -1 }});
                 }
             }
         }, {

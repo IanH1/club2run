@@ -1,9 +1,12 @@
 Template.articleEdit.events({
+    'click .cancel': function() {
+        Router.go('articleList');
+    },
     'click .delete': function() {
         var articleId = this._id;
         bootbox.confirm("Are you sure you want to delete this article?", function(result) {
             if (result) {
-                Meteor.call('deleteArticle', articleId, function(error, result) {
+                Meteor.call('deleteArticle', articleId, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {
@@ -13,15 +16,11 @@ Template.articleEdit.events({
                 });
             }
         });
-    },
-    'click .cancel': function(e, tpl) {
-        Router.go('articleList');
     }
 });
 
 AutoForm.addHooks('editArticle', {
     onSuccess: function() {
-        FlashMessages.sendSuccess("Article successfully updated.");
         Router.go('articleList');
     }
 });
