@@ -1,5 +1,5 @@
 <template name="matchTeamSelection">
-    {{#autoForm id='teamSelection' schema=Schema.TeamSelectionSchema type="method" meteormethod="updateTeamSelection" doc=this}}
+    {{#autoForm id='teamSelection' schema=Schema.TeamSelection type="method" meteormethod="updateTeamSelection" doc=this}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Team Selection for {{team.name}} V {{match.match.opposition}} on {{formatDateTime match.startDateTime}} </h3>

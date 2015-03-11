@@ -1,5 +1,5 @@
 <template name="eventEdit">
-    {{#autoForm id='editEvent' schema=Schema.EventSchema type="method" meteormethod="updateEvent" doc=this}}
+    {{#autoForm id='editEvent' schema=Schema.Event type="method" meteormethod="updateEvent" doc=this}}
         {{> afFieldInput name="type" value=eventType type="hidden"}}
         {{#if afFieldValueIs name="type" value="Match"}}
             {{> match}}
