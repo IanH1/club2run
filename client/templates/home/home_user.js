@@ -1,3 +1,23 @@
+var cssStatusClass = function(availability) {
+    if (availability === "Accepted") {
+        return "primary";
+    } else if (availability === "Tentative") {
+        return "warning";
+    } else if (availability === "Declined") {
+        return "danger";
+    } else {
+        return "default";
+    }
+};
+
+var updateMeetingInvite = function(meetingId, availability) {
+    Meteor.call("updateMeetingInvite", meetingId, availability, function(error) {
+        if (error) {
+            FlashMessages.sendError(error.reason);
+        }
+    });
+};
+
 Template.notificationPanel.helpers({
     notifications: function() {
         return Notifications.find();
@@ -25,51 +45,167 @@ Template.notificationPanel.events({
 });
 
 Template.calendarPanel.rendered = function() {
-    var fc = this.$('.fc');
+    var eventCalendar = this.$('.eventCalendar');
     this.autorun(function() {
-        Events.find();
-        fc.fullCalendar('refetchEvents');
+        eventCalendar.fullCalendar('refetchEvents');
     });
 };
 
 Template.calendarPanel.helpers({
     headerOptions: function() {
         return {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'month,agendaWeek,agendaDay'
+            left: "title",
+            center: "",
+            right: "today prev,next agendaDay,agendaWeek,month"
         }
     },
     eventClickHandler: function() {
-        return function(reqEvent,jsEvent,view) {
-            Router.go('eventEdit', {_id: reqEvent.id});
+        return function(calEvent) {
+            Session.set('showEventId', calEvent._id);
+            Session.set('showEventType', calEvent.type);
+            Session.set('showEventModal', true);
         };
     },
     dayClickHandler: function() {
         return function(date, allDay, jsEvent, view) {
-            Session.set("eventDate", date.format());
-            Router.go('eventCreate');
         };
     },
     events: function() {
         return function(start, end, tz, callback) {
-            var events = Events.find().map(function(event) {
-                return {
-                    id: event._id,
-                    title: event.description,
-                    start: moment(event.startDateTime),
-                    end: moment(event.endDateTime),
-                    allDay: event.endDateTime == null
-                };
+            var events = [];
+
+            // Add the fixture events
+            Fixture.find().forEach(function(fixture) {
+                events.push({
+                    id: fixture._id,
+                    title: fixture.opponent,
+                    allDay: false,
+                    start: moment(fixture.startDateTime),
+                    end: moment(fixture.endDateTime),
+                    type: 'fixture'
+                })
             });
+
+            // Add the meeting events
+            Meeting.find().forEach(function(meeting) {
+                events.push({
+                    id: meeting._id,
+                    title: meeting.subject,
+                    allDay: false,
+                    start: moment(meeting.startDateTime),
+                    end: moment(meeting.endDateTime),
+                    type: 'meeting'
+                })
+            });
+
+            // Add the training events
+            Training.find().forEach(function(training) {
+                events.push({
+                    id: training._id,
+                    title: training.teamId,
+                    allDay: false,
+                    start: moment(training.startDateTime),
+                    end: moment(training.endDateTime),
+                    type: 'training'
+                })
+            });
+
             callback(events);
         };
+    },
+    showEventModal: function() {
+        return Session.get("showEventModal") === true;
+    },
+    showEventType: function() {
+        return Session.get("showEventType");
     }
 });
 
 Template.calendarPanel.events({
     'click .refresh': function(event, template) {
         template.$('.eventCalendar').fullCalendar('refetchEvents');
+    }
+});
+
+Template.eventFixtureModal.helpers({
+    fixture: function() {
+        if (Session.get("showEventId")) {
+            return Fixture.findOne(Session.get("showEventId"));
+        }
+    },
+    team: function() {
+        if (Session.get("showEventId")) {
+            var fixture = Fixture.findOne(Session.get("showEventId"));
+            if (fixture && fixture.teamId) {
+                return Team.findOne(fixture.teamId);
+            }
+        }
+    }
+});
+
+Template.eventFixtureModal.events({
+    'click [data-dismiss="modal"]': function() {
+        Session.set('showEventId', null);
+        Session.set('showEventType', null);
+        Session.set('showEventModal', false);
+    }
+});
+
+Template.eventMeetingModal.helpers({
+    meeting: function() {
+        if (Session.get("showEventId")) {
+            return Meeting.findOne(Session.get("showEventId"));
+        }
+    },
+    attendee: function() {
+        if (this.userId) {
+            return Meteor.users.findOne(this.userId);
+        }
+    },
+    attendeeStatusClass: function() {
+        return cssStatusClass(this.availability);
+    },
+    currentUserInvite: function() {
+        if (Session.get("showEventId")) {
+            var meeting = Meeting.findOne(Session.get("showEventId"));
+            if (meeting && meeting.attendeeIds) {
+                return _.find(meeting.attendeeIds, function(attendee) {
+                    if (attendee.userId === Meteor.userId()) {
+                        return attendee;
+                    }
+                });
+            }
+        }
+    },
+    currentUserStatusClass: function() {
+        if (Session.get("showEventId")) {
+            var meeting = Meeting.findOne(Session.get("showEventId"));
+            if (meeting && meeting.attendeeIds) {
+                var invite = _.find(meeting.attendeeIds, function(attendee) {
+                    if (attendee.userId === Meteor.userId()) {
+                        return attendee;
+                    }
+                });
+                return cssStatusClass(invite.availability);
+            }
+        }
+    }
+});
+
+Template.eventMeetingModal.events({
+    'click .accept': function() {
+        updateMeetingInvite(Session.get("showEventId"), "Accepted");
+    },
+    'click .tenative': function() {
+        updateMeetingInvite(Session.get("showEventId"), "Tentative");
+    },
+    'click .decline': function() {
+        updateMeetingInvite(Session.get("showEventId"), "Declined");
+    },
+    'click [data-dismiss="modal"]': function() {
+        Session.set('showEventId', null);
+        Session.set('showEventType', null);
+        Session.set('showEventModal', false);
     }
 });
 

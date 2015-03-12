@@ -134,15 +134,154 @@
 </template>
 
 <template name="calendarPanel">
+    {{#if showEventModal}}
+        {{#if equals showEventType "fixture"}}
+            {{> eventFixtureModal}}
+        {{/if}}
+        {{#if equals showEventType "meeting"}}
+            {{> eventMeetingModal}}
+        {{/if}}
+        {{#if equals showEventType "training"}}
+
+        {{/if}}
+    {{/if}}
     <div class="box box-danger">
         <div class="box-header">
             <i class="fa fa-calendar"></i>
             <h3 class="box-title">Calendar</h3>
         </div>
         <div class="box-body no-padding">
-            {{> fullcalendar header=headerOptions defaultView='month' class="eventCalendar" events=events eventClick=eventClickHandler dayClick=dayClickHandler}}
+            {{> fullcalendar header=headerOptions defaultView='agendaWeek' class="eventCalendar" events=events eventClick=eventClickHandler dayClick=dayClickHandler weekMode='liquid' minTime='08:00:00' maxTime='20:00:00'}}
         </div>
         <div class="box-footer text-black">
         </div>
     </div>
+</template>
+
+<template name="eventFixtureModal">
+    <div id="eventFixtureModal" class="modal show fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">{{team.name}} V {{fixture.opponent}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <strong>Meetup : </strong> {{formatDateTime fixture.meetupDateTime}}<br>
+                        <strong>Starts : </strong> {{formatDateTime fixture.startDateTime}}<br>
+                        {{#if fixture.endDateTime}}
+                            <strong>Ends :</strong> {{formatDateTime fixture.endDateTime}}<br>
+                        {{/if}}
+                        {{#if fixture.address}}
+                            <strong>Location :</strong> {{fixture.address.line1}}, {{fixture.address.line2}}, {{fixture.address.city}}, {{fixture.address.county}}, {{fixture.address.postCode}}, {{fixture.address.country}}
+                        {{else}}
+                            <strong>Location :</strong><br>
+                        {{/if}}
+                    </p>
+                    <hr>
+                    <p>
+                        <strong>Competition :</strong> {{fixture.competition}}<br>
+                        <strong>Opponent :</strong> {{fixture.opponent}}<br>
+                        <!--<strong>Officials :</strong>{{#each match.officials}}{{tmp.firstName}}<br>{{/each}}-->
+                    </p>
+                    {{#if fixture.additionalInformation}}
+                        <hr>
+                        <p>{{fixture.additionalInformation}}</p>
+                    {{/if}}
+                    <hr>
+                    <h4>Team Selection</h4>
+                    <!--<table class="table no-margin">-->
+                    <!--<tbody>-->
+                        <!--{{#each fixture.squad}}-->
+                    <!--<tr>-->
+                    <!--<td>{{this}}</td>-->
+                    <!--&lt;!&ndash;&lt;!&ndash;<span class="label label-{{selectionStatusClass}}">&ndash;&gt;&ndash;&gt;-->
+                    {{#if status}}
+                            {{status}}
+                    {{else}}
+                        <!--&lt;!&ndash;&lt;!&ndash;Pending&ndash;&gt;&ndash;&gt;-->
+                    {{/if}}
+                    <!--&lt;!&ndash;&lt;!&ndash;</span>&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;&lt;!&ndash;</td>&ndash;&gt;&ndash;&gt;-->
+                    <!--&lt;!&ndash;<td>{{player.fullName}}</td>&ndash;&gt;-->
+                    <!--</tr>-->
+                        <!--{{/each}}-->
+                    <!--</tbody>-->
+                    <!--</table>-->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="eventMeetingModal">
+    <div id="eventMeetingModal" class="modal show fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{meeting.subject}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <strong>Starts : </strong> {{formatDateTime meeting.startDateTime}}<br>
+                        <strong>Ends :</strong> {{formatDateTime meeting.endDateTime}}<br>
+                        {{#if meeting.address}}
+                            <strong>Location :</strong> {{meeting.address.line1}}, {{meeting.address.line2}}, {{meeting.address.city}}, {{meeting.address.county}}, {{meeting.address.postCode}}, {{meeting.address.country}}
+                        {{else}}
+                            <strong>Location :</strong><br>
+                        {{/if}}
+                    </p>
+                    <hr>
+                    <p>{{meeting.details}}</p>
+                    <hr>
+                    <h4>Attendees</h4>
+                    <table class="table no-margin">
+                        <tbody>
+                            {{#each meeting.attendeeIds}}
+                                <tr>
+                                    <td class="col-sm-1">
+                                        <span class="label label-{{attendeeStatusClass}}">
+                                            {{#if availability}}
+                                                {{availability}}
+                                            {{else}}
+                                                Pending
+                                            {{/if}}
+                                        </span>
+                                    </td>
+                                    <td>{{attendee.profile.fullName}}</td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    {{#if currentUserInvite}}
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-{{currentUserStatusClass}} dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                {{#if currentUserInvite.availability}}
+                                    {{currentUserInvite.availability}}
+                                {{else}}
+                                    My Status
+                                {{/if}} <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" class="accept">Accept</a></li>
+                                <li><a href="#" class="tenative">Maybe</a></li>
+                                <li><a href="#" class="decline">Decline</a></li>
+                            </ul>
+                        </div>
+                    {{/if}}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name="eventTrainingModal">
 </template>

@@ -50,7 +50,7 @@ Template.registerHelper('articleCount', function() {
 });
 
 Template.registerHelper('eventCount', function() {
-    return Events.find().count();
+    return Fixture.find().count() + Meeting.find().count() + Training.find().count();
 });
 
 Template.registerHelper('messageCount', function() {
