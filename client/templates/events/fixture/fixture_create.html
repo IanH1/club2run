@@ -35,12 +35,21 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        {{> afQuickField name='opponentCoaches'}}
+                        <div class="form-group {{#if afFieldIsInvalid name="opponentCoaches"}}has-error{{/if}}">
+                            <label class='control-label'>{{afFieldLabelText name="opponentCoaches" }}</label>
+                            {{> afFieldInput name="opponentCoaches" placeholder='Comma seperated list'}}
+                            <span class="help-block">{{{afFieldMessage name="opponentCoaches"}}}</span>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
                         {{> afQuickField name='officialIds' type="selectize" options=officialOptions multiple=true}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='additionalInformation' rows=2}}
                     </div>
                 </div>
             </div>
