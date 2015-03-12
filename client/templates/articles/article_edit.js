@@ -21,6 +21,7 @@ Template.articleEdit.events({
 
 AutoForm.addHooks('editArticle', {
     onSuccess: function() {
+        FlashMessages.sendSuccess("Successfully saved changes.");
         Router.go('articleList');
     }
 });

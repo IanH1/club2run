@@ -6,6 +6,7 @@ Template.staffCreate.events({
 
 AutoForm.addHooks('createStaff', {
     onSuccess: function() {
+        FlashMessages.sendSuccess("Successfully saved changes.");
         Router.go('staffList');
     }
 });

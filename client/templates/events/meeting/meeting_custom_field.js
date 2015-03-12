@@ -1,8 +1,8 @@
 Template.afObjectField_meetingCustomObjectField.helpers({
-    memberIdFieldName: function() {
-        return this.atts.name + '.memberId'
+    userIdFieldName: function() {
+        return this.atts.name + '.userId'
     },
-    statusFieldName: function() {
-        return this.atts.name + '.status'
+    availabilityFieldName: function() {
+        return this.atts.name + '.availability'
     }
 });

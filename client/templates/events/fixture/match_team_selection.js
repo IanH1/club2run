@@ -37,7 +37,7 @@ Template.matchTeamSelection.events({
 
 AutoForm.addHooks('teamSelection', {
     onSuccess: function() {
-        FlashMessages.sendSuccess("Team selection successfully updated.");
+        FlashMessages.sendSuccess("Successfully saved changes.");
         Router.go('eventList');
     }
 });

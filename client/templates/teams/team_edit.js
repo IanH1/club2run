@@ -21,6 +21,7 @@ Template.teamEdit.events({
 
 AutoForm.addHooks('editTeam', {
     onSuccess: function() {
+        FlashMessages.sendSuccess("Successfully saved changes.");
         Router.go('teamList');
     }
 });

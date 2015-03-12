@@ -6,6 +6,7 @@ Template.userCreate.events({
 
 AutoForm.addHooks('createUser', {
     onSuccess: function() {
+        FlashMessages.sendSuccess("Successfully saved changes.");
         Router.go('userList');
     }
 });

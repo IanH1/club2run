@@ -21,6 +21,7 @@ Template.staffEdit.events({
 
 AutoForm.addHooks('editStaff', {
     onSuccess: function() {
+        FlashMessages.sendSuccess("Successfully saved changes.");
         Router.go('staffList');
     }
 });

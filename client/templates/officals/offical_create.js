@@ -6,6 +6,7 @@ Template.officialCreate.events({
 
 AutoForm.addHooks('createOfficial', {
     onSuccess: function() {
+        FlashMessages.sendSuccess("Successfully saved changes.");
         Router.go('officialList');
     }
 });

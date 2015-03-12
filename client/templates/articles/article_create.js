@@ -6,6 +6,7 @@ Template.articleCreate.events({
 
 AutoForm.addHooks('createArticle', {
     onSuccess: function() {
+        FlashMessages.sendSuccess("Successfully saved changes.");
         Router.go('articleList');
     }
 });

@@ -61,7 +61,7 @@ Template.registerHelper('trimString', function(value, length) {
 Template.registerHelper('profileThumbnailSrc', function(_id) {
     if (typeof Meteor.users !== 'undefined') {
         if (Meteor.users.findOne(_id)) {
-            user = Meteor.users.findOne(_id);
+            var user = Meteor.users.findOne(_id);
             if (typeof user.profile !== 'undefined' && typeof user.profile.picture !== 'undefined') {
                 var picture = user.profile.picture;
                 if (picture.indexOf('/') > -1) {

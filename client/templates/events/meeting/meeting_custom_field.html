@@ -24,7 +24,7 @@
             {{/afEachArrayItem}}
             {{#if afArrayFieldHasLessThanMaximum name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
                 <li class="list-group-item">
-                    <button type="button" class="btn btn-primary autoform-add-item" data-autoform-field="{{this.atts.name}}" data-autoform-minCount="{{this.atts.minCount}}" data-autoform-maxCount="{{this.atts.maxCount}}">Add Invitee</button>
+                    <button type="button" class="btn btn-primary autoform-add-item" data-autoform-field="{{this.atts.name}}" data-autoform-minCount="{{this.atts.minCount}}" data-autoform-maxCount="{{this.atts.maxCount}}">Add Attendee</button>
                 </li>
             {{/if}}
         </ul>
@@ -36,9 +36,9 @@
         <span class="help-block">{{{afFieldMessage name=this.atts.name}}}</span>
     {{/if}}
     <div class="col-xs-7">
-        {{> afQuickField name=memberIdFieldName type="selectize" options=userOptions}}
+        {{> afQuickField name=userIdFieldName type="selectize" options=userOptions}}
     </div>
     <div class="col-xs-4">
-        {{> afQuickField name=statusFieldName type="selectize" options="auto"}}
+        {{> afQuickField name=availabilityFieldName type="selectize" options="auto"}}
     </div>
 </template>

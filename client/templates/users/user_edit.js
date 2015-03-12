@@ -21,6 +21,7 @@ Template.userEdit.events({
 
 AutoForm.addHooks('editUser', {
     onSuccess: function() {
+        FlashMessages.sendSuccess("Successfully saved changes.");
         Router.go('userList');
     }
 });

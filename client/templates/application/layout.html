@@ -82,7 +82,7 @@
                     <a href="#">
                         <i class="fa fa-user"></i>
                         <span>Users</span>
-                        <span class="label label-primary pull-right">{{usrCount}}</span>
+                        <span class="label label-primary pull-right">{{userCount}}</span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{pathFor 'userList'}}"><i class="fa fa-table"></i> View All</a></li>
@@ -109,9 +109,9 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{pathFor 'eventList'}}"><i class="fa fa-table"></i> View All</a></li>
-                        <li><a href="{{pathFor 'eventCreate' eventType="Match"}}"><i class="fa fa-edit"></i> Create Match</a></li>
-                        <li><a href="{{pathFor 'eventCreate' eventType="Training"}}"><i class="fa fa-edit"></i> Create Training</a></li>
-                        <li><a href="{{pathFor 'eventCreate' eventType="Meeting"}}"><i class="fa fa-edit"></i> Create Meeting</a></li>
+                        <li><a href="{{pathFor 'fixtureCreate'}}"><i class="fa fa-edit"></i> Create Fixture</a></li>
+                        <li><a href="{{pathFor 'meetingCreate'}}"><i class="fa fa-edit"></i> Create Meeting</a></li>
+                        <li><a href="{{pathFor 'trainingCreate'}}"><i class="fa fa-edit"></i> Create Training</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

@@ -1,12 +1,12 @@
-Template.teamCreate.events({
+Template.meetingCreate.events({
     'click .cancel': function() {
-        Router.go('teamList');
+        Router.go('eventList');
     }
 });
 
-AutoForm.addHooks('createTeam', {
+AutoForm.addHooks('createMeeting', {
     onSuccess: function() {
         FlashMessages.sendSuccess("Successfully saved changes.");
-        Router.go('teamList');
+        Router.go('eventList');
     }
 });

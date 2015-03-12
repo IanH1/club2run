@@ -1,30 +1,18 @@
 <template name="eventList">
-    <div class="panel panel-primary">
-        <div class="panel-heading">Matches</div>
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th width="120px">Date</th>
-                    <th width="120px">Time</th>
-                    <th>Team</th>
-                    <th>Opposition</th>
-                    <th width="100px"></th>
-                </tr>
-            </thead>
-            <tbody>
-                {{#each matches}}
-                    <tr>
-                        <td>{{formatDate startDateTime}}</td>
-                        <td>{{formatTime startDateTime}}</td>
-                        <td>{{team.name}}</td>
-                        <td>{{match.opponent}}</td>
-                        <td class="pull-right">
-                            <a href="{{pathFor 'eventEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-                            <a href="{{pathFor 'matchTeamSelection' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-retweet"></i></a>
-                        </td>
-                    </tr>
-                {{/each}}
-            </tbody>
-        </table>
+    <div class="row-margin">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="{{#if equals eventType "fixture"}}active{{/if}}"><a href="#" class="fixture">Fixtures</a></li>
+            <li role="presentation" class="{{#if equals eventType "meeting"}}active{{/if}}"><a href="#" class="meeting">Meetings</a></li>
+            <li role="presentation" class="{{#if equals eventType "training"}}active{{/if}}"><a href="#" class="training">Training</a></li>
+        </ul>
     </div>
+    {{#if equals eventType "fixture"}}
+        {{> fixtureList}}
+    {{/if}}
+    {{#if equals eventType "meeting"}}
+        {{> meetingList}}
+    {{/if}}
+    {{#if equals eventType "training"}}
+        {{> trainingList}}
+    {{/if}}
 </template>
