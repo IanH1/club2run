@@ -41,6 +41,19 @@ Template.registerHelper("teamOptions", function() {
     return options;
 });
 
+Template.registerHelper("positionOptions", function() {
+    var options = [];
+    var club = Club.findOne();
+    if (club) {
+        club.type.positions.forEach(function(position) {
+            options.push({
+                label: position, value: position
+            })
+        });
+    }
+    return options;
+});
+
 Template.registerHelper('currentClub', function() {
     return Club.findOne();
 });

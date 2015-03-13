@@ -1,23 +1,23 @@
-<template name="matchTeamSelection">
+<template name="fixtureTeamSelection">
     {{#autoForm id='teamSelection' schema=Schema.TeamSelection type="method" meteormethod="updateTeamSelection" doc=this}}
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Team Selection for {{team.name}} V {{match.match.opposition}} on {{formatDateTime match.startDateTime}} </h3>
+                <h3 class="panel-title">Team Selection for {{team.name}} V {{fixture.opposition}} on {{formatDateTime fixture.startDateTime}}</h3>
             </div>
             <div class="panel-body">
-                {{> afFieldInput name='matchId' type="hidden"}}
+                {{> afFieldInput name='fixtureId' type="hidden"}}
                 <table class="table no-margin">
                     <thead>
                         <tr>
-                            <td>Player</td>
-                            <td>Position</td>
-                            <td>Availability</td>
-                            <td>Email</td>
-                            <td>SMS</td>
+                            <td class="col-sm-1">Squad No.</td>
+                            <td class="col-sm-3">Player</td>
+                            <td class="col-sm-3">Position</td>
+                            <td class="col-sm-2">Availability</td>
+                            <td class="col-sm-2">Notification</td>
                         </tr>
                     </thead>
                     <tbody>
-                        {{> afArrayField name="players" template="matchCustomField" options=playerOptions}}
+                        {{> afArrayField name="squad" template="fixtureCustomField" playerOptions=playerOptions positionOptions=positionOptions}}
                     </tbody>
                 </table>
             </div>

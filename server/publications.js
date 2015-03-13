@@ -22,20 +22,20 @@ Meteor.publishComposite("club", function(clubId) {
                 if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
                     return Fixture.find({ clubId: club._id }, { sort: {startDateTime: -1 }});
                 }
-            }
+            },
+            children: [{
+                find: function(fixture, club) {
+                    if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
+                        return TeamSelection.find({fixtureId: fixture._id}, {});
+                    }
+                }
+            }]
         }, {
             find: function (club) {
                 if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
                     return Meeting.find({clubId: club._id}, {sort: {startDateTime: -1}});
                 }
-            },
-            children: [{
-                find: function(event, club) {
-                    if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                        return TeamSelections.find({matchId: event._id, clubId: club._id}, {});
-                    }
-                }
-            }]
+            }
         }, {
             find: function(club) {
                 if (Roles.userIsInRole(this.userId, ["admin"], clubId)) {
@@ -86,10 +86,6 @@ Meteor.publishComposite("club", function(clubId) {
             }
         }]
     }
-});
-
-Meteor.publish('teamsel', function() {
-    return TeamSelections.find();
 });
 
 Meteor.publish('profilePictures', function() {

@@ -1,9 +1,9 @@
-var cssStatusClass = function(availability) {
-    if (availability === "Accepted") {
+var cssAvailabilityClass = function(availability) {
+    if (availability === "Accepted" || availability === "Available") {
         return "primary";
     } else if (availability === "Tentative") {
         return "warning";
-    } else if (availability === "Declined") {
+    } else if (availability === "Declined" || availability === "Unavailable") {
         return "danger";
     } else {
         return "default";
@@ -100,9 +100,10 @@ Template.calendarPanel.helpers({
 
             // Add the training events
             Training.find().forEach(function(training) {
+                var team = Team.findOne(training.teamId);
                 events.push({
                     id: training._id,
-                    title: training.teamId,
+                    title: team.name + " Training",
                     allDay: false,
                     start: moment(training.startDateTime),
                     end: moment(training.endDateTime),
@@ -140,6 +141,25 @@ Template.eventFixtureModal.helpers({
                 return Team.findOne(fixture.teamId);
             }
         }
+    },
+    official: function() {
+        if (this.valueOf()) {
+            return Official.findOne(this.valueOf());
+        }
+    },
+    teamSelection: function() {
+        if (Session.get("showEventId")) {
+            return TeamSelection.findOne({ fixtureId: Session.get("showEventId") });
+        }
+    },
+    player: function() {
+        console.log(this.userId);
+        if (this.userId) {
+            return Meteor.users.findOne(this.userId);
+        }
+    },
+    playerStatusClass: function() {
+        return cssAvailabilityClass(this.availability);
     }
 });
 
@@ -163,7 +183,7 @@ Template.eventMeetingModal.helpers({
         }
     },
     attendeeStatusClass: function() {
-        return cssStatusClass(this.availability);
+        return cssAvailabilityClass(this.availability);
     },
     currentUserInvite: function() {
         if (Session.get("showEventId")) {
@@ -186,7 +206,7 @@ Template.eventMeetingModal.helpers({
                         return attendee;
                     }
                 });
-                return cssStatusClass(invite.availability);
+                return cssAvailabilityClass(invite.availability);
             }
         }
     }
@@ -202,6 +222,35 @@ Template.eventMeetingModal.events({
     'click .decline': function() {
         updateMeetingInvite(Session.get("showEventId"), "Declined");
     },
+    'click [data-dismiss="modal"]': function() {
+        Session.set('showEventId', null);
+        Session.set('showEventType', null);
+        Session.set('showEventModal', false);
+    }
+});
+
+Template.eventTrainingModal.helpers({
+    training: function() {
+        if (Session.get("showEventId")) {
+            return Training.findOne(Session.get("showEventId"));
+        }
+    },
+    team: function() {
+        if (Session.get("showEventId")) {
+            var training = Training.findOne(Session.get("showEventId"));
+            if (training && training.teamId) {
+                return Team.findOne(training.teamId);
+            }
+        }
+    },
+    coach: function() {
+        if (this.valueOf()) {
+            return Staff.findOne(this.valueOf());
+        }
+    }
+});
+
+Template.eventTrainingModal.events({
     'click [data-dismiss="modal"]': function() {
         Session.set('showEventId', null);
         Session.set('showEventType', null);
