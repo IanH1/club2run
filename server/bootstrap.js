@@ -35,8 +35,11 @@ if (Meteor.users.find().count() === 0) {
 
 // Setup a test club
 if (Club.find().count() === 0) {
+    type = ClubType.findOne({ name: "Rugby Union" });
+    clubId1 = Club.insert({ name: "Harwich & Dovercourt Rugby Club", type: type });
+
     type = ClubType.findOne({ name: "Hockey" });
-    clubId = Club.insert({
+    clubId2 = Club.insert({
         name: "Sunbury & Walton Hockey Club",
         type: type,
         associations: ["Surrey Hockey Association"],
@@ -55,48 +58,19 @@ if (Club.find().count() === 0) {
             latitude: ""
         }
     });
-    Meteor.users.update({ _id: davidId }, { $set: { 'profile.clubId': clubId }});
-    Roles.addUsersToRoles(davidId, ["admin", "player", "user"], clubId);
-    Meteor.users.update({ _id: ianId }, { $set: { 'profile.clubId': clubId }});
-    Roles.addUsersToRoles(ianId, ["admin", "player", "user"], clubId);
 
-    var user1 = Accounts.createUser({
-        email: "user1@test.com",
-        password: "password",
-        profile: {firstName: "User", lastName: "One", fullName: "User One", name: "User One"}
-    });
-    Meteor.users.update({_id: user1}, {$set: {'emails.0.verified': true, 'profile.clubId': clubId }});
-    Roles.addUsersToRoles(user1, ["player", "user"], clubId);
+    Meteor.users.update({ _id: davidId }, { $set: { 'profile.clubId': clubId2 }});
+    Roles.addUsersToRoles(davidId, ["admin", "player", "user"], clubId2);
+    Meteor.users.update({ _id: ianId }, { $set: { 'profile.clubId': clubId2 }});
+    Roles.addUsersToRoles(ianId, ["admin", "player", "user"], clubId2);
 
-    var user2 = Accounts.createUser({
-        email: "user2@test.com",
-        password: "password",
-        profile: {firstName: "User", lastName: "Two", fullName: "User Two", name: "User Two"}
-    });
-    Meteor.users.update({_id: user2}, {$set: {'emails.0.verified': true, 'profile.clubId': clubId }});
-    Roles.addUsersToRoles(user2, ["player", "user"], clubId);
-
-    var user3 = Accounts.createUser({
-        email: "user3@test.com",
-        password: "password",
-        profile: {firstName: "User", lastName: "Three", fullName: "User Three", name: "User Three"}
-    });
-    Meteor.users.update({_id: user3}, {$set: {'emails.0.verified': true, 'profile.clubId': clubId }});
-    Roles.addUsersToRoles(user3, ["player", "user"], clubId);
-
-    var user4 = Accounts.createUser({
-        email: "user4@test.com",
-        password: "password",
-        profile: {firstName: "User", lastName: "Four", fullName: "User Four", name: "User Four"}
-    });
-    Meteor.users.update({_id: user4}, {$set: {'emails.0.verified': true, 'profile.clubId': clubId }});
-    Roles.addUsersToRoles(user4, ["player", "user"], clubId);
-
-    var user5 = Accounts.createUser({
-        email: "user5@test.com",
-        password: "password",
-        profile: {firstName: "User", lastName: "Five", fullName: "User Five", name: "User Five"}
-    });
-    Meteor.users.update({_id: user5}, {$set: {'emails.0.verified': true, 'profile.clubId': clubId }});
-    Roles.addUsersToRoles(user5, ["player", "user"], clubId);
+    for (var i = 0; i < 10; i++) {
+        var user = Accounts.createUser({
+            email: "user" + i + "@test.com",
+            password: "password",
+            profile: {firstName: "User", lastName: "User" + i, fullName: "User User" + i, name: "User User" + i}
+        });
+        Meteor.users.update({_id: user}, {$set: {'emails.0.verified': true, 'profile.clubId': clubId2 }});
+        Roles.addUsersToRoles(user, ["player", "user"], clubId2);
+    }
 }
