@@ -20,7 +20,7 @@ var updateMeetingInvite = function(meetingId, availability) {
 
 Template.notificationPanel.helpers({
     notifications: function() {
-        return Notifications.find();
+        return Notification.find();
     },
     meeting: function() {
         if (this.meeting && this.meeting.meetingId) {
@@ -260,7 +260,7 @@ Template.eventTrainingModal.events({
 
 Template.messagePanel.helpers({
     messages: function() {
-      return Messages.find({}, { sort: {createdOn: -1} });
+      return Message.find({}, { sort: {createdOn: -1} });
     },
     user: function() {
         return Meteor.users.findOne(this.createdBy);
@@ -304,20 +304,16 @@ Template.taskPanel.created = function() {
 Template.taskPanel.helpers({
     tasks: function() {
         if (Template.instance().hideCompleted.get()) {
-            return Tasks.find({complete: {$ne: true}});
+            return Task.find({complete: {$ne: true}});
         } else {
-            return Tasks.find();
+            return Task.find();
         }
     },
     taskCountOutstanding: function () {
-        return Tasks.find({complete: {$ne: true}}).count();
+        return Task.find({complete: {$ne: true}}).count();
     },
     taskClass: function() {
-        if (this.complete) {
-            return 'done';
-        } else {
-            return '';
-        }
+        return this.complete ? "done" : "";
     },
     ownTask: function() {
         return Meteor.userId() === this.createdBy
@@ -331,7 +327,7 @@ Template.taskPanel.events({
     'submit form': function(event, template) {
         event.preventDefault();
 
-        Meteor.call('insertTask', {text: template.find(".form-control").value}, function(error) {
+        Meteor.call('insertTask', {details: template.find(".form-control").value}, function(error) {
             if (error) {
                 FlashMessages.sendError(error.reason);
             }
@@ -340,7 +336,7 @@ Template.taskPanel.events({
     },
     'click .task-item': function(event) {
         var taskId = this._id;
-        Meteor.call('toggleTask', taskId, event.target.checked, function (error) {
+        Meteor.call('toggleTask', taskId, event.target.checked, function(error) {
             if (error) {
                 FlashMessages.sendError(error.reason);
             }
@@ -350,7 +346,7 @@ Template.taskPanel.events({
         var taskId = this._id;
         bootbox.confirm("Are you sure you want to delete this task?", function(result) {
             if (result) {
-                Meteor.call('deleteTask', taskId, function (error) {
+                Meteor.call('deleteTask', taskId, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     }

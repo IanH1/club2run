@@ -108,7 +108,7 @@
                     {{#each tasks}}
                         <li class="{{taskClass}}">
                             <input type="checkbox" class="task-item" {{checkedIf complete}}/>
-                            <span class="text done">{{text}}</span>
+                            <span class="text done">{{details}}</span>
                             <small> - {{formatDateFromNow createdOn}}</small>
                             {{#if ownTask}}
                                 <div class="tools">
@@ -125,7 +125,7 @@
                 <div class="input-group">
                     <input class="form-control" name="task" placeholder="Create task..."/>
                     <div class="input-group-btn">
-                        <button type="submit" class="btn btn-primary add-task"><i class="fa fa-plus"></i></button>
+                        <button type="submit" class="btn btn-warning add-task"><i class="fa fa-plus"></i></button>
                     </div>
                 </div>
             </form>

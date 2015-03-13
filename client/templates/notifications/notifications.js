@@ -11,6 +11,6 @@ Template.notificationDropdown.helpers({
             limit = 0;
             order = { createdOn: -1 };
         }
-        return Notifications.find({}, { limit: limit, sort: order });
+        return Notification.find({}, { limit: limit, sort: order });
     }
 });

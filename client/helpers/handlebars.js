@@ -67,11 +67,11 @@ Template.registerHelper('eventCount', function() {
 });
 
 Template.registerHelper('messageCount', function() {
-    return Messages.find().count();
+    return Message.find().count();
 });
 
 Template.registerHelper('notificationCount', function() {
-    return Notifications.find().count();
+    return Notification.find().count();
 });
 
 Template.registerHelper('officialCount', function() {
@@ -83,7 +83,7 @@ Template.registerHelper('staffCount', function() {
 });
 
 Template.registerHelper('taskCount', function() {
-    return Tasks.find({ complete: {$ne: true} }).count();
+    return Task.find({ complete: {$ne: true} }).count();
 });
 
 Template.registerHelper('teamCount', function() {
