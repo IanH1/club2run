@@ -31,7 +31,7 @@ Meteor.publishComposite("club", function(clubId) {
                 }
             }]
         }, {
-            find: function (club) {
+            find: function(club) {
                 if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
                     return Meeting.find({clubId: club._id}, {sort: {startDateTime: -1}});
                 }

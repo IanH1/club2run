@@ -42,7 +42,7 @@ Template.registerHelper("checkedIf", function(value) {
     return value ? 'checked' : '';
 });
 
-Template.registerHelper('equals', function (value1, value2) {
+Template.registerHelper('equals', function(value1, value2) {
     return value1 === value2;
 });
 

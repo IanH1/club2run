@@ -2,6 +2,7 @@
 if (Roles.getAllRoles().count() === 0) {
     Roles.createRole("superuser");
     Roles.createRole("admin");
+    Roles.createRole("editor");
     Roles.createRole("team_manager");
     Roles.createRole("player");
     Roles.createRole("user");
@@ -60,9 +61,9 @@ if (Club.find().count() === 0) {
     });
 
     Meteor.users.update({ _id: davidId }, { $set: { 'profile.clubId': clubId2 }});
-    Roles.addUsersToRoles(davidId, ["admin", "player", "user"], clubId2);
+    Roles.addUsersToRoles(davidId, ["admin", "user"], clubId2);
     Meteor.users.update({ _id: ianId }, { $set: { 'profile.clubId': clubId2 }});
-    Roles.addUsersToRoles(ianId, ["admin", "player", "user"], clubId2);
+    Roles.addUsersToRoles(ianId, ["admin", "user"], clubId2);
 
     for (var i = 0; i < 10; i++) {
         var user = Accounts.createUser({
@@ -71,6 +72,6 @@ if (Club.find().count() === 0) {
             profile: {firstName: "User", lastName: "User" + i, fullName: "User User" + i, name: "User User" + i}
         });
         Meteor.users.update({_id: user}, {$set: {'emails.0.verified': true, 'profile.clubId': clubId2 }});
-        Roles.addUsersToRoles(user, ["player", "user"], clubId2);
+        Roles.addUsersToRoles(user, ["user"], clubId2);
     }
 }

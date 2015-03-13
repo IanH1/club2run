@@ -337,7 +337,7 @@ Template.messagePanel.events({
         var messageId = this._id;
         bootbox.confirm("Are you sure you want to delete this message?", function(result) {
             if (result) {
-                Meteor.call('deleteMessage', messageId, function (error) {
+                Meteor.call('deleteMessage', messageId, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     }
@@ -359,7 +359,7 @@ Template.taskPanel.helpers({
             return Task.find();
         }
     },
-    taskCountOutstanding: function () {
+    taskCountOutstanding: function() {
         return Task.find({complete: {$ne: true}}).count();
     },
     taskClass: function() {
@@ -386,7 +386,7 @@ Template.taskPanel.events({
     },
     'click .task-item': function(event) {
         var taskId = this._id;
-        Meteor.call('toggleTask', taskId, event.target.checked, function(error) {
+        Meteor.call('toggleTaskCompletion', taskId, event.target.checked, function(error) {
             if (error) {
                 FlashMessages.sendError(error.reason);
             }
