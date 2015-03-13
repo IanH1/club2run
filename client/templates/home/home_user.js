@@ -10,6 +10,14 @@ var cssAvailabilityClass = function(availability) {
     }
 };
 
+var updateFixtureInvite = function(teamSelectionId, availability) {
+    Meteor.call("updateTeamSelectionInvite", teamSelectionId, availability, function(error) {
+        if (error) {
+            FlashMessages.sendError(error.reason);
+        }
+    });
+};
+
 var updateMeetingInvite = function(meetingId, availability) {
     Meteor.call("updateMeetingInvite", meetingId, availability, function(error) {
         if (error) {
@@ -153,17 +161,59 @@ Template.eventFixtureModal.helpers({
         }
     },
     player: function() {
-        console.log(this.userId);
         if (this.userId) {
             return Meteor.users.findOne(this.userId);
         }
     },
     playerStatusClass: function() {
         return cssAvailabilityClass(this.availability);
+    },
+    currentUserInvite: function() {
+        if (Session.get("showEventId")) {
+            var teamSelection = TeamSelection.findOne({ fixtureId: Session.get("showEventId") });
+            if (teamSelection && teamSelection.squad) {
+                return _.find(teamSelection.squad, function(player) {
+                    if (player.userId === Meteor.userId()) {
+                        return player;
+                    }
+                });
+            }
+        }
+    },
+    currentUserStatusClass: function() {
+        if (Session.get("showEventId")) {
+            var teamSelection = TeamSelection.findOne({ fixtureId: Session.get("showEventId") });
+            if (teamSelection && teamSelection.squad) {
+                var invite = _.find(teamSelection.squad, function(player) {
+                    if (player.userId === Meteor.userId()) {
+                        return player;
+                    }
+                });
+                return cssAvailabilityClass(invite.availability);
+            }
+        }
     }
 });
 
 Template.eventFixtureModal.events({
+    'click .accept': function() {
+        var teamSelection = TeamSelection.findOne({ fixtureId: Session.get("showEventId") });
+        if (teamSelection) {
+            updateFixtureInvite(teamSelection._id, "Available");
+        }
+    },
+    'click .tenative': function() {
+        var teamSelection = TeamSelection.findOne({ fixtureId: Session.get("showEventId") });
+        if (teamSelection) {
+            updateFixtureInvite(teamSelection._id, "Tentative");
+        }
+    },
+    'click .decline': function() {
+        var teamSelection = TeamSelection.findOne({ fixtureId: Session.get("showEventId") });
+        if (teamSelection) {
+            updateFixtureInvite(teamSelection._id, "Unavailable");
+        }
+    },
     'click [data-dismiss="modal"]': function() {
         Session.set('showEventId', null);
         Session.set('showEventType', null);
