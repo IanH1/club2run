@@ -1,5 +1,5 @@
 AutoForm.addHooks(null, {
     onError: function(operation, error) {
-        FlashMessages.sendError(error.message);
+        FlashMessages.sendError(error.reason);
     }
 });

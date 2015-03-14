@@ -39,10 +39,10 @@ Template.notificationPanel.helpers({
 
 Template.notificationPanel.events({
     'click .notification-delete': function() {
-        var notificationId = this._id;
+        var notification = this;
         bootbox.confirm("Are you sure you want to delete this notification?", function(result) {
             if (result) {
-                Meteor.call('deleteNotification', notificationId, function(error) {
+                Meteor.call('deleteNotification', notification, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     }
@@ -334,10 +334,10 @@ Template.messagePanel.events({
     'click .delete-message': function(event) {
         event.preventDefault();
 
-        var messageId = this._id;
+        var message = this;
         bootbox.confirm("Are you sure you want to delete this message?", function(result) {
             if (result) {
-                Meteor.call('deleteMessage', messageId, function(error) {
+                Meteor.call('deleteMessage', message, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     }
@@ -385,18 +385,18 @@ Template.taskPanel.events({
         template.find(".form-control").value = "";
     },
     'click .task-item': function(event) {
-        var taskId = this._id;
-        Meteor.call('toggleTaskCompletion', taskId, event.target.checked, function(error) {
+        var task = this;
+        Meteor.call('toggleTaskCompletion', task, event.target.checked, function(error) {
             if (error) {
                 FlashMessages.sendError(error.reason);
             }
         });
     },
     'click .task-delete': function() {
-        var taskId = this._id;
+        var task = this;
         bootbox.confirm("Are you sure you want to delete this task?", function(result) {
             if (result) {
-                Meteor.call('deleteTask', taskId, function(error) {
+                Meteor.call('deleteTask', task, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     }

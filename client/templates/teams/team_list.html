@@ -26,7 +26,10 @@
                             {{this.fullName}},
                         {{/each}}
                     </td>
-                    <td class="text-center"><a href="{{pathFor 'teamEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a></td>
+                    <td class="text-center">
+                        <a href="{{pathFor 'teamEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
+                        <a href="#" class="hidden-xs btn btn-xs btn-danger delete"><i class="fa fa-trash"></i></a>
+                    </td>
                 </tr>
             {{/each}}
             </tbody>
