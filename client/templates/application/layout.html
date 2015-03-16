@@ -58,15 +58,18 @@
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview">
                 <a href="{{pathFor 'home'}}">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    <i class="fa fa-dashboard"></i> <span>Home</span>
                 </a>
-                {{#if isInRole 'admin' currentUser.profile.clubId}}
+            </li>
+            {{#if isInRole 'admin' currentUser.profile.clubId}}
+                <li class="treeview">
+                    <a href="{{pathFor 'dashboard'}}">
+                        <i class="fa fa-dashboard"></i> <span>Admin Dashboard</span>
+                    </a>
                     <ul class="treeview-menu">
                         <li><a href="{{pathFor 'clubEdit'}}"><i class="fa fa-edit"></i> Update Club</a></li>
                     </ul>
-                {{/if}}
-            </li>
-            {{#if isInRole 'admin' currentUser.profile.clubId}}
+                </li>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-newspaper-o"></i>
