@@ -65,7 +65,7 @@
                     <i class="fa fa-dashboard"></i> <span>Home</span>
                 </a>
             </li>
-            {{#if isInRole 'admin' currentUser.profile.clubId}}
+            {{#if isInRole 'admin' currentClub._id}}
                 <li class="treeview">
                     <a href="{{pathFor 'dashboard'}}">
                         <i class="fa fa-dashboard"></i> <span>Admin Dashboard</span>
@@ -150,7 +150,7 @@
                 <ul class="treeview-menu">
                     <li><a href="{{pathFor 'clubJoin'}}"><i class="fa fa-plus"></i> Join a Club</a></li>
                 </ul>
-                {{#if isInRole 'admin' currentUser.profile.clubId}}
+                {{#if isInRole 'admin' currentClub._id}}
                     <ul class="treeview-menu">
                         <li><a href="{{pathFor 'clubEdit'}}"><i class="fa fa-edit"></i> Update Club</a></li>
                     </ul>
