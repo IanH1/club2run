@@ -10,9 +10,9 @@ if (Roles.getAllRoles().count() === 0) {
 
 // Club Type
 if (ClubType.find().count() === 0) {
-    ClubType.insert({ name: "Football", numberOfPlayers: 11, numberOfSubstitutes: 3, positions: ["Goalkeeper", "Defender", "Midfielder", "Forward"] });
-    ClubType.insert({ name: "Rugby Union", numberOfPlayers: 15, numberOfSubstitutes: 3, positions: ["Loose-Head Prop", "Hooker", "Tight-Head Prop", "Second Row", "Blind-Side Flanker", "Open-Side Flanker", "Number 8", "Scrum Half", "Fly-Half", "Left Wing", "Inside Centre", "Outside Centre", "Right Wing", "Full-Back"] });
-    ClubType.insert({ name: "Hockey", numberOfPlayers: 10, numberOfSubstitutes: 3, positions: ["Position1", "Position2", "Position3", "Position4"] });
+    ClubType.insert({ name: "Football", numberOfPlayers: 15, positions: ["Goalkeeper", "Defender", "Midfielder", "Forward"] });
+    ClubType.insert({ name: "Rugby Union", numberOfPlayers: 18, positions: ["Loose-Head Prop", "Hooker", "Tight-Head Prop", "Second Row", "Blind-Side Flanker", "Open-Side Flanker", "Number 8", "Scrum Half", "Fly-Half", "Left Wing", "Inside Centre", "Outside Centre", "Right Wing", "Full-Back"] });
+    ClubType.insert({ name: "Hockey", numberOfPlayers: 10, positions: ["Position1", "Position2", "Position3", "Position4"] });
 }
 
 // Super Users
