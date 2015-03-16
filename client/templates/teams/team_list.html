@@ -14,24 +14,20 @@
                 </tr>
             </thead>
             <tbody>
-            {{#each teams}}
-                <tr>
-                    <td>{{name}}</td>
-                    <td>{{code}}</td>
-                    <td>{{ageRange}}</td>
-                    <td>{{gender}}</td>
-                    <td>{{manager.fullName}}</td>
-                    <td>
-                        {{#each coaches}}
-                            {{this.fullName}},
-                        {{/each}}
-                    </td>
-                    <td class="text-center">
-                        <a href="{{pathFor 'teamEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-                        <a href="#" class="hidden-xs btn btn-xs btn-danger delete"><i class="fa fa-trash"></i></a>
-                    </td>
-                </tr>
-            {{/each}}
+                {{#each teams}}
+                    <tr>
+                        <td>{{name}}</td>
+                        <td>{{code}}</td>
+                        <td>{{ageRange}}</td>
+                        <td>{{gender}}</td>
+                        <td>{{manager.fullName}}</td>
+                        <td>{{#each coaches}}{{this.fullName}},{{/each}}</td>
+                        <td class="text-center">
+                            <a href="{{pathFor 'teamEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary">Edit</a>
+                            <a href="#" class="hidden-xs btn btn-xs btn-danger delete">Delete</a>
+                        </td>
+                    </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>

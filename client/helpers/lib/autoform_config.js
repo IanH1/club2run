@@ -1,6 +1,12 @@
 AutoForm.addHooks(null, {
     onError: function(operation, error) {
-        console.log("An error occured submitting form :" + operation + ", error : " + error);
-        FlashMessages.sendError(error.reason);
+        if (error.reason) {
+            FlashMessages.sendError(error.reason);
+        } else if (error.message) {
+            FlashMessages.sendError(error.message);
+        } else {
+            FlashMessages.sendError(error);
+        }
+        console.log("An error occured submitting form : " + operation + ", error : " + error);
     }
 });
