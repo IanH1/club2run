@@ -7,7 +7,6 @@
             <section class="col-lg-6">
                 {{> notificationPanel}}
                 {{> messagePanel}}
-                {{> taskPanel}}
             </section>
         </div>
     {{/if}}
@@ -80,46 +79,6 @@
                     <input class="form-control" name="message" placeholder="Type message..."/>
                     <div class="input-group-btn">
                         <button type="submit" class="btn btn-success add-message"><i class="fa fa-plus"></i></button>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</template>
-
-<template name="taskPanel">
-    <div class="box box-warning">
-        <div class="box-header with-border">
-            <i class="fa fa-flag-o"></i>
-            <h3 class="box-title">Tasks ({{taskCountOutstanding}})</h3>
-            <div class="box-tools pull-right">
-                <div class="hide-completed">Hide Completed Tasks <input type="checkbox" checked="{{hideCompleted}}" /></div>
-            </div>
-        </div>
-        {{#if taskCount}}
-            <div class="box-body tasks">
-                <ul class="todo-list">
-                    {{#each tasks}}
-                        <li class="{{taskClass}}">
-                            <input type="checkbox" class="task-item" {{checkedIf complete}}/>
-                            <span class="text done">{{details}}</span>
-                            <small> - {{formatDateFromNow createdOn}}</small>
-                            {{#if ownTask}}
-                                <div class="tools">
-                                    <i class="fa fa-trash-o task-delete"></i>
-                                </div>
-                            {{/if}}
-                        </li>
-                    {{/each}}
-                </ul>
-            </div>
-        {{/if}}
-        <div class="box-footer">
-            <form>
-                <div class="input-group">
-                    <input class="form-control" name="task" placeholder="Create task..."/>
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-warning add-task"><i class="fa fa-plus"></i></button>
                     </div>
                 </div>
             </form>

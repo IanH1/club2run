@@ -6,7 +6,7 @@ Accounts.ui.config({
 Tracker.autorun(function() {
     var club = null;
     if (Meteor.userId()) {
-        if (Meteor.user().profile && Meteor.user().profile.clubIds) {
+        if (Meteor.user() && Meteor.user().profile && Meteor.user().profile.clubIds) {
             var clubId = Meteor.user().profile.clubIds[0];
 
             // Subscribe to the club and all nested documents

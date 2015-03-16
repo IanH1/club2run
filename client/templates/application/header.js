@@ -7,9 +7,3 @@ Template._loginButtonsLoggedInDropdown.events({
 Template.messageDropdown.helpers({
     messages: Message.find({}, {sort: {createdOn: -1}})
 });
-
-Template.taskDropdown.helpers({
-    tasks: function() {
-        return Task.find({complete: {$ne: true}});
-    }
-});

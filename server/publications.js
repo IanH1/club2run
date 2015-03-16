@@ -63,12 +63,6 @@ Meteor.publishComposite("club", function(clubId) {
         }, {
             find: function(club) {
                 if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                    return Task.find({ clubId: club._id }, { sort: {createdOn: -1 }});
-                }
-            }
-        }, {
-            find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
                     return Team.find({ clubId: club._id }, { sort: {name: 1 }});
                 }
             }
