@@ -36,11 +36,14 @@ if (Meteor.users.find().count() === 0) {
 
 // Setup a test club
 if (Club.find().count() === 0) {
-    type = ClubType.findOne({ name: "Rugby Union" });
-    clubId1 = Club.insert({ name: "Harwich & Dovercourt Rugby Club", type: type });
+
+    var type = ClubType.findOne({ name: "Rugby Union" });
+    for (var i = 0; i < 10; i++) {
+        Club.insert({ name: "Club" + i, type: type });
+    }
 
     type = ClubType.findOne({ name: "Hockey" });
-    clubId2 = Club.insert({
+    clubId = Club.insert({
         name: "Sunbury & Walton Hockey Club",
         type: type,
         associations: ["Surrey Hockey Association"],
@@ -60,10 +63,10 @@ if (Club.find().count() === 0) {
         }
     });
 
-    Meteor.users.update({ _id: davidId }, { $set: { 'profile.clubId': clubId2 }});
-    Roles.addUsersToRoles(davidId, ["admin", "user"], clubId2);
-    Meteor.users.update({ _id: ianId }, { $set: { 'profile.clubId': clubId2 }});
-    Roles.addUsersToRoles(ianId, ["admin", "user"], clubId2);
+    Meteor.users.update({ _id: davidId }, { $set: { 'profile.clubIds': [clubId] }});
+    Meteor.users.update({ _id: ianId }, { $set: { 'profile.clubIds': [clubId] }});
+    Roles.addUsersToRoles(davidId, ["admin", "user"], clubId);
+    Roles.addUsersToRoles(ianId, ["admin", "user"], clubId);
 
     for (var i = 0; i < 10; i++) {
         var user = Accounts.createUser({
@@ -71,7 +74,9 @@ if (Club.find().count() === 0) {
             password: "password",
             profile: {firstName: "User", lastName: "User" + i, fullName: "User User" + i, name: "User User" + i}
         });
-        Meteor.users.update({_id: user}, {$set: {'emails.0.verified': true, 'profile.clubId': clubId2 }});
-        Roles.addUsersToRoles(user, ["user"], clubId2);
+        Meteor.users.update({_id: user}, {$set: {'emails.0.verified': true, 'profile.clubId': [clubId] }});
+        Roles.addUsersToRoles(user, ["user"], clubId);
     }
+
+    console.log(Club.find().fetch());
 }

@@ -1,5 +1,5 @@
-Template.registerHelper('Schema', Schema);
-Template.registerHelper('Users', Meteor.users);
+Template.registerHelper("Schema", Schema);
+Template.registerHelper("Users", Meteor.users);
 
 Template.registerHelper("userOptions", function() {
     var options = [];
@@ -54,42 +54,42 @@ Template.registerHelper("positionOptions", function() {
     return options;
 });
 
-Template.registerHelper('currentClub', function() {
-    return Club.findOne();
+Template.registerHelper("currentClub", function() {
+    return Session.get("currentClub");
 });
 
-Template.registerHelper('articleCount', function() {
+Template.registerHelper("articleCount", function() {
     return Article.find().count();
 });
 
-Template.registerHelper('eventCount', function() {
+Template.registerHelper("eventCount", function() {
     return Fixture.find().count() + Meeting.find().count() + Training.find().count();
 });
 
-Template.registerHelper('messageCount', function() {
+Template.registerHelper("messageCount", function() {
     return Message.find().count();
 });
 
-Template.registerHelper('notificationCount', function() {
+Template.registerHelper("notificationCount", function() {
     return Notification.find().count();
 });
 
-Template.registerHelper('officialCount', function() {
+Template.registerHelper("officialCount", function() {
     return Official.find().count();
 });
 
-Template.registerHelper('staffCount', function() {
+Template.registerHelper("staffCount", function() {
     return Staff.find().count();
 });
 
-Template.registerHelper('taskCount', function() {
+Template.registerHelper("taskCount", function() {
     return Task.find({ complete: {$ne: true} }).count();
 });
 
-Template.registerHelper('teamCount', function() {
+Template.registerHelper("teamCount", function() {
     return Team.find().count();
 });
 
-Template.registerHelper('userCount', function() {
+Template.registerHelper("userCount", function() {
     return Meteor.users.find().count();
 });

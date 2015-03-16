@@ -88,6 +88,10 @@ Meteor.publishComposite("club", function(clubId) {
     }
 });
 
+Meteor.publish('clubs', function() {
+    return Club.find();
+});
+
 Meteor.publish('profilePictures', function() {
     return ProfilePicture.find();
 });

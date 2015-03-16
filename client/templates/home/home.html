@@ -1,14 +1,16 @@
 <template name="home">
-    <div class="row">
-        <section class="col-lg-6">
-            {{> calendarPanel}}
-        </section>
-        <section class="col-lg-6">
-            {{> notificationPanel}}
-            {{> messagePanel}}
-            {{> taskPanel}}
-        </section>
-    </div>
+    {{#if currentClub}}
+        <div class="row">
+            <section class="col-lg-6">
+                {{> calendarPanel}}
+            </section>
+            <section class="col-lg-6">
+                {{> notificationPanel}}
+                {{> messagePanel}}
+                {{> taskPanel}}
+            </section>
+        </div>
+    {{/if}}
 </template>
 
 <template name="notificationPanel">

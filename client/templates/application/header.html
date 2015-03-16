@@ -8,9 +8,11 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     {{#if currentUser}}
-                        {{> messageDropdown}}
-                        {{> notificationDropdown}}
-                        {{> taskDropdown}}
+                        {{#if currentClub}}
+                            {{> messageDropdown}}
+                            {{> notificationDropdown}}
+                            {{> taskDropdown}}
+                        {{/if}}
                         {{#if currentUser.profile.picture}}
                             <li class="profile-picture">
                                 <img class="online" src="{{profileThumbnailSrc currentUser._id}}">

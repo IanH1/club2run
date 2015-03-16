@@ -12,7 +12,11 @@
         <div class="content-wrapper">
             {{#if currentUser}}
                 <section class="content-header">
-                    <h1>{{currentClub.name}}<small>Home</small></h1>
+                    {{#if currentClub}}
+                        <h1>{{currentClub.name}}</h1>
+                    {{else}}
+                        <h1>No club selected</h1>
+                    {{/if}}
                     <ol class="breadcrumb">
                         {{#each Breadcrumb}}
                             <li class="{{cssClasses}}"><a href="{{url}}">{{title}}</a></li>
@@ -66,9 +70,6 @@
                     <a href="{{pathFor 'dashboard'}}">
                         <i class="fa fa-dashboard"></i> <span>Admin Dashboard</span>
                     </a>
-                    <ul class="treeview-menu">
-                        <li><a href="{{pathFor 'clubEdit'}}"><i class="fa fa-edit"></i> Update Club</a></li>
-                    </ul>
                 </li>
                 <li class="treeview">
                     <a href="#">
@@ -140,6 +141,21 @@
                     </ul>
                 </li>
             {{/if}}
+            <li class="treeview">
+                <a href="#">
+                    <i class="fa fa-institution"></i>
+                    <span>Club</span>
+                    <span class="label label-primary pull-right"></span>
+                </a>
+                <ul class="treeview-menu">
+                    <li><a href="{{pathFor 'clubJoin'}}"><i class="fa fa-plus"></i> Join a Club</a></li>
+                </ul>
+                {{#if isInRole 'admin' currentUser.profile.clubId}}
+                    <ul class="treeview-menu">
+                        <li><a href="{{pathFor 'clubEdit'}}"><i class="fa fa-edit"></i> Update Club</a></li>
+                    </ul>
+                {{/if}}
+            </li>
         </ul>
     </section>
 </template>

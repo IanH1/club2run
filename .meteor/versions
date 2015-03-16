@@ -68,6 +68,7 @@ livedata@1.0.12
 localstorage@1.0.2
 logging@1.0.6
 matb33:collection-hooks@0.7.9
+matteodem:easy-search@1.4.13
 meteor@1.1.4
 meteor-platform@1.2.1
 meteorhacks:async@1.0.0
