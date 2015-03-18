@@ -1,5 +1,6 @@
 <template name="fixtureEdit">
     {{#autoForm id='editFixture' schema=Schema.Fixture type="method" meteormethod="updateFixture" doc=this}}
+        {{> afFieldInput name='clubId' type="hidden"}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Fixture</h3>

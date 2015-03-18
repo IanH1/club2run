@@ -1,4 +1,4 @@
-Template.fixtureTeamSelection.helpers({
+Template.fixtureSquadSelection.helpers({
     fixture: function() {
         if (this.fixtureId) {
             return Fixture.findOne(this.fixtureId);
@@ -12,10 +12,10 @@ Template.fixtureTeamSelection.helpers({
     playerOptions: function() {
         var options = [];
         if (this.teamId) {
-            Team.findOne(this.teamId).squad.forEach(function(playerId) {
-                var user = Meteor.users.findOne(playerId);
+            Team.findOne(this.teamId).squad.forEach(function(squadMember) {
+                var user = Meteor.users.findOne(squadMember.userId);
                 options.push({
-                    label: user.profile.fullName, value: playerId
+                    label: user.profile.fullName, value: user._id
                 })
             });
         }
@@ -23,15 +23,15 @@ Template.fixtureTeamSelection.helpers({
     }
 });
 
-Template.fixtureTeamSelection.events({
+Template.fixtureSquadSelection.events({
     'click .cancel': function() {
-        Router.go('eventList');
+        Router.go("eventList");
     }
 });
 
-AutoForm.addHooks('teamSelection', {
+AutoForm.addHooks('squadSelection', {
     onSuccess: function() {
         FlashMessages.sendSuccess("Successfully saved changes.");
-        Router.go('eventList');
+        Router.go("eventList");
     }
 });

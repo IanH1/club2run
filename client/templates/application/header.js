@@ -13,6 +13,8 @@ Template.messageDropdown.helpers({
     },
     team: function() {
         var fixture = Fixture.findOne(this.fixtureId);
-        return Team.findOne(fixture.teamId);
+        if (fixture) {
+            return Team.findOne(fixture.teamId);
+        }
     }
 });

@@ -7,8 +7,8 @@
                     <th class="col-sm-2">Start</th>
                     <th class="col-sm-3">Team</th>
                     <th class="col-sm-3">Opponent</th>
-                    <th class="col-sm-3">Competition</th>
-                    <th class="col-sm-1"></th>
+                    <th class="col-sm-2">Competition</th>
+                    <th class="col-sm-2"></th>
                 </tr>
             </thead>
             <tbody>
@@ -19,9 +19,9 @@
                         <td>{{opponent}}</td>
                         <td>{{competition}}</td>
                         <td class="text-center">
-                            <a href="{{pathFor 'fixtureEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-                            <a href="{{pathFor 'fixtureTeamSelection' _id=teamSelectionId}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-random"></i></a>
-                            <a href="#" class="hidden-xs btn btn-xs btn-danger delete"><i class="fa fa-trash"></i></a>
+                            <a href="{{pathFor 'fixtureEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary">Edit</a>
+                            <a href="{{pathFor 'fixtureSquadSelection' _id=squadSelectionId}}" class="hidden-xs btn btn-xs btn-primary">Select Team</a>
+                            <a href="#" class="hidden-xs btn btn-xs btn-danger delete">Delete</a>
                         </td>
                     </tr>
                 {{/each}}

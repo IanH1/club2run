@@ -1,4 +1,4 @@
-Template.afObjectField_fixtureCustomObjectField.helpers({
+Template.afObjectField_squadSelectionCustomObjectField.helpers({
     squadNumberFieldName: function() {
         return this.atts.name + '.squadNumber'
     },
@@ -10,8 +10,5 @@ Template.afObjectField_fixtureCustomObjectField.helpers({
     },
     availabilityFieldName: function() {
         return this.atts.name + '.availability'
-    },
-    notificationFieldName: function() {
-        return this.atts.name + '.notification'
     }
 });

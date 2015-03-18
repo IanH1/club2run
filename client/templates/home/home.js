@@ -10,8 +10,8 @@ var cssAvailabilityClass = function(availability) {
     }
 };
 
-var updateFixtureInvite = function(teamSelectionId, availability) {
-    Meteor.call("updateTeamSelectionInvite", teamSelectionId, availability, function(error) {
+var updateFixtureInvite = function(squadSelectionId, availability) {
+    Meteor.call("updateSquadSelectionInvite", squadSelectionId, availability, function(error) {
         if (error) {
             FlashMessages.sendError(error.reason);
         }
@@ -155,9 +155,9 @@ Template.eventFixtureModal.helpers({
             return Official.findOne(this.valueOf());
         }
     },
-    teamSelection: function() {
+    squadSelection: function() {
         if (Session.get("showEventId")) {
-            return TeamSelection.findOne({ fixtureId: Session.get("showEventId") });
+            return SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
         }
     },
     player: function() {
@@ -170,9 +170,9 @@ Template.eventFixtureModal.helpers({
     },
     currentUserInvite: function() {
         if (Session.get("showEventId")) {
-            var teamSelection = TeamSelection.findOne({ fixtureId: Session.get("showEventId") });
-            if (teamSelection && teamSelection.squad) {
-                return _.find(teamSelection.squad, function(player) {
+            var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
+            if (squadSelection && squadSelection.squad) {
+                return _.find(squadSelection.squad, function(player) {
                     if (player.userId === Meteor.userId()) {
                         return player;
                     }
@@ -182,9 +182,9 @@ Template.eventFixtureModal.helpers({
     },
     currentUserStatusClass: function() {
         if (Session.get("showEventId")) {
-            var teamSelection = TeamSelection.findOne({ fixtureId: Session.get("showEventId") });
-            if (teamSelection && teamSelection.squad) {
-                var invite = _.find(teamSelection.squad, function(player) {
+            var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
+            if (squadSelection && squadSelection.squad) {
+                var invite = _.find(squadSelection.squad, function(player) {
                     if (player.userId === Meteor.userId()) {
                         return player;
                     }
@@ -197,21 +197,21 @@ Template.eventFixtureModal.helpers({
 
 Template.eventFixtureModal.events({
     'click .accept': function() {
-        var teamSelection = TeamSelection.findOne({ fixtureId: Session.get("showEventId") });
-        if (teamSelection) {
-            updateFixtureInvite(teamSelection._id, "Available");
+        var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
+        if (squadSelection) {
+            updateFixtureInvite(squadSelection._id, "Available");
         }
     },
     'click .tenative': function() {
-        var teamSelection = TeamSelection.findOne({ fixtureId: Session.get("showEventId") });
-        if (teamSelection) {
-            updateFixtureInvite(teamSelection._id, "Tentative");
+        var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
+        if (squadSelection) {
+            updateFixtureInvite(squadSelection._id, "Tentative");
         }
     },
     'click .decline': function() {
-        var teamSelection = TeamSelection.findOne({ fixtureId: Session.get("showEventId") });
-        if (teamSelection) {
-            updateFixtureInvite(teamSelection._id, "Unavailable");
+        var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
+        if (squadSelection) {
+            updateFixtureInvite(squadSelection._id, "Unavailable");
         }
     },
     'click [data-dismiss="modal"]': function() {

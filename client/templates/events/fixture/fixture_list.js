@@ -14,12 +14,12 @@ Template.fixtureList.events({
         var fixture = this;
         bootbox.confirm("Are you sure you want to delete this fixture?", function(result) {
             if (result) {
-                Meteor.call('deleteFixture', fixture, function(error) {
+                Meteor.call("deleteFixture", fixture, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {
                         FlashMessages.sendSuccess("Fixture successfully deleted.");
-                        Router.go('eventList');
+                        Router.go("eventList");
                     }
                 });
             }

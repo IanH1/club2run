@@ -26,7 +26,7 @@ Meteor.publishComposite("club", function(clubId) {
             children: [{
                 find: function(fixture, club) {
                     if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                        return TeamSelection.find({fixtureId: fixture._id}, {});
+                        return SquadSelection.find({ fixtureId: fixture._id }, {});
                     }
                 }
             }]
