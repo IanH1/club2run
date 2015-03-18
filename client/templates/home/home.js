@@ -64,7 +64,7 @@ Template.calendarPanel.helpers({
         return {
             left: "title",
             center: "",
-            right: "today prev,next agendaDay,agendaWeek,month"
+            right: "today prev,next agendaWeek,month"
         }
     },
     eventClickHandler: function() {
@@ -309,9 +309,33 @@ Template.eventTrainingModal.events({
 });
 
 Template.messagePanel.helpers({
-    messages: function() {
-      return Message.find({}, { sort: {createdOn: -1} });
+    messageBoards: function() {
+        return MessageBoard.find({}, { sort: {createdOn: -1} });
+    }
+});
+
+Template.messageBoard.helpers({
+    fixture: function() {
+        return Fixture.findOne(this.fixtureId);
     },
+    team: function() {
+        var fixture = Fixture.findOne(this.fixtureId);
+        return Team.findOne(fixture.teamId);
+    }
+});
+
+Template.messageBoard.events({
+    'click .show-message-board': function(event, template) {
+
+        // Ensure we scroll to the end of the message list
+        Meteor.setTimeout(function() {
+            var scrollPanel = template.find('.direct-chat-messages');
+            scrollPanel.scrollTop = scrollPanel.scrollHeight;
+        }, 500);
+    }
+});
+
+Template.messageBoardMessages.helpers({
     user: function() {
         return Meteor.users.findOne(this.createdBy);
     },
@@ -320,29 +344,20 @@ Template.messagePanel.helpers({
     }
 });
 
-Template.messagePanel.events({
+Template.messageBoardMessages.events({
     'submit form': function(event, template) {
         event.preventDefault();
-
-        Meteor.call('insertMessage', { message: template.find(".form-control").value}, function(error) {
+        Meteor.call('insertMessage', event.target.message.value, this, function(error) {
             if (error) {
                 FlashMessages.sendError(error.reason);
             }
         });
-        template.find(".form-control").value = "";
-    },
-    'click .delete-message': function(event) {
-        event.preventDefault();
+        event.target.message.value = "";
 
-        var message = this;
-        bootbox.confirm("Are you sure you want to delete this message?", function(result) {
-            if (result) {
-                Meteor.call('deleteMessage', message, function(error) {
-                    if (error) {
-                        FlashMessages.sendError(error.reason);
-                    }
-                });
-            }
-        });
+        // Ensure we scroll to the end of the message list
+        Meteor.setTimeout(function() {
+            var scrollPanel = template.find('.direct-chat-messages');
+            scrollPanel.scrollTop = scrollPanel.scrollHeight;
+        }, 500);
     }
 });

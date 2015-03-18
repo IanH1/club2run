@@ -12,11 +12,9 @@
                             {{> messageDropdown}}
                             {{> notificationDropdown}}
                         {{/if}}
-                        {{#if currentUser.profile.picture}}
-                            <li class="profile-picture">
-                                <img class="online" src="{{profileThumbnailSrc currentUser._id}}">
-                            </li>
-                        {{/if}}
+                        <li class="profile-picture">
+                            <img class="online" src="{{profileThumbnailSrc currentUser._id}}">
+                        </li>
                     {{/if}}
                     {{> loginButtons}}
                 </ul>
@@ -43,14 +41,18 @@
             <li class="header">You have {{messageCount}} messages</li>
             <li>
                 <ul class="menu">
-                    {{#each messages}}
+                    {{#each messageBoards}}
                         <li>
                             <a href="#">
-                                <i class="fa fa-wechat text-aqua"></i> {{author}}
-                                <br>
-                                <small>{{message}}</small>
+                                <small>{{team.name}} V {{fixture.opponent}}</small>
                                 <div class="pull-right">
-                                    <small>{{formatDateFromNow createdOn}}</small>
+                                    <span class="label label-success">
+                                        {{#if messages.length}}
+                                            <span class="label label-success">{{messages.length}}</span>
+                                        {{else}}
+                                            <span class="label label-success">0</span>
+                                        {{/if}}
+                                    </span>
                                 </div>
                             </a>
                         </li>

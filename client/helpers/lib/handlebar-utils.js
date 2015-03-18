@@ -75,4 +75,5 @@ Template.registerHelper('profileThumbnailSrc', function(_id) {
             }
         }
     }
+    return "/avatar.png";
 });

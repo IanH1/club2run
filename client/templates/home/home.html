@@ -1,11 +1,11 @@
 <template name="home">
     {{#if currentClub}}
         <div class="row">
-            <section class="col-lg-6">
+            <section class="col-lg-8">
                 {{> calendarPanel}}
             </section>
-            <section class="col-lg-6">
-                {{> notificationPanel}}
+            <section class="col-lg-4">
+                <!--{{> notificationPanel}}-->
                 {{> messagePanel}}
             </section>
         </div>
@@ -15,7 +15,6 @@
 <template name="notificationPanel">
     <div class="box box-info">
         <div class="box-header with-border">
-            <i class="fa fa-bell-o"></i>
             <h3 class="box-title">Notifications ({{notificationCount}})</h3>
             <div class="box-tools pull-right">
             </div>
@@ -51,38 +50,70 @@
 </template>
 
 <template name="messagePanel">
-    <div class="box box-success">
+    <div id="accordion" role="tablist" aria-multiselectable="true">
+        {{#each messageBoards}}
+            {{> messageBoard}}
+        {{/each}}
+    </div>
+</template>
+
+<template name="messageBoard">
+    <div class="box box-success direct-chat direct-chat-success">
         <div class="box-header with-border">
-            <i class="fa fa-comments-o"></i>
-            <h3 class="box-title">Chat ({{messageCount}})</h3>
+            <h3 class="box-title">
+                <a class="show-message-board" data-toggle="collapse" data-parent="#accordion" href="#{{_id}}" aria-expanded="true" aria-controls="{{_id}}">
+                    {{team.name}} V {{fixture.opponent}}
+                </a>
+            </h3>
             <div class="box-tools pull-right">
+                <span data-toggle="tooltip" title="" class="badge bg-green" data-original-title="{{messages.length}} New Messages">{{messages.length}}</span>
             </div>
         </div>
-        {{#if messageCount}}
-            <div class="box-body chat">
-                {{#each messages}}
-                    <div class="item">
-                        <img class="online" src="{{profileThumbnailSrc createdBy}}">
-                        <p class="message">
-                            <div class="name">
-                                <small class="text-muted pull-right">{{#if ownMessage}}<a href="#" class="delete-message"><i class="fa fa-trash-o"></i></a> | {{/if}}<i class="fa fa-clock-o"></i> {{formatDate createdOn}}</small> {{user.profile.fullName}}
-                            </div>
+        <div id="{{_id}}" class="panel-collapse collapse" role="tabpanel">
+            {{> messageBoardMessages}}
+        </div>
+    </div>
+</template>
+
+<template name="messageBoardMessages">
+    <div class="box-body">
+        <div class="direct-chat-messages">
+            {{#each messages}}
+                {{#if ownMessage}}
+                    <div class="direct-chat-msg right">
+                        <div class="direct-chat-info clearfix">
+                            <span class="direct-chat-name pull-right">{{currentUser.profile.fullName}}</span>
+                            <span class="direct-chat-timestamp pull-left">{{formatDateTime createdOn}}</span>
+                        </div>
+                        <img class="direct-chat-img" src="{{profileThumbnailSrc currentUser._id}}" />
+                        <div class="direct-chat-text">
                             {{message}}
-                        </p>
+                        </div>
                     </div>
-                {{/each}}
-            </div>
-        {{/if}}
-        <div class="box-footer">
-            <form>
-                <div class="input-group">
-                    <input class="form-control" name="message" placeholder="Type message..."/>
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-success add-message"><i class="fa fa-plus"></i></button>
+                {{else}}
+                    <div class="direct-chat-msg">
+                        <div class="direct-chat-info clearfix">
+                            <span class="direct-chat-name pull-left">{{user.profile.fullName}}</span>
+                            <span class="direct-chat-timestamp pull-right">{{formatDateTime createdOn}}</span>
+                        </div>
+                        <img class="direct-chat-img" src="{{profileThumbnailSrc createdBy}}" />
+                        <div class="direct-chat-text">
+                            {{message}}
+                        </div>
                     </div>
-                </div>
-            </form>
+                {{/if}}
+            {{/each}}
         </div>
+    </div>
+    <div class="box-footer">
+        <form>
+            <div class="input-group">
+                <input type="text" name="message" placeholder="Type Message ..." class="form-control">
+                    <span class="input-group-btn">
+                        <button type="submit" class="btn btn-success btn-flat">Send</button>
+                    </span>
+            </div>
+        </form>
     </div>
 </template>
 
@@ -100,7 +131,6 @@
     {{/if}}
     <div class="box box-danger">
         <div class="box-header">
-            <i class="fa fa-calendar"></i>
             <h3 class="box-title">Calendar</h3>
         </div>
         <div class="box-body no-padding">

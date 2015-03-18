@@ -5,5 +5,14 @@ Template._loginButtonsLoggedInDropdown.events({
 });
 
 Template.messageDropdown.helpers({
-    messages: Message.find({}, {sort: {createdOn: -1}})
+    messageBoards: function() {
+        return MessageBoard.find({}, { sort: {createdOn: -1} });
+    },
+    fixture: function() {
+        return Fixture.findOne(this.fixtureId);
+    },
+    team: function() {
+        var fixture = Fixture.findOne(this.fixtureId);
+        return Team.findOne(fixture.teamId);
+    }
 });

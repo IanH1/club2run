@@ -67,7 +67,13 @@ Template.registerHelper("eventCount", function() {
 });
 
 Template.registerHelper("messageCount", function() {
-    return Message.find().count();
+    var totalMessages = 0;
+    MessageBoard.find().forEach(function(messageBoard) {
+        if (messageBoard.messages) {
+            totalMessages = totalMessages + messageBoard.messages.length;
+        }
+    });
+    return totalMessages;
 });
 
 Template.registerHelper("notificationCount", function() {

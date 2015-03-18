@@ -77,6 +77,4 @@ if (Club.find().count() === 0) {
         Meteor.users.update({_id: user}, {$set: {'emails.0.verified': true, 'profile.clubId': [clubId] }});
         Roles.addUsersToRoles(user, ["user"], clubId);
     }
-
-    console.log(Club.find().fetch());
 }
