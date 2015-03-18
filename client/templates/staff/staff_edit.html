@@ -1,5 +1,6 @@
 <template name="staffEdit">
     {{#autoForm id='editStaff' schema=Schema.Staff type="method" meteormethod="updateStaff" doc=this}}
+        {{> afFieldInput name='clubId' type="hidden"}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Staff</h3>

@@ -12,18 +12,18 @@
                 </tr>
             </thead>
             <tbody>
-            {{#each officials}}
-                <tr>
-                    <td>{{fullName}}</td>
-                    <td>{{homeTelephone}}</td>
-                    <td>{{mobileTelephone}}</td>
-                    <td>{{role}}</td>
-                    <td class="text-center">
-                        <a href="{{pathFor 'officialEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-                        <a href="#" class="hidden-xs btn btn-xs btn-danger delete"><i class="fa fa-trash"></i></a>
-                    </td>
-                </tr>
-            {{/each}}
+                {{#each officials}}
+                    <tr>
+                        <td>{{fullName}}</td>
+                        <td>{{homeTelephone}}</td>
+                        <td>{{mobileTelephone}}</td>
+                        <td>{{role}}</td>
+                        <td class="text-center">
+                            <a href="{{pathFor 'officialEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary">Edit</a>
+                            <a href="#" class="hidden-xs btn btn-xs btn-danger delete">Delete</a>
+                        </td>
+                    </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>
