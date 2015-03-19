@@ -10,8 +10,8 @@ var cssAvailabilityClass = function(availability) {
     }
 };
 
-var updateFixtureInvite = function(squadSelectionId, availability) {
-    Meteor.call("updateSquadSelectionInvite", squadSelectionId, availability, function(error) {
+var updateFixtureInvite = function(squadSelection, availability) {
+    Meteor.call("updateSquadSelectionInvite", squadSelection, availability, function(error) {
         if (error) {
             FlashMessages.sendError(error.reason);
         }
@@ -42,6 +42,11 @@ Template.notificationPanel.helpers({
 });
 
 Template.notificationPanel.events({
+    'click .respond': function() {
+        Session.set('showEventId', this.fixtureId);
+        Session.set('showEventType', this.type);
+        Session.set('showEventModal', true);
+    },
     'click .delete': function() {
         var notification = this;
         bootbox.confirm("Are you sure you want to delete this notification?", function(result) {
@@ -203,19 +208,19 @@ Template.eventFixtureModal.events({
     'click .accept': function() {
         var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
         if (squadSelection) {
-            updateFixtureInvite(squadSelection._id, "Available");
+            updateFixtureInvite(squadSelection, "Available");
         }
     },
     'click .tenative': function() {
         var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
         if (squadSelection) {
-            updateFixtureInvite(squadSelection._id, "Tentative");
+            updateFixtureInvite(squadSelection, "Tentative");
         }
     },
     'click .decline': function() {
         var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
         if (squadSelection) {
-            updateFixtureInvite(squadSelection._id, "Unavailable");
+            updateFixtureInvite(squadSelection, "Unavailable");
         }
     },
     'click [data-dismiss="modal"]': function() {

@@ -51,7 +51,7 @@ Meteor.publishComposite("club", function(clubId) {
         }, {
             find: function(club) {
                 if (Roles.userIsInRole(this.userId, ["user"], clubId)) {
-                    return Notification.find({ clubId: club._id }, { sort: {createdOn: -1 }});
+                    return Notification.find({ clubId: club._id, userId: this.userId }, { sort: {createdOn: -1 }});
                 }
             }
         }, {
