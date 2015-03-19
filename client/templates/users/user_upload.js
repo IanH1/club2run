@@ -10,7 +10,7 @@ Template.userUpload.helpers({
 
 Template.userUpload.events({
     'click .upload': function(event, template) {
-        var fileInput = template.find('input[type=file]');
+        var fileInput = template.find("input[type=file]");
         if (fileInput.files.length === 0) {
             bootbox.alert("Please select a file.");
         } else {
@@ -48,9 +48,9 @@ Template.userUpload.events({
             });
         }
         FlashMessages.sendSuccess("Successfully imported " + userArray.length + " users.");
-        Router.go('userList');
+        Router.go("userList");
     },
     'click .cancel': function() {
-        Router.go('userList');
+        Router.go("userList");
     }
 });

@@ -1,6 +1,6 @@
 Template.userCreate.events({
     'click .cancel': function() {
-        Router.go('userList');
+        Router.go("userList");
     }
 });
 
@@ -19,7 +19,7 @@ AutoForm.hooks({
         },
         onSuccess: function() {
             FlashMessages.sendSuccess("Successfully saved changes.");
-            Router.go('userList');
+            Router.go("userList");
         }
     }
 });

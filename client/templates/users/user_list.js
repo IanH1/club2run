@@ -12,14 +12,14 @@ Template.userList.helpers({
 Template.userList.events({
     'click .delete': function() {
         var user = this;
-        bootbox.confirm("Are you sure you want to delete this user?", function(result) {
+        bootbox.confirm("Are you sure you want to remove this user from the club?", function(result) {
             if (result) {
-                Meteor.call('deleteUser', user, function(error) {
+                Meteor.call("removeUser", user, Session.get("currentClub"), function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {
                         FlashMessages.sendSuccess("User successfully deleted.");
-                        Router.go('userList');
+                        Router.go("userList");
                     }
                 });
             }
