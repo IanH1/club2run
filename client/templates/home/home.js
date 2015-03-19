@@ -30,15 +30,19 @@ Template.notificationPanel.helpers({
     notifications: function() {
         return Notification.find();
     },
-    meeting: function() {
-        if (this.meeting && this.meeting.meetingId) {
-            return Events.findOne(this.meeting.meetingId);
+    fixture: function() {
+        return Fixture.findOne(this.fixtureId);
+    },
+    team: function() {
+        var fixture = Fixture.findOne(this.fixtureId);
+        if (fixture) {
+            return Team.findOne(fixture.teamId);
         }
     }
 });
 
 Template.notificationPanel.events({
-    'click .notification-delete': function() {
+    'click .delete': function() {
         var notification = this;
         bootbox.confirm("Are you sure you want to delete this notification?", function(result) {
             if (result) {
@@ -320,7 +324,9 @@ Template.messageBoard.helpers({
     },
     team: function() {
         var fixture = Fixture.findOne(this.fixtureId);
-        return Team.findOne(fixture.teamId);
+        if (fixture) {
+            return Team.findOne(fixture.teamId);
+        }
     }
 });
 

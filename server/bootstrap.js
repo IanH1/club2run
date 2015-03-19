@@ -78,3 +78,5 @@ if (Club.find().count() === 0) {
         Roles.addUsersToRoles(user, ["user"], clubId);
     }
 }
+
+SquadSelection.update(SquadSelection.findOne()._id, {$set: {'published': false}});

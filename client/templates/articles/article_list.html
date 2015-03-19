@@ -15,8 +15,8 @@
                         <td>{{headline}}</td>
                         <td>{{trimString content 250}}</td>
                         <td class="text-center">
-                            <a href="{{pathFor 'articleEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-                            <a href="#" class="hidden-xs btn btn-xs btn-danger delete"><i class="fa fa-trash"></i></a>
+                            <a href="{{pathFor 'articleEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary">Edit</a>
+                            <a href="#" class="hidden-xs btn btn-xs btn-danger delete">Delete</i></a>
                         </td>
                     </tr>
                 {{/each}}

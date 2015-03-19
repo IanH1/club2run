@@ -24,6 +24,21 @@ Template.fixtureSquadSelection.helpers({
 });
 
 Template.fixtureSquadSelection.events({
+    'click .publish': function() {
+        var id = this._id;
+        bootbox.confirm("Are you sure you want to publish this team sheet, this will send a notification to each player?", function(result) {
+            if (result) {
+                Meteor.call("publishSquadSelection", id, Session.get("currentClub")._id, function(error) {
+                    if (error) {
+                        FlashMessages.sendError(error.reason);
+                    } else {
+                        FlashMessages.sendSuccess("Squad selection successfully published.");
+                        Router.go("eventList");
+                    }
+                });
+            }
+        });
+    },
     'click .cancel': function() {
         Router.go("eventList");
     }
