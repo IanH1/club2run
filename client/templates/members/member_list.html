@@ -1,8 +1,0 @@
-<template name="memberList">
-    {{> tabular table=TabularTables.Member class="table dataTable table-striped table-bordered table-condensed" selector=tabularSelector}}
-</template>
-
-<template name="memberTableActionButtonCell">
-    <a href="{{pathFor 'memberEmail' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-envelope"></i></a>
-    <a href="{{pathFor 'memberEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-</template>

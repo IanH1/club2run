@@ -1,0 +1,33 @@
+<template name="address">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Location</h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6">
+                    {{> afQuickField name='address.line1'}}
+                </div>
+                <div class="col-xs-6">
+                    {{> afQuickField name='address.line2'}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    {{> afQuickField name='address.city'}}
+                </div>
+                <div class="col-xs-6">
+                    {{> afQuickField name='address.county'}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    {{> afQuickField name='address.postCode'}}
+                </div>
+                <div class="col-xs-6">
+                    {{> afQuickField name='address.country'}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

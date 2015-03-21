@@ -1,4 +1,4 @@
-Template.layout.rendered = function(){
+Template.layout.rendered = function() {
     $('body').addClass('skin-blue');
 };
 

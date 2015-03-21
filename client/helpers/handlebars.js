@@ -1,96 +1,97 @@
-Template.registerHelper('Schema', Schema);
-Template.registerHelper('Users', Meteor.users);
-Template.registerHelper('TabularTables', TabularTables);
+Template.registerHelper("Schema", Schema);
+Template.registerHelper("Users", Meteor.users);
 
-Template.registerHelper('currentArticle', function() {
-    return Articles.findOne();
+Template.registerHelper("userOptions", function() {
+    var options = [];
+    Meteor.users.find({}, { sort: {'profile.fullName': 1} }).forEach(function(user) {
+        options.push({
+            label: user.profile.fullName, value: user._id
+        })
+    });
+    return options;
 });
 
-Template.registerHelper('currentClub', function() {
-    return Clubs.findOne();
+Template.registerHelper("officialOptions", function() {
+    var options = [];
+    Official.find({}, {sort: {fullName: 1}}).forEach(function(official) {
+        options.push({
+            label: official.fullName, value: official._id
+        })
+    });
+    return options;
 });
 
-
-Template.registerHelper('articleCount', function() {
-    return Articles.find().count();
+Template.registerHelper("staffOptions", function() {
+    var options = [];
+    Staff.find({}, { sort: {fullName: 1} }).forEach(function(staff) {
+        options.push({
+            label: staff.fullName, value: staff._id
+        })
+    });
+    return options;
 });
 
-Template.registerHelper('eventCount', function() {
-    return Events.find().count();
+Template.registerHelper("teamOptions", function() {
+    var options = [];
+    Team.find({}, { sort: {name: 1} }).forEach(function(team) {
+        options.push({
+            label: team.name, value: team._id
+        })
+    });
+    return options;
 });
 
-Template.registerHelper('memberCount', function() {
-    return Members.find().count();
+Template.registerHelper("positionOptions", function() {
+    var options = [];
+    var club = Club.findOne();
+    if (club) {
+        club.type.positions.forEach(function(position) {
+            options.push({
+                label: position, value: position
+            })
+        });
+    }
+    return options;
 });
 
-Template.registerHelper('messageCount', function() {
-    return Messages.find().count();
+Template.registerHelper("currentClub", function() {
+    return Session.get("currentClub");
 });
 
-Template.registerHelper('notificationCount', function() {
-    return Notifications.find({read: {$ne: true}}).count();
+Template.registerHelper("articleCount", function() {
+    return Article.find().count();
 });
 
-Template.registerHelper('officialCount', function() {
-    return Officials.find().count();
+Template.registerHelper("eventCount", function() {
+    return Fixture.find().count() + Meeting.find().count() + Training.find().count();
 });
 
-Template.registerHelper('staffCount', function() {
+Template.registerHelper("messageCount", function() {
+    var totalMessages = 0;
+    MessageBoard.find().forEach(function(messageBoard) {
+        if (messageBoard.messages) {
+            totalMessages = totalMessages + messageBoard.messages.length;
+        }
+    });
+    return totalMessages;
+});
+
+Template.registerHelper("notificationCount", function() {
+    return Notification.find().count();
+});
+
+Template.registerHelper("officialCount", function() {
+    return Official.find().count();
+});
+
+Template.registerHelper("staffCount", function() {
     return Staff.find().count();
 });
 
-Template.registerHelper('taskCount', function() {
-    return Tasks.find({complete: {$ne: true}}).count();
+Template.registerHelper("teamCount", function() {
+    return Team.find().count();
 });
 
-Template.registerHelper('teamCount', function() {
-    return Teams.find().count();
-});
-
-// Form option values
-Template.registerHelper("genderOptions", function() {
-    return [
-        {label: 'Male', value: 'Male'},
-        {label: 'Female', value: 'Female'}
-    ];
-});
-Template.registerHelper("ethinicityOptions", function() {
-    return [
-        {label: 'White', value: 'White'},
-        {label: 'Black', value: 'Black'}
-    ];
-});
-Template.registerHelper("ageOptions", function() {
-    return [
-        {label: 'Under 5', value: '5'},
-        {label: 'Under 10', value: '10'},
-        {label: 'Under 16', value: '16'},
-        {label: 'Under 17', value: '17'},
-        {label: 'Adult', value: 'Adult'}
-    ];
-});
-Template.registerHelper("officialOptions", function() {
-    return [
-        {label: 'Umpire', value: 'Umpire'}
-    ];
-});
-Template.registerHelper("staffOptions", function() {
-    return [
-        {label: 'Coach', value: 'Coach'}
-    ];
-});
-Template.registerHelper("clubTypeOptions", function() {
-    return [
-        {label: 'Football', value: 'Football'},
-        {label: 'Hockey', value: 'Hockey'},
-        {label: 'Rugby Union', value: 'Rugby Union'}
-    ];
-});
-Template.registerHelper("eventTypeOptions", function() {
-    return [
-        {label: 'Match', value: 'match'},
-        {label: 'Training', value: 'training'},
-        {label: 'Meeting', value: 'meeting'},
-        {label: 'Tournament', value: 'tournament'}
-    ];
+Template.registerHelper("userCount", function() {
+    return Meteor.users.find().count();
 });

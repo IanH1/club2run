@@ -1,12 +1,25 @@
 Template.staffCreate.events({
-    'click .cancel': function(e, tpl) {
-        Router.go('staffList');
+    'click .cancel': function() {
+        Router.go("staffList");
     }
 });
 
-AutoForm.addHooks('createStaff', {
-    onSuccess: function() {
-        FlashMessages.sendSuccess("Staff successfully created.");
-        Router.go('staffList');
+AutoForm.hooks({
+    createStaff: {
+        onSubmit: function(insertedStaff) {
+            var autoForm = this;
+            Meteor.call("insertStaff", insertedStaff, Session.get("currentClub")._id, function(error) {
+                if (error) {
+                    autoForm.done(error);
+                } else {
+                    autoForm.done();
+                }
+            });
+            return false;
+        },
+        onSuccess: function() {
+            FlashMessages.sendSuccess("Successfully saved changes.");
+            Router.go("staffList");
+        }
     }
 });

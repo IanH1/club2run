@@ -1,3 +1,18 @@
 <template name="eventList">
-    {{> fullcalendar header=headerOptions defaultView='agendaWeek' class="eventCalendar" events=events eventClick=eventClickHandler dayClick=dayClickHandler}}
+    <div class="row-margin">
+        <ul class="nav nav-tabs">
+            <li role="presentation" class="{{#if equals eventType "fixture"}}active{{/if}}"><a href="#" class="fixture">Fixtures</a></li>
+            <li role="presentation" class="{{#if equals eventType "meeting"}}active{{/if}}"><a href="#" class="meeting">Meetings</a></li>
+            <li role="presentation" class="{{#if equals eventType "training"}}active{{/if}}"><a href="#" class="training">Training</a></li>
+        </ul>
+    </div>
+    {{#if equals eventType "fixture"}}
+        {{> fixtureList}}
+    {{/if}}
+    {{#if equals eventType "meeting"}}
+        {{> meetingList}}
+    {{/if}}
+    {{#if equals eventType "training"}}
+        {{> trainingList}}
+    {{/if}}
 </template>

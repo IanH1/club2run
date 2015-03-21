@@ -12,12 +12,20 @@
         <div class="content-wrapper">
             {{#if currentUser}}
                 <section class="content-header">
-                    <h1>{{currentClub.name}}<small>Home</small></h1>
-                    {{> breadcrumbWidget}}
+                    {{#if currentClub}}
+                        <h1>{{currentClub.name}}</h1>
+                    {{else}}
+                        <h1>No club selected</h1>
+                    {{/if}}
+                    <ol class="breadcrumb">
+                        {{#each Breadcrumb}}
+                            <li class="{{cssClasses}}"><a href="{{url}}">{{title}}</a></li>
+                        {{/each}}
+                    </ol>
                 </section>
             {{/if}}
             <section class="content">
-                {{> yield }}
+                {{> yield}}
             </section>
         </div>
         <footer class="main-footer">
@@ -45,104 +53,109 @@
         <form action="#" method="get" class="sidebar-form">
             <div class="input-group">
                 <input type="text" name="query" class="form-control" placeholder="Search..."/>
-                    <span class="input-group-btn">
-                        <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-                    </span>
+                <span class="input-group-btn">
+                    <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
+                </span>
             </div>
         </form>
         <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
             <li class="treeview">
                 <a href="{{pathFor 'home'}}">
-                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                    <i class="fa fa-dashboard"></i> <span>Home</span>
                 </a>
             </li>
+            {{#if isInRole 'admin' currentClub._id}}
+                <li class="treeview">
+                    <a href="{{pathFor 'dashboard'}}">
+                        <i class="fa fa-dashboard"></i> <span>Admin Dashboard</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-newspaper-o"></i>
+                        <span>News</span>
+                        <span class="label label-primary pull-right">{{articleCount}}</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{pathFor 'articleList'}}"><i class="fa fa-table"></i> View All</a></li>
+                        <li><a href="{{pathFor 'articleCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-user"></i>
+                        <span>Users</span>
+                        <span class="label label-primary pull-right">{{userCount}}</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{pathFor 'userList'}}"><i class="fa fa-table"></i> View All</a></li>
+                        <li><a href="{{pathFor 'userCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                        <li><a href="{{pathFor 'userUpload'}}"><i class="fa fa-cloud-upload"></i> Upload</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-users"></i>
+                        <span>Teams</span>
+                        <span class="label label-primary pull-right">{{teamCount}}</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{pathFor 'teamList'}}"><i class="fa fa-table"></i> View All</a></li>
+                        <li><a href="{{pathFor 'teamCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-calendar"></i>
+                        <span>Events</span>
+                        <span class="label label-primary pull-right">{{eventCount}}</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{pathFor 'eventList'}}"><i class="fa fa-table"></i> View All</a></li>
+                        <li><a href="{{pathFor 'fixtureCreate'}}"><i class="fa fa-edit"></i> Create Fixture</a></li>
+                        <li><a href="{{pathFor 'meetingCreate'}}"><i class="fa fa-edit"></i> Create Meeting</a></li>
+                        <li><a href="{{pathFor 'trainingCreate'}}"><i class="fa fa-edit"></i> Create Training</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-bullseye"></i>
+                        <span>Officials</span>
+                        <span class="label label-primary pull-right">{{officialCount}}</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{pathFor 'officialList'}}"><i class="fa fa-table"></i> View All</a></li>
+                        <li><a href="{{pathFor 'officialCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                    </ul>
+                </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-gears"></i>
+                        <span>Staff</span>
+                        <span class="label label-primary pull-right">{{staffCount}}</span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{pathFor 'staffList'}}"><i class="fa fa-table"></i> View All</a></li>
+                        <li><a href="{{pathFor 'staffCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
+                    </ul>
+                </li>
+            {{/if}}
             <li class="treeview">
-                <a href="{{pathFor 'club'}}">
-                    <i class="fa fa-globe"></i>
+                <a href="#">
+                    <i class="fa fa-institution"></i>
                     <span>Club</span>
+                    <span class="label label-primary pull-right"></span>
                 </a>
                 <ul class="treeview-menu">
-                    <li><a href="{{pathFor 'clubEdit'}}"><i class="fa fa-edit"></i> Update</a></li>
+                    <li><a href="{{pathFor 'clubJoin'}}"><i class="fa fa-plus"></i> Join a Club</a></li>
                 </ul>
-            </li>
-           <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-newspaper-o"></i>
-                    <span>News</span>
-                    <span class="label label-primary pull-right">{{articleCount}}</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{pathFor 'articleList'}}"><i class="fa fa-table"></i> View All</a></li>
-                    <li><a href="{{pathFor 'articleCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-user"></i>
-                    <span>Member</span>
-                    <span class="label label-primary pull-right">{{memberCount}}</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{pathFor 'memberList'}}"><i class="fa fa-table"></i> View All</a></li>
-                    <li><a href="{{pathFor 'memberCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
-                    <li><a href="{{pathFor 'memberUpload'}}"><i class="fa fa-cloud-upload"></i> Upload</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-users"></i>
-                    <span>Teams</span>
-                    <span class="label label-primary pull-right">{{teamCount}}</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{pathFor 'teamList'}}"><i class="fa fa-table"></i> View All</a></li>
-                    <li><a href="{{pathFor 'teamCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-calendar"></i>
-                    <span>Events</span>
-                    <span class="label label-primary pull-right">{{eventCount}}</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{pathFor 'eventList'}}"><i class="fa fa-table"></i> View All</a></li>
-                    <li><a href="{{pathFor 'eventCreate' eventType="match"}}"><i class="fa fa-edit"></i> Create Match</a></li>
-                    <li><a href="{{pathFor 'eventCreate' eventType="training"}}"><i class="fa fa-edit"></i> Create Training</a></li>
-                    <li><a href="{{pathFor 'eventCreate' eventType="meeting"}}"><i class="fa fa-edit"></i> Create Meeting</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-bullseye"></i>
-                    <span>Officials</span>
-                    <span class="label label-primary pull-right">{{officialCount}}</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{pathFor 'officialList'}}"><i class="fa fa-table"></i> View All</a></li>
-                    <li><a href="{{pathFor 'officialCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
-                </ul>
-            </li>
-            <li class="treeview">
-                <a href="#">
-                    <i class="fa fa-gears"></i>
-                    <span>Staff</span>
-                    <span class="label label-primary pull-right">{{staffCount}}</span>
-                </a>
-                <ul class="treeview-menu">
-                    <li><a href="{{pathFor 'staffList'}}"><i class="fa fa-table"></i> View All</a></li>
-                    <li><a href="{{pathFor 'staffCreate'}}"><i class="fa fa-edit"></i> Create</a></li>
-                </ul>
+                {{#if isInRole 'admin' currentClub._id}}
+                    <ul class="treeview-menu">
+                        <li><a href="{{pathFor 'clubEdit'}}"><i class="fa fa-edit"></i> Update Club</a></li>
+                    </ul>
+                {{/if}}
             </li>
         </ul>
     </section>
-</template>
-
-<template name="breadcrumbWidget">
-    <ol class="breadcrumb">
-        {{#each Breadcrumb}}
-            <li class="{{cssClasses}}"><a href="{{url}}">{{title}}</a></li>
-        {{/each}}
-    </ol>
 </template>

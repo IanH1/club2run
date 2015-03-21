@@ -11,7 +11,6 @@ accounts-password
 aldeed:collection2
 aldeed:autoform
 yogiben:autoform-modals
-aldeed:tabular
 momentjs:moment
 twbs:bootstrap
 fortawesome:fontawesome
@@ -45,3 +44,6 @@ reactive-var
 email
 yogiben:pretty-email
 mpowaga:autoform-summernote
+reywood:publish-composite
+matteodem:easy-search
+meteorhacks:ssr

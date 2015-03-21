@@ -6,7 +6,7 @@ Template.profile.events({
 
 AutoForm.addHooks('updateProfile', {
     onSuccess: function() {
-        FlashMessages.sendSuccess("Profile successfully updated.");
+        FlashMessages.sendSuccess("Successfully saved changes.");
         Router.go('home');
     }
 });

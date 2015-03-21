@@ -1,33 +1,42 @@
 <template name="teamCreate">
-    {{#autoForm id='createTeam' schema=Schema.TeamSchema type="method" meteormethod="insertTeam"}}
+    {{#autoForm id='createTeam' schema=Schema.Team}}
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Details</h3>
+                <h3 class="panel-title">Team</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-xs-6">
                         {{> afQuickField name='name'}}
                     </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='code'}}
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='ageRange' options=ageOptions}}
+                        {{> afQuickField name='ageRange' options="auto"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='gender' options=genderOptions}}
+                        {{> afQuickField name='gender' options="auto"}}
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12">
-                        {{> afQuickField name='coaches' type="selectize" multiple=true}}
+                    <div class="col-xs-6">
+                        {{> afQuickField name='managerId' options=staffOptions}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name='coachIds' type="selectize" options=staffOptions multiple=true}}
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        {{> afQuickField name='players' type="selectize" multiple=true}}
-                    </div>
-                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Squad</h3>
+            </div>
+            <div class="panel-body">
+                {{> afArrayField name="squad" template="squadCustomField" positionOptions=positionOptions}}
             </div>
         </div>
         <div>

@@ -1,5 +1,5 @@
 <template name="articleCreate">
-    {{#autoForm id='createArticle' schema=Schema.ArticleSchema type="method" meteormethod="insertArticle" doc=this}}
+    {{#autoForm id='createArticle' schema=Schema.Article}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Article</h3>
@@ -7,12 +7,12 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">
-                        {{> afQuickField name='title'}}
+                        {{> afQuickField name='headline'}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        {{> afQuickField name='content'}}
+                        {{> afFieldInput name='content' type='summernote' height=200}}
                     </div>
                 </div>
             </div>
