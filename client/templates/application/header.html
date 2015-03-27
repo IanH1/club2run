@@ -8,7 +8,7 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     {{#if currentUser}}
-                        {{#if currentClub}}
+                        {{#if currentUser.profile.currentClubId}}
                             {{> messageDropdown}}
                             {{> notificationDropdown}}
                         {{/if}}

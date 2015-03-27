@@ -45,7 +45,16 @@ Meteor.publishComposite("club", function(clubId) {
         }, {
             find: function(club) {
                 if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                    return MessageBoard.find({ clubId: club._id }, { sort: {createdOn: -1 }});
+                //    var members = [];
+                //    MessageBoard.find({  }, { sort: {createdOn: -1 }}).forEach(function(mb) {
+                //        //if (Roles.userIsInRole(this.userId, ['playerA'], mb.fixtureId)) {
+                //            members.push(mb);
+                //        //}
+                ////
+                //    });
+                //    console.log(members);
+                //    return members;
+                return MessageBoard.find({ clubId: club._id }, { sort: {createdOn: -1 }});
                 }
             }
         }, {
