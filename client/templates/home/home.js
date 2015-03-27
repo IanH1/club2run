@@ -18,8 +18,8 @@ var updateFixtureInvite = function(squadSelection, availability) {
     });
 };
 
-var updateMeetingInvite = function(meetingId, availability) {
-    Meteor.call("updateMeetingInvite", meetingId, availability, function(error) {
+var updateMeetingInvite = function(meeting, availability) {
+    Meteor.call("updateMeetingInvite", meeting, availability, function(error) {
         if (error) {
             FlashMessages.sendError(error.reason);
         }
@@ -273,13 +273,22 @@ Template.eventMeetingModal.helpers({
 
 Template.eventMeetingModal.events({
     'click .accept': function() {
-        updateMeetingInvite(Session.get("showEventId"), "Accepted");
+        var meeting = Meeting.findOne(Session.get("showEventId"));
+        if (meeting) {
+            updateMeetingInvite(meeting, "Accepted");
+        }
     },
     'click .tenative': function() {
-        updateMeetingInvite(Session.get("showEventId"), "Tentative");
+        var meeting = Meeting.findOne(Session.get("showEventId"));
+        if (meeting) {
+            updateMeetingInvite(meeting, "Tentative");
+        }
     },
     'click .decline': function() {
-        updateMeetingInvite(Session.get("showEventId"), "Declined");
+        var meeting = Meeting.findOne(Session.get("showEventId"));
+        if (meeting) {
+            updateMeetingInvite(meeting, "Declined");
+        }
     },
     'click [data-dismiss="modal"]': function() {
         Session.set('showEventId', null);

@@ -4,9 +4,11 @@ Template.fixtureEdit.events({
     }
 });
 
-AutoForm.addHooks("editFixture", {
-    onSuccess: function() {
-        FlashMessages.sendSuccess("Successfully saved changes.");
-        Router.go('eventList');
+AutoForm.hooks({
+    editFixture: {
+        onSuccess: function() {
+            FlashMessages.sendSuccess("Successfully saved changes.");
+            Router.go("eventList");
+        }
     }
 });

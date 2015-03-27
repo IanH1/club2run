@@ -40,7 +40,7 @@ Template.userUpload.events({
                 };
 
                 // Insert each user
-                Meteor.call("insertUser", user, Session.get("currentClub")._id, function(error) {
+                Meteor.call("insertUser", user, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     }
