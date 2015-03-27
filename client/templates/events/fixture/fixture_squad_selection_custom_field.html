@@ -1,4 +1,9 @@
 <template name="afArrayField_squadSelectionCustomField">
+    {{#if afFieldIsInvalid name=this.atts.name}}
+        <div class="panel-body has-error">
+            <span class="help-block">{{{afFieldMessage name=this.atts.name}}}</span>
+        </div>
+    {{/if}}
     <table class="table no-margin">
         <thead>
             <tr>
@@ -10,17 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            {{#if afFieldIsInvalid name=this.atts.name}}
-                <div class="panel-body has-error">
-                    <span class="help-block">{{{afFieldMessage name=this.atts.name}}}</span>
-                </div>
-            {{/if}}
             {{#afEachArrayItem name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
-                {{#if afFieldIsInvalid name=this.atts.name}}
-                    <tr>
-                        <td colspan="5"><span class="help-block">{{{afFieldMessage name=this.atts.name}}}</span></td>
-                    </tr>
-                {{/if}}
                 <tr>
                     {{> afObjectField name=this.name template="squadSelectionCustomObjectField" playerOptions=../atts.playerOptions positionOptions=../atts.positionOptions disabled=../atts.disabled}}
                     <td class="text-center">{{#if not ../atts.disabled}}<button type="button" class="btn btn-primary autoform-remove-item"><i class="fa fa-minus"></i></button>{{/if}}</td>
