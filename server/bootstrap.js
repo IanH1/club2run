@@ -39,7 +39,8 @@ if (Club.find().count() === 0) {
 
     var type = ClubType.findOne({ name: "Rugby Union" });
     for (var i = 0; i < 10; i++) {
-        Club.insert({ name: "Club" + i, type: type });
+        var clubId = Club.insert({ name: "Club" + i, type: type });
+        Meteor.users.update({ _id: davidId }, { $push: { 'profile.clubIds': clubId }});
     }
 
     type = ClubType.findOne({ name: "Hockey" });
@@ -63,8 +64,8 @@ if (Club.find().count() === 0) {
         }
     });
 
-    Meteor.users.update({ _id: davidId }, { $set: { 'profile.clubIds': [clubId] }});
-    Meteor.users.update({ _id: ianId }, { $set: { 'profile.clubIds': [clubId] }});
+    Meteor.users.update({ _id: davidId }, { $push: { 'profile.clubIds': clubId }});
+    Meteor.users.update({ _id: ianId }, { $push: { 'profile.clubIds': clubId }});
     Roles.addUsersToRoles(davidId, ["admin", "user"], clubId);
     Roles.addUsersToRoles(ianId, ["admin", "user"], clubId);
 
