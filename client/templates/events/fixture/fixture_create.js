@@ -8,7 +8,7 @@ AutoForm.hooks({
     createFixture: {
         onSubmit: function(insertedFixture) {
             var autoForm = this;
-            Meteor.call("insertFixture", insertedFixture, Session.get("currentClub")._id, function(error) {
+            Meteor.call("insertFixture", insertedFixture, Meteor.user().profile.currentClubId, function(error) {
                 if (error) {
                     autoForm.done(error);
                 } else {

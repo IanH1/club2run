@@ -8,7 +8,7 @@ AutoForm.hooks({
     createUser: {
         onSubmit: function(insertedUser) {
             var autoForm = this;
-            Meteor.call("insertUser", insertedUser, Session.get("currentClub")._id, function(error) {
+            Meteor.call("insertUser", insertedUser, Session.get("currentClub"), function(error) {
                 if (error) {
                     autoForm.done(error);
                 } else {
