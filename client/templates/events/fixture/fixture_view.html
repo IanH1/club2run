@@ -1,0 +1,78 @@
+<template name="fixtureViewModal">
+    <div id="eventFixtureModal" class="modal show fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">{{team.name}} V {{fixture.opponent}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-6">
+                            <p>
+                                <strong>Meetup : </strong> {{formatDateTime fixture.meetupDateTime}}<br>
+                                <strong>Starts : </strong> {{formatDateTime fixture.startDateTime}}<br>
+                                {{#if fixture.endDateTime}}
+                                    <strong>Ends :</strong> {{formatDateTime fixture.endDateTime}}<br>
+                                {{/if}}
+                                {{#if fixture.address}}
+                                    <strong>Location :</strong> {{fixture.address.line1}}, {{fixture.address.line2}}, {{fixture.address.city}}, {{fixture.address.county}}, {{fixture.address.postCode}}, {{fixture.address.country}}
+                                {{else}}
+                                    <strong>Location :</strong><br>
+                                {{/if}}
+                                <strong>Competition :</strong> {{fixture.competition}}<br>
+                                <strong>Opponent :</strong> {{fixture.opponent}}<br>
+                                <strong>Officials :</strong>{{#each fixture.officialIds}}{{official.fullName}}<br>{{/each}}
+                            </p>
+                            {{#if fixture.additionalInformation}}
+                                <hr>
+                                <p>{{fixture.additionalInformation}}</p>
+                            {{/if}}
+                        </div>
+                        <div class="col-md-6 col-xs-6">
+                            <h4>Squad Selection</h4>
+                            <table class="table no-margin">
+                                <tbody>
+                                {{#each squadSelection.squad}}
+                                    <tr>
+                                        <td class="col-sm-1">{{this.squadNumber}}</td>
+                                        <td class="col-sm-5">
+                                            <span class="label label-{{playerStatusClass}}">
+                                                {{#if availability}}
+                                                    {{availability}}
+                                                {{else}}
+                                                    Pending
+                                                {{/if}}
+                                            </span>
+                                        </td>
+                                        <td class="col-sm-5">{{player.profile.fullName}}</td>
+                                    </tr>
+                                {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    {{#if currentUserInvite}}
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-{{currentUserStatusClass}} dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                {{#if currentUserInvite.availability}}
+                                    {{currentUserInvite.availability}}
+                                {{else}}
+                                    My Availability
+                                {{/if}} <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" class="accept">Available</a></li>
+                                <li><a href="#" class="tenative">Maybe</a></li>
+                                <li><a href="#" class="decline">Unavailable</a></li>
+                            </ul>
+                        </div>
+                    {{/if}}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

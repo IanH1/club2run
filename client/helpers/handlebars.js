@@ -55,7 +55,7 @@ Template.registerHelper("positionOptions", function() {
 });
 
 Template.registerHelper("currentClub", function() {
-    return Session.get("currentClub");
+    return Club.findOne(Meteor.user().profile.currentClubId);
 });
 
 Template.registerHelper("articleCount", function() {
@@ -64,6 +64,18 @@ Template.registerHelper("articleCount", function() {
 
 Template.registerHelper("eventCount", function() {
     return Fixture.find().count() + Meeting.find().count() + Training.find().count();
+});
+
+Template.registerHelper("fixtureCount", function() {
+    return Fixture.find().count();
+});
+
+Template.registerHelper("meetingCount", function() {
+    return Meeting.find().count();
+});
+
+Template.registerHelper("trainingCount", function() {
+    return Training.find().count();
 });
 
 Template.registerHelper("messageCount", function() {
