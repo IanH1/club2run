@@ -29,6 +29,24 @@ Meteor.publishComposite("club", function(clubId) {
                         return SquadSelection.find({ fixtureId: fixture._id }, {});
                     }
                 }
+            }, {
+                find: function(fixture, club) {
+                    var userId = this.userId;
+                    var messageBoards = [];
+
+                    // Determine the message boards the user has access too
+                    MessageBoard.find({ fixtureId: fixture._id, clubId: club._id }, { sort: {createdOn: -1 }}).forEach(function(messageBoard) {
+                        if (Roles.userIsInRole(userId, ['player'], messageBoard.teamId)) {
+                            messageBoards.push(messageBoard);
+                        }
+                    });
+
+                    // Get the id's of all the message boards
+                    var messageBoardIds = _.pluck(messageBoards, "_id");
+
+                    // Finally publish a reactive cursor containing each message board (necessary as a cursor must be returned)
+                    return MessageBoard.find({ _id : { $in : messageBoardIds }});
+                }
             }]
         }, {
             find: function(club) {
@@ -40,21 +58,6 @@ Meteor.publishComposite("club", function(clubId) {
             find: function(club) {
                 if (Roles.userIsInRole(this.userId, ["admin"], clubId)) {
                     return Meteor.users.find({ 'profile.clubIds': club._id }, { sort: {name: 1 }});
-                }
-            }
-        }, {
-            find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                //    var members = [];
-                //    MessageBoard.find({  }, { sort: {createdOn: -1 }}).forEach(function(mb) {
-                //        //if (Roles.userIsInRole(this.userId, ['playerA'], mb.fixtureId)) {
-                //            members.push(mb);
-                //        //}
-                ////
-                //    });
-                //    console.log(members);
-                //    return members;
-                return MessageBoard.find({ clubId: club._id }, { sort: {createdOn: -1 }});
                 }
             }
         }, {
