@@ -95,6 +95,13 @@ Meteor.publish('clubs', function() {
     return Club.find();
 });
 
+Meteor.publish('clubsForUser', function() {
+    var user = Meteor.users.findOne(this.userId);
+    if (user) {
+        return Club.find({ _id: {$in: user.profile.clubIds }});
+    }
+});
+
 Meteor.publish('profilePictures', function() {
     return ProfilePicture.find();
 });

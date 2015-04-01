@@ -1,5 +1,5 @@
 <template name="profile">
-    {{#autoForm id='updateProfile' schema=Schema.UserProfile type="method" meteormethod="updateProfile" doc=currentUser.profile}}
+    {{#autoForm id="updateUser" schema=Schema.User type="method" meteormethod="updateUser" doc=currentUser}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Profile</h3>
@@ -7,39 +7,69 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='firstName'}}
+                        {{> afQuickField name="profile.firstName"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='lastName'}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        {{> afQuickField name='gender' options="auto"}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{> afQuickField name='dateOfBirth'}}
+                        {{> afQuickField name="profile.lastName"}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='homeTelephone'}}
+                        {{> afQuickField name="profile.gender" options="auto"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='mobileTelephone'}}
+                        {{> afQuickField name="profile.dateOfBirth"}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afFieldInput name="picture" type="fileUpload" collection="ProfilePicture" label="Avatar" remove-label="Remove"}}
+                        {{> afQuickField name="profile.homeTelephone"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='preferredContactMethod' options="auto"}}
+                        {{> afQuickField name="profile.mobileTelephone"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afFieldInput name="profile.picture" type="fileUpload" collection="ProfilePicture" label="Avatar" remove-label="Remove"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.preferredContactMethod" options="auto"}}
                     </div>
                 </div>
             </div>
         </div>
-        {{> address}}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Location</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.address.line1"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.address.line2"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.address.city"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.address.county"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.address.postCode"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.address.country"}}
+                    </div>
+                </div>
+            </div>
+        </div>
         <div>
             <button type="submit" class="btn btn-primary">Update</button>
             <button type="reset" class="btn btn-default">Reset</button>
