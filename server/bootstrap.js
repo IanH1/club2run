@@ -61,7 +61,8 @@ if (Club.find().count() === 0) {
             country: "UK",
             longitude: "",
             latitude: ""
-        }
+        },
+        numberOfUsersLimit: 10
     });
 
     Meteor.users.update({ _id: davidId }, { $push: { 'profile.clubIds': clubId }});
