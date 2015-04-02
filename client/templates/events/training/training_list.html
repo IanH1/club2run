@@ -6,9 +6,7 @@
                 <tr>
                     <th class="col-sm-2">Start</th>
                     <th class="col-sm-2">End</th>
-                    <th class="col-sm-3">Team</th>
-                    <!--<th class="col-sm-3">Opponent</th>-->
-                    <!--<th class="col-sm-3">Competition</th>-->
+                    <th class="col-sm-6">Team</th>
                     <th class="col-sm-1"></th>
                 </tr>
             </thead>
@@ -18,11 +16,9 @@
                         <td>{{formatDateTime startDateTime}}</td>
                         <td>{{formatDateTime endDateTime}}</td>
                         <td>{{team.name}}</td>
-                        <!--<td>{{opponent}}</td>-->
-                        <!--<td>{{competition}}</td>-->
                         <td class="text-center">
-                            <a href="{{pathFor 'trainingEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-                            <a href="#" class="hidden-xs btn btn-xs btn-danger delete"><i class="fa fa-trash"></i></a>
+                            <a href="{{pathFor 'trainingEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary">Edit</a>
+                            <a href="#" class="hidden-xs btn btn-xs btn-danger delete">Delete</a>
                         </td>
                     </tr>
                 {{/each}}

@@ -21,8 +21,8 @@ Template.trainingViewModal.helpers({
 
 Template.trainingViewModal.events({
     'click [data-dismiss="modal"]': function() {
-        Session.set('showEventId', null);
-        Session.set('showEventType', null);
-        Session.set('showEventModal', false);
+        Session.set("showEventId", null);
+        Session.set("showEventType", null);
+        Session.set("showEventModal", false);
     }
 });

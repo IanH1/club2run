@@ -14,12 +14,12 @@ Template.trainingList.events({
         var training = this;
         bootbox.confirm("Are you sure you want to delete this training?", function(result) {
             if (result) {
-                Meteor.call('deleteTraining', training, function(error) {
+                Meteor.call("deleteTraining", training, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {
                         FlashMessages.sendSuccess("Training successfully deleted.");
-                        Router.go('eventList');
+                        Router.go("eventList");
                     }
                 });
             }
