@@ -1,5 +1,5 @@
 <template name="meetingCreate">
-    {{#autoForm id='createMeeting' schema=Schema.Meeting type="method" meteormethod="insertMeeting"}}
+    {{#autoForm id="createMeeting" schema=Schema.Meeting type="method" meteormethod="insertMeeting"}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Meeting</h3>
@@ -7,20 +7,20 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">
-                        {{> afQuickField name='subject'}}
+                        {{> afQuickField name="subject"}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        {{> afQuickField name='details' rows=5}}
+                        {{> afQuickField name="details" rows=5}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='startDateTime' type='datetime-local'}}
+                        {{> afQuickField name="startDateTime" type="datetime-local"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='endDateTime' type='datetime-local'}}
+                        {{> afQuickField name="endDateTime" type="datetime-local"}}
                     </div>
                 </div>
                 <div class="row">
@@ -30,7 +30,37 @@
                 </div>
             </div>
         </div>
-        {{> address}}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Location</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="address.line1"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="address.line2"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="address.city"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="address.county"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="address.postCode"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="address.country"}}
+                    </div>
+                </div>
+            </div>
+        </div>
         <div>
             <button type="submit" class="btn btn-primary">Save</button>
             <button type="reset" class="btn btn-default">Reset</button>

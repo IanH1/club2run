@@ -1,6 +1,6 @@
 <template name="header">
     <header class="main-header">
-        <a href="{{pathFor 'home'}}" class="logo"><b>Club2Run</b></a>
+        <a href="{{pathFor "home"}}" class="logo"><b>Club2Run</b></a>
         <nav class="navbar navbar-static-top" role="navigation">
             <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                 <span class="sr-only">Toggle navigation</span>
@@ -60,7 +60,7 @@
                 </ul>
             </li>
             <li class="footer">
-                <a href="{{pathFor 'home'}}">See All Messages</a>
+                <a href="{{pathFor "home"}}">See All Messages</a>
             </li>
         </ul>
     </li>
@@ -86,6 +86,9 @@
                                 {{#if equals type "fixture"}}
                                     {{fixture.opponent}}
                                 {{/if}}
+                                {{#if equals type "training"}}
+                                    {{trainingTeam.name}}
+                                {{/if}}
                                 <div class="pull-right">
                                     <small>{{formatDateFromNow createdOn}}</small>
                                 </div>
@@ -95,7 +98,7 @@
                 </ul>
             </li>
             <li class="footer">
-                <a href="{{pathFor 'home'}}">View all notifications</a>
+                <a href="{{pathFor "home"}}">View all notifications</a>
             </li>
         </ul>
     </li>

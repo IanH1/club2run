@@ -1,6 +1,6 @@
 Template._loginButtonsLoggedInDropdown.events({
     'click #login-buttons-edit-profile': function() {
-        Router.go('profile');
+        Router.go("profile");
     }
 });
 
@@ -42,5 +42,6 @@ Template.notificationDropdown.helpers({
         if (fixture) {
             return Team.findOne(fixture.teamId);
         }
-    }
+    },
+
 });
