@@ -5,9 +5,10 @@
             <thead>
                 <tr>
                     <th class="col-sm-2">Start</th>
-                    <th class="col-sm-3">Team</th>
-                    <th class="col-sm-3">Opponent</th>
+                    <th class="col-sm-2">Team</th>
+                    <th class="col-sm-2">Opponent</th>
                     <th class="col-sm-2">Competition</th>
+                    <th class="col-sm-2">Result</th>
                     <th class="col-sm-2"></th>
                 </tr>
             </thead>
@@ -18,10 +19,16 @@
                         <td>{{team.name}}</td>
                         <td>{{opponent}}</td>
                         <td>{{competition}}</td>
+                        <td>{{result.result}} | {{result.homeScore}} - {{result.awayScore}}</td>
                         <td class="text-center">
-                            <a href="{{pathFor 'fixtureEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary">Edit</a>
-                            <a href="{{pathFor 'fixtureSquadSelection' _id=squadSelectionId}}" class="hidden-xs btn btn-xs btn-primary">Select Team</a>
-                            <a href="#" class="hidden-xs btn btn-xs btn-danger delete">Delete</a>
+                            {{#if result}}
+                                <a href="{{pathFor "fixtureReport" _id=reportId}}" class="hidden-xs btn btn-xs btn-primary">Edit Team Report</a>
+                            {{else}}
+                                <a href="{{pathFor "fixtureEdit"}}" class="hidden-xs btn btn-xs btn-primary">Edit</a>
+                                <a href="{{pathFor "fixtureSquadSelection" _id=squadSelectionId}}" class="hidden-xs btn btn-xs btn-primary">Select Team</a>
+                                <a href="{{pathFor "fixtureResult"}}" class="hidden-xs btn btn-xs btn-primary">Submit Result</a>
+                                <a href="#" class="hidden-xs btn btn-xs btn-danger delete">Delete</a>
+                            {{/if}}
                         </td>
                     </tr>
                 {{/each}}
