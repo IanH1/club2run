@@ -105,6 +105,13 @@ Meteor.publish('clubsForUser', function() {
     }
 });
 
+Meteor.publish('calendarEventsForUser', function() {
+    var user = Meteor.users.findOne(this.userId);
+    if (user) {
+        return CalendarEvent.find({ createdBy: user._id });
+    }
+});
+
 Meteor.publish('profilePictures', function() {
     return ProfilePicture.find();
 });

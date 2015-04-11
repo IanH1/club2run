@@ -77,57 +77,71 @@ Template.calendarPanel.helpers({
         }
     },
     eventClickHandler: function() {
-        return function(calEvent) {
-            Session.set('showEventId', calEvent._id);
-            Session.set('showEventType', calEvent.type);
+        return function(calendarEvent) {
+            Session.set('showEventId', calendarEvent._id);
+            Session.set('showEventType', calendarEvent.type);
             Session.set('showEventModal', true);
         };
     },
     dayClickHandler: function() {
         return function(date, allDay, jsEvent, view) {
+            bootbox.confirm("Are you sure you want to create an event on " + date.format("MMMM Do YYYY, HH:mm:ss") + "?", function(result) {
+                if (result) {
+                    Session.set("eventDate", date.toDate());
+                    Router.go("eventCreate");
+                }
+            });
         };
     },
     events: function() {
         return function(start, end, tz, callback) {
             var events = [];
+            CalendarEvent.find().forEach(function(calendarEvent) {
+                events.push({
+                    id: calendarEvent._id,
+                    title: calendarEvent.title,
+                    allDay: false,
+                    start: moment(calendarEvent.startDateTime),
+                    end: moment(calendarEvent.endDateTime)
+                })
+            });
 
             // Add the fixture events
-            Fixture.find().forEach(function(fixture) {
-                events.push({
-                    id: fixture._id,
-                    title: fixture.opponent,
-                    allDay: false,
-                    start: moment(fixture.startDateTime),
-                    end: moment(fixture.endDateTime),
-                    type: 'fixture'
-                })
-            });
-
-            // Add the meeting events
-            Meeting.find().forEach(function(meeting) {
-                events.push({
-                    id: meeting._id,
-                    title: meeting.subject,
-                    allDay: false,
-                    start: moment(meeting.startDateTime),
-                    end: moment(meeting.endDateTime),
-                    type: 'meeting'
-                })
-            });
-
-            // Add the training events
-            Training.find().forEach(function(training) {
-                var team = Team.findOne(training.teamId);
-                events.push({
-                    id: training._id,
-                    title: team.name + " Training",
-                    allDay: false,
-                    start: moment(training.startDateTime),
-                    end: moment(training.endDateTime),
-                    type: 'training'
-                })
-            });
-
+            //Fixture.find().forEach(function(fixture) {
+            //    events.push({
+            //        id: fixture._id,
+            //        title: fixture.opponent,
+            //        allDay: false,
+            //        start: moment(fixture.startDateTime),
+            //        end: moment(fixture.endDateTime),
+            //        type: 'fixture'
+            //    })
+            //});
+            //
+            //// Add the meeting events
+            //Meeting.find().forEach(function(meeting) {
+            //    events.push({
+            //        id: meeting._id,
+            //        title: meeting.subject,
+            //        allDay: false,
+            //        start: moment(meeting.startDateTime),
+            //        end: moment(meeting.endDateTime),
+            //        type: 'meeting'
+            //    })
+            //});
+            //
+            //// Add the training events
+            //Training.find().forEach(function(training) {
+            //    var team = Team.findOne(training.teamId);
+            //    events.push({
+            //        id: training._id,
+            //        title: team.name + " Training",
+            //        allDay: false,
+            //        start: moment(training.startDateTime),
+            //        end: moment(training.endDateTime),
+            //        type: 'training'
+            //    })
+            //});
             callback(events);
         };
     },
