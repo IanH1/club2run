@@ -99,6 +99,7 @@ Template.calendarPanel.helpers({
             CalendarEvent.find().forEach(function(calendarEvent) {
                 events.push({
                     id: calendarEvent._id,
+                    type: calendarEvent.type,
                     title: calendarEvent.title,
                     allDay: false,
                     start: moment(calendarEvent.startDateTime),
@@ -118,17 +119,7 @@ Template.calendarPanel.helpers({
             //    })
             //});
             //
-            //// Add the meeting events
-            //Meeting.find().forEach(function(meeting) {
-            //    events.push({
-            //        id: meeting._id,
-            //        title: meeting.subject,
-            //        allDay: false,
-            //        start: moment(meeting.startDateTime),
-            //        end: moment(meeting.endDateTime),
-            //        type: 'meeting'
-            //    })
-            //});
+
             //
             //// Add the training events
             //Training.find().forEach(function(training) {

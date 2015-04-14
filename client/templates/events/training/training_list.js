@@ -1,20 +1,20 @@
 Template.trainingList.helpers({
     training: function() {
-        return Training.find();
+        return CalendarEvent.find({ type: "training" });
     },
     team: function() {
-        if (this.teamId) {
-            return Team.findOne(this.teamId);
+        if (this.training.teamId) {
+            return Team.findOne(this.training.teamId);
         }
     }
 });
 
 Template.trainingList.events({
     'click .delete': function() {
-        var training = this;
+        var meeting = this;
         bootbox.confirm("Are you sure you want to delete this training?", function(result) {
             if (result) {
-                Meteor.call("deleteTraining", training, function(error) {
+                Meteor.call('deleteCalendarEvent', meeting, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {

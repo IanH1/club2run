@@ -5,6 +5,12 @@ Template.eventCreate.events({
 });
 
 Template.eventCreate.helpers({
+    defaultType: function() {
+        var type = Session.get("eventType");
+        if (type) {
+            return type;
+        }
+    },
     defaultStartDate: function() {
         var startDate = Session.get("eventDate");
         if (startDate) {

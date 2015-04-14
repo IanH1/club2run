@@ -17,14 +17,14 @@
                     <tr>
                         <td>{{formatDateTime startDateTime}}</td>
                         <td>{{team.name}}</td>
-                        <td>{{opponent}}</td>
-                        <td>{{competition}}</td>
-                        <td>{{result.result}} | {{result.homeScore}} - {{result.awayScore}}</td>
+                        <td>{{fixture.opponent}}</td>
+                        <td>{{fixture.competition}}</td>
+                        <td>{{fixture.result.result}} | {{fixture.result.homeScore}} - {{fixture.result.awayScore}}</td>
                         <td class="text-center">
                             {{#if result}}
                                 <a href="{{pathFor "fixtureReport" _id=reportId}}" class="hidden-xs btn btn-xs btn-primary">Edit Team Report</a>
                             {{else}}
-                                <a href="{{pathFor "fixtureEdit"}}" class="hidden-xs btn btn-xs btn-primary">Edit</a>
+                                <a href="{{pathFor "eventEdit"}}" class="hidden-xs btn btn-xs btn-primary">Edit</a>
                                 <a href="{{pathFor "fixtureSquadSelection" _id=squadSelectionId}}" class="hidden-xs btn btn-xs btn-primary">Select Team</a>
                                 <a href="{{pathFor "fixtureResult"}}" class="hidden-xs btn btn-xs btn-primary">Submit Result</a>
                                 <a href="#" class="hidden-xs btn btn-xs btn-danger delete">Delete</a>

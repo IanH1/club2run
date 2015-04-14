@@ -125,7 +125,9 @@
 
 <template name="calendarPanel">
     {{#if showEventModal}}
-        {{> eventViewModal}}
+        {{#if equals showEventType ""}}
+            {{> eventViewModal}}
+        {{/if}}
         {{#if equals showEventType "fixture"}}
             {{> fixtureViewModal}}
         {{/if}}

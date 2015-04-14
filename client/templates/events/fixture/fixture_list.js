@@ -1,20 +1,20 @@
 Template.fixtureList.helpers({
     fixtures: function() {
-        return Fixture.find();
+        return CalendarEvent.find({ type: "fixture" });
     },
     team: function() {
-        if (this.teamId) {
-            return Team.findOne(this.teamId);
+        if (this.fixture.teamId) {
+            return Team.findOne(this.fixture.teamId);
         }
     }
 });
 
 Template.fixtureList.events({
     'click .delete': function() {
-        var fixture = this;
+        var meeting = this;
         bootbox.confirm("Are you sure you want to delete this fixture?", function(result) {
             if (result) {
-                Meteor.call("deleteFixture", fixture, function(error) {
+                Meteor.call('deleteCalendarEvent', meeting, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {

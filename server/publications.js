@@ -107,9 +107,27 @@ Meteor.publish('clubsForUser', function() {
 
 Meteor.publish('calendarEventsForUser', function() {
     var user = Meteor.users.findOne(this.userId);
+    var calendarEvents = [];
     if (user) {
-        return CalendarEvent.find({ createdBy: user._id });
+
+        // Find all events created by the user
+        CalendarEvent.find({ createdBy: user._id }, { sort: {startDateTime: -1 }}).forEach(function(calendarEvent) {
+            calendarEvents.push(calendarEvent);
+        });
+
+        // Find all meeting events the current user has been invited too
+        //CalendarEvent.find({ 'fixture.attendeeIds.userId': user._id }, { sort: {startDateTime: -1 }}).forEach(function(calendarEvent) {
+        //    calendarEvents.push(calendarEvent);
+        //});
+        
+        // Find all meeting events the current user has been invited too
+        CalendarEvent.find({ 'meeting.attendeeIds.userId': user._id }, { sort: {startDateTime: -1 }}).forEach(function(calendarEvent) {
+            calendarEvents.push(calendarEvent);
+        });
     }
+
+    // Finally publish a reactive cursor containing each CalendarEvent (necessary as a cursor must be returned)
+    return CalendarEvent.find({ _id : { $in : _.pluck(calendarEvents, "_id") }});
 });
 
 Meteor.publish('profilePictures', function() {

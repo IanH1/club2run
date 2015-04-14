@@ -16,11 +16,11 @@
                     <tr>
                         <td>{{formatDateTime startDateTime}}</td>
                         <td>{{formatDateTime endDateTime}}</td>
-                        <td>{{subject}}</td>
+                        <td>{{title}}</td>
                         <td>{{#if attendeeIds.length}}{{attendeeIds.length}}{{else}}0{{/if}}</td>
                         <td class="text-center">
-                            <a href="{{pathFor 'meetingEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary"><i class="fa fa-pencil"></i></a>
-                            <a href="#" class="hidden-xs btn btn-xs btn-danger delete"><i class="fa fa-trash"></i></a>
+                            <a href="{{pathFor 'eventEdit'}}" class="hidden-xs btn btn-xs btn-primary">Edit</a>
+                            <a href="#" class="hidden-xs btn btn-xs btn-danger delete">Delete</a>
                         </td>
                     </tr>
                 {{/each}}

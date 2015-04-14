@@ -113,9 +113,10 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{pathFor 'eventList'}}"><i class="fa fa-table"></i> View All</a></li>
-                        <li><a href="{{pathFor 'fixtureCreate'}}"><i class="fa fa-edit"></i> Create Fixture</a></li>
-                        <li><a href="{{pathFor 'meetingCreate'}}"><i class="fa fa-edit"></i> Create Meeting</a></li>
-                        <li><a href="{{pathFor 'trainingCreate'}}"><i class="fa fa-edit"></i> Create Training</a></li>
+                        <li><a href="{{pathFor 'eventCreate'}}"><i class="fa fa-edit"></i> Create Event</a></li>
+                        <li><a href="{{pathFor 'eventCreate' eventType="fixture"}}"><i class="fa fa-edit"></i> Create Fixture</a></li>
+                        <li><a href="{{pathFor 'eventCreate' eventType="meeting"}}"><i class="fa fa-edit"></i> Create Meeting</a></li>
+                        <li><a href="{{pathFor 'eventCreate' eventType="training"}}"><i class="fa fa-edit"></i> Create Training</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

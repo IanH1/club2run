@@ -1,7 +1,7 @@
 Template.meetingViewModal.helpers({
     meeting: function() {
         if (Session.get("showEventId")) {
-            return Meeting.findOne(Session.get("showEventId"));
+            return CalendarEvent.findOne(Session.get("showEventId"));
         }
     },
     attendee: function() {
@@ -14,7 +14,7 @@ Template.meetingViewModal.helpers({
     },
     currentUserInvite: function() {
         if (Session.get("showEventId")) {
-            var meeting = Meeting.findOne(Session.get("showEventId"));
+            var meeting = CalendarEvent.findOne(Session.get("showEventId"));
             if (meeting && meeting.attendeeIds) {
                 return _.find(meeting.attendeeIds, function(attendee) {
                     if (attendee.userId === Meteor.userId()) {
@@ -26,7 +26,7 @@ Template.meetingViewModal.helpers({
     },
     currentUserStatusClass: function() {
         if (Session.get("showEventId")) {
-            var meeting = Meeting.findOne(Session.get("showEventId"));
+            var meeting = CalendarEvent.findOne(Session.get("showEventId"));
             if (meeting && meeting.attendeeIds) {
                 var invite = _.find(meeting.attendeeIds, function(attendee) {
                     if (attendee.userId === Meteor.userId()) {
@@ -41,19 +41,19 @@ Template.meetingViewModal.helpers({
 
 Template.meetingViewModal.events({
     'click .accept': function() {
-        var meeting = Meeting.findOne(Session.get("showEventId"));
+        var meeting = CalendarEvent.findOne(Session.get("showEventId"));
         if (meeting) {
             updateMeetingInvite(meeting, "Accepted");
         }
     },
     'click .tenative': function() {
-        var meeting = Meeting.findOne(Session.get("showEventId"));
+        var meeting = CalendarEvent.findOne(Session.get("showEventId"));
         if (meeting) {
             updateMeetingInvite(meeting, "Tentative");
         }
     },
     'click .decline': function() {
-        var meeting = Meeting.findOne(Session.get("showEventId"));
+        var meeting = CalendarEvent.findOne(Session.get("showEventId"));
         if (meeting) {
             updateMeetingInvite(meeting, "Declined");
         }
