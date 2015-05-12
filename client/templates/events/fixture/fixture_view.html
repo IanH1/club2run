@@ -1,33 +1,23 @@
 <template name="fixtureViewModal">
-    <div id="eventFixtureModal" class="modal show fade in">
+    <div id="fixtureViewModal" class="modal show fade in">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                    <h4 class="modal-title">{{team.name}} V {{fixture.opponent}}</h4>
+                    <h4 class="modal-title">{{team.name}} V {{event.fixture.opponent}}</h4>
                 </div>
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-6 col-xs-6">
                             <p>
-                                <strong>Meetup : </strong> {{formatDateTime fixture.meetupDateTime}}<br>
-                                <strong>Starts : </strong> {{formatDateTime fixture.startDateTime}}<br>
-                                {{#if fixture.endDateTime}}
-                                    <strong>Ends :</strong> {{formatDateTime fixture.endDateTime}}<br>
-                                {{/if}}
-                                {{#if fixture.address}}
-                                    <strong>Location :</strong> {{fixture.address.line1}}, {{fixture.address.line2}}, {{fixture.address.city}}, {{fixture.address.county}}, {{fixture.address.postCode}}, {{fixture.address.country}}
-                                {{else}}
-                                    <strong>Location :</strong><br>
-                                {{/if}}
-                                <strong>Competition :</strong> {{fixture.competition}}<br>
-                                <strong>Opponent :</strong> {{fixture.opponent}}<br>
-                                <strong>Officials :</strong>{{#each fixture.officialIds}}{{official.fullName}}<br>{{/each}}
+                                <strong>Meetup : </strong> {{formatDateTime event.meetupDateTime}}<br>
+                                <strong>Starts : </strong> {{formatDateTime event.startDateTime}}<br>
+                                <strong>Ends :</strong> {{formatDateTime event.endDateTime}}<br>
+                                <strong>Competition :</strong> {{event.fixture.competition}}<br>
+                                <strong>Opponent :</strong> {{event.fixture.opponent}}<br>
+                                <strong>Officials :</strong>{{#each event.fixture.officialIds}}{{official.fullName}}<br>{{/each}}
                             </p>
-                            {{#if fixture.additionalInformation}}
-                                <hr>
-                                <p>{{fixture.additionalInformation}}</p>
-                            {{/if}}
+                            <p>{{event.details}}</p>
                         </div>
                         <div class="col-md-6 col-xs-6">
                             <h4>Squad Selection</h4>
@@ -69,6 +59,14 @@
                                 <li><a href="#" class="decline">Unavailable</a></li>
                             </ul>
                         </div>
+                    {{/if}}
+                    {{#if result}}
+                        <button type="button" class="btn btn-default">Edit Team Report</button>
+                    {{else}}
+                        <button type="button" class="btn btn-default edit">Edit</button>
+                        <button type="button" class="btn btn-default">Select Team</button>
+                        <button type="button" class="btn btn-default">Submit Result Team</button>
+                        <button type="button" class="btn btn-default delete">Delete</button>
                     {{/if}}
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>

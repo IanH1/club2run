@@ -1,14 +1,14 @@
 Template.fixtureViewModal.helpers({
-    fixture: function() {
+    event: function() {
         if (Session.get("showEventId")) {
-            return Fixture.findOne(Session.get("showEventId"));
+            return CalendarEvent.findOne(Session.get("showEventId"));
         }
     },
     team: function() {
         if (Session.get("showEventId")) {
-            var fixture = Fixture.findOne(Session.get("showEventId"));
-            if (fixture && fixture.teamId) {
-                return Team.findOne(fixture.teamId);
+            var event = CalendarEvent.findOne(Session.get("showEventId"));
+            if (event && event.fixture && event.fixture.teamId) {
+                return Team.findOne(event.fixture.teamId);
             }
         }
     },
@@ -75,6 +75,31 @@ Template.fixtureViewModal.events({
         if (squadSelection) {
             updateFixtureInvite(squadSelection, "Unavailable");
         }
+    },
+    'click .edit': function() {
+        var id = Session.get("showEventId");
+        Session.set("showEventId", null);
+        Session.set("showEventType", null);
+        Session.set("showEventModal", false);
+        Router.go("eventEdit", {_id: id });
+    },
+    'click .delete': function() {
+        bootbox.confirm("Are you sure you want to delete this fixture?", function(result) {
+            if (result) {
+                var calendarEvent = CalendarEvent.findOne(Session.get("showEventId"));
+                Meteor.call('deleteCalendarEvent', calendarEvent, function(error) {
+                    if (error) {
+                        FlashMessages.sendError(error.reason);
+                    } else {
+                        FlashMessages.sendSuccess("Training successfully deleted.");
+                        Session.set("showEventId", null);
+                        Session.set("showEventType", null);
+                        Session.set("showEventModal", false);
+                        Router.go("eventList");
+                    }
+                });
+            }
+        });
     },
     'click [data-dismiss="modal"]': function() {
         Session.set("showEventId", null);

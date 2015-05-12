@@ -1,15 +1,12 @@
 Template.eventCreate.events({
-    "click .cancel": function() {
+    'click .cancel': function() {
         Router.go("eventList");
     }
 });
 
 Template.eventCreate.helpers({
     defaultType: function() {
-        var type = Session.get("eventType");
-        if (type) {
-            return type;
-        }
+        return Session.get("eventType");
     },
     defaultStartDate: function() {
         var startDate = Session.get("eventDate");

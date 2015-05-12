@@ -1,0 +1,74 @@
+<template name="fixtureEdit">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Fixture
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    {{> afQuickField name='title'}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    {{> afQuickField name='fixture.teamId' options=teamOptions}}
+                </div>
+                <div class="col-xs-6">
+                    {{> afQuickField name='fixture.matchType' options="auto"}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    {{> afQuickField name='fixture.opponent'}}
+                </div>
+                <div class="col-xs-6">
+                    {{> afQuickField name='fixture.competition'}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    {{> afQuickField name='fixture.opponentEmail'}}
+                </div>
+                <div class="col-xs-6">
+                    {{> afQuickField name='fixture.opponentTelephone'}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    {{> afQuickField name='startDateTime' type='datetime-local' value=defaultStartDate}}
+                </div>
+                <div class="col-xs-6">
+                    {{> afQuickField name='endDateTime' type='datetime-local' value=defaultEndDate}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    {{> afQuickField name='fixture.meetupDateTime' type='datetime-local'}}
+                </div>
+                <div class="col-xs-6">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group {{#if afFieldIsInvalid name="fixture.opponentCoaches"}}has-error{{/if}}">
+                        <label class='control-label'>{{afFieldLabelText name="fixture.opponentCoaches" }}</label>
+                        {{> afFieldInput name="fixture.opponentCoaches" placeholder='Comma seperated list'}}
+                        <span class="help-block">{{{afFieldMessage name="fixture.opponentCoaches"}}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {{> afQuickField name='fixture.officialIds' type="selectize" options=officialOptions multiple=true}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {{> afQuickField name='details' rows=3}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

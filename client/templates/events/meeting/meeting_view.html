@@ -1,28 +1,22 @@
 <template name="meetingViewModal">
-    <div id="eventMeetingModal" class="modal show fade in">
+    <div id="meetingViewModal" class="modal show fade in">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    <h4 class="modal-title" id="myModalLabel">{{meeting.title}}</h4>
+                    <h4 class="modal-title" id="myModalLabel">{{event.title}}</h4>
                 </div>
                 <div class="modal-body">
                     <p>
-                        <strong>Starts : </strong> {{formatDateTime meeting.startDateTime}}<br>
-                        <strong>Ends :</strong> {{formatDateTime meeting.endDateTime}}<br>
-                        {{#if meeting.address}}
-                            <strong>Location :</strong> {{meeting.address.line1}}, {{meeting.address.line2}}, {{meeting.address.city}}, {{meeting.address.county}}, {{meeting.address.postCode}}, {{meeting.address.country}}
-                        {{else}}
-                            <strong>Location :</strong><br>
-                        {{/if}}
+                        <strong>Starts : </strong> {{formatDateTime event.startDateTime}}<br>
+                        <strong>Ends :</strong> {{formatDateTime event.endDateTime}}<br>
                     </p>
-                    <hr>
-                    <p>{{meeting.details}}</p>
+                    <p>{{event.details}}</p>
                     <hr>
                     <h4>Attendees</h4>
                     <table class="table no-margin">
                         <tbody>
-                        {{#each meeting.attendeeIds}}
+                        {{#each event.meeting.attendeeIds}}
                             <tr>
                                 <td class="col-sm-1">
                                         <span class="label label-{{attendeeStatusClass}}">
@@ -41,7 +35,7 @@
                 </div>
                 <div class="modal-footer">
                     {{#if currentUserInvite}}
-                        <div class="btn-group">
+                        <div class="btn-group pull-left">
                             <button type="button" class="btn btn-{{currentUserStatusClass}} dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                 {{#if currentUserInvite.availability}}
                                     {{currentUserInvite.availability}}
@@ -56,6 +50,8 @@
                             </ul>
                         </div>
                     {{/if}}
+                    <button type="button" class="btn btn-default edit">Edit</button>
+                    <button type="button" class="btn btn-default delete">Delete</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>

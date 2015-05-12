@@ -1,5 +1,5 @@
-<template name="trainingViewModal">
-    <div id="trainingViewModal" class="modal show fade in">
+<template name="clubEventViewModal">
+    <div id="clubEventViewModal" class="modal show fade in">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -8,10 +8,8 @@
                 </div>
                 <div class="modal-body">
                     <p>
-                        <strong>Team :</strong> {{team.name}}<br>
-                        <strong>Starts :</strong> {{formatDateTime event.startDateTime}}<br>
-                        <strong>Ends :</strong> {{formatDateTime event.endDateTime}}<br>
-                        <strong>Coaches :</strong> {{#each event.training.coachIds}}{{coach.fullName}}<br>{{/each}}
+                        <strong>Start :</strong> {{formatDateTime event.startDateTime}}<br>
+                        <strong>End :</strong> {{formatDateTime event.endDateTime}}<br>
                     </p>
                     <p>{{event.details}}</p>
                 </div>

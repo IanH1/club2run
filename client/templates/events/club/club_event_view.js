@@ -1,4 +1,4 @@
-Template.eventViewModal.helpers({
+Template.clubEventViewModal.helpers({
     event: function() {
         if (Session.get("showEventId")) {
             return CalendarEvent.findOne(Session.get("showEventId"));
@@ -6,7 +6,7 @@ Template.eventViewModal.helpers({
     }
 });
 
-Template.eventViewModal.events({
+Template.clubEventViewModal.events({
     'click .edit': function() {
         var id = Session.get("showEventId");
         Session.set("showEventId", null);
@@ -15,14 +15,14 @@ Template.eventViewModal.events({
         Router.go("eventEdit", {_id: id });
     },
     'click .delete': function() {
-        bootbox.confirm("Are you sure you want to delete this event?", function(result) {
+        bootbox.confirm("Are you sure you want to delete this club event?", function(result) {
             if (result) {
                 var calendarEvent = CalendarEvent.findOne(Session.get("showEventId"));
                 Meteor.call('deleteCalendarEvent', calendarEvent, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {
-                        FlashMessages.sendSuccess("Event successfully deleted.");
+                        FlashMessages.sendSuccess("Club event successfully deleted.");
                         Session.set("showEventId", null);
                         Session.set("showEventType", null);
                         Session.set("showEventModal", false);

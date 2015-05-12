@@ -63,19 +63,19 @@ Template.registerHelper("articleCount", function() {
 });
 
 Template.registerHelper("eventCount", function() {
-    return Fixture.find().count() + Meeting.find().count() + Training.find().count();
+    return CalendarEvent.find().count();
 });
 
 Template.registerHelper("fixtureCount", function() {
-    return Fixture.find().count();
+    return CalendarEvent.find({ eventType: "fixture" }).count();
 });
 
 Template.registerHelper("meetingCount", function() {
-    return Meeting.find().count();
+    return CalendarEvent.find({ eventType: "meeting" }).count();
 });
 
 Template.registerHelper("trainingCount", function() {
-    return Training.find().count();
+    return CalendarEvent.find({ eventType: "training" }).count();
 });
 
 Template.registerHelper("messageCount", function() {

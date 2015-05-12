@@ -1,0 +1,29 @@
+<template name="clubEventCreate">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">
+                Club Event
+            </h3>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    {{> afQuickField name='title'}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6">
+                    {{> afQuickField name='startDateTime' type='datetime-local' value=defaultStartDate}}
+                </div>
+                <div class="col-xs-6">
+                    {{> afQuickField name='endDateTime' type='datetime-local' value=defaultEndDate}}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    {{> afQuickField name='details' rows=10}}
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
