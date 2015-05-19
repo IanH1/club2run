@@ -22,29 +22,17 @@ Meteor.publishComposite("club", function(clubId) {
                 if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
                     return CalendarEvent.find({ clubId: club._id }, { sort: { startDateTime: -1 }});
                 }
-            }
-        }, {
-            find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                    return Fixture.find({ clubId: club._id }, { sort: {startDateTime: -1 }});
-                }
             },
             children: [{
-                find: function(fixture, club) {
-                    if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                        return SquadSelection.find({ fixtureId: fixture._id }, {});
-                    }
-                }
-            }, {
-                find: function(fixture, club) {
+                find: function(event, club) {
                     var userId = this.userId;
                     var messageBoards = [];
 
                     // Determine the message boards the user has access too
-                    MessageBoard.find({ fixtureId: fixture._id, clubId: club._id }, { sort: {createdOn: -1 }}).forEach(function(messageBoard) {
-                        if (Roles.userIsInRole(userId, ['player'], messageBoard.teamId)) {
+                    MessageBoard.find({ eventId: event._id, clubId: club._id }, { sort: {createdOn: -1 }}).forEach(function(messageBoard) {
+                        //if (Roles.userIsInRole(userId, ['player'], messageBoard.teamId)) {
                             messageBoards.push(messageBoard);
-                        }
+                        //}
                     });
 
                     // Get the id's of all the message boards
@@ -74,14 +62,14 @@ Meteor.publishComposite("club", function(clubId) {
             }
         }, {
             find: function(club) {
-                if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                    return Team.find({ clubId: club._id }, { sort: {name: 1 }});
+                if (Roles.userIsInRole(this.userId, ["admin", "manager"], clubId)) {
+                    return Team.find({ _id : { $in : club.opponents }}, { sort: { name: 1 }});
                 }
             }
         }, {
             find: function(club) {
                 if (Roles.userIsInRole(this.userId, ["admin", "player", "user"], clubId)) {
-                    return Training.find({ clubId: club._id }, { sort: {startDateTime: -1 }});
+                    return Team.find({ clubId: club._id }, { sort: {name: 1 }});
                 }
             }
         }, {
@@ -115,12 +103,12 @@ Meteor.publish('calendarEventsForUser', function() {
             calendarEvents.push(calendarEvent);
         });
 
-        // Find all meeting events the current user has been invited too
-        //CalendarEvent.find({ 'fixture.attendeeIds.userId': user._id }, { sort: {startDateTime: -1 }}).forEach(function(calendarEvent) {
-        //    calendarEvents.push(calendarEvent);
-        //});
+        // Find all fixtures the current user has been selected in
+        CalendarEvent.find({ 'fixture.squad.userId': user._id }, { sort: {startDateTime: -1 }}).forEach(function(calendarEvent) {
+            calendarEvents.push(calendarEvent);
+        });
         
-        // Find all meeting events the current user has been invited too
+        // Find all meetings the current user has been invited too
         CalendarEvent.find({ 'meeting.attendeeIds.userId': user._id }, { sort: {startDateTime: -1 }}).forEach(function(calendarEvent) {
             calendarEvents.push(calendarEvent);
         });

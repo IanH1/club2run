@@ -1,21 +1,16 @@
 <template name="fixtureResult">
-    {{#autoForm id="editResult" schema=Schema.Fixture doc=this validation="none"}}
+    {{#autoForm id="editFixtureResult" schema=Schema.CalendarEvent doc=this validation="none"}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Fixture Result</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
-                    <div class="col-xs-12">
-                        {{> afQuickField name="result.result" options="auto"}}
-                    </div>
-                </div>
-                <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name="result.homeScore"}}
+                        {{> afQuickField name="fixture.homeScore" label=homeLabel}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name="result.awayScore"}}
+                        {{> afQuickField name="fixture.awayScore" label=awayLabel}}
                     </div>
                 </div>
             </div>

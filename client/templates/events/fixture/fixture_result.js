@@ -1,3 +1,14 @@
+Template.fixtureResult.helpers({
+    homeLabel: function() {
+        var homeTeam = Team.findOne(this.fixture.homeTeamId);
+        return homeTeam.name + " Score"
+    },
+    awayLabel: function() {
+        var awayTeam = Team.findOne(this.fixture.awayTeamId);
+        return awayTeam.name + " Score"
+    }
+});
+
 Template.fixtureResult.events({
     'click .cancel': function() {
         Router.go("eventList");
@@ -5,7 +16,7 @@ Template.fixtureResult.events({
 });
 
 AutoForm.hooks({
-    editResult: {
+    editFixtureResult: {
         onSubmit: function (insertDoc, updateDoc, currentDoc) {
             var thiz = this;
             Meteor.call('updateFixtureResult', currentDoc, updateDoc, currentDoc._id, function(error) {

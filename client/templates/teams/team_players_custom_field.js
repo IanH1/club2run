@@ -1,11 +1,11 @@
-Template.afObjectField_squadCustomObjectField.helpers({
+Template.afObjectField_playersCustomObjectField.helpers({
     squadNumberFieldName: function() {
         return this.atts.name + '.squadNumber'
     },
-    userIdFieldName: function() {
-        return this.atts.name + '.userId'
-    },
     positionFieldName: function() {
         return this.atts.name + '.position'
+    },
+    userIdFieldName: function() {
+        return this.atts.name + '.userId'
     }
 });

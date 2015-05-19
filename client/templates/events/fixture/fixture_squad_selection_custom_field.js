@@ -1,4 +1,4 @@
-Template.afObjectField_squadSelectionCustomObjectField.helpers({
+Template.afObjectField_squadCustomObjectField.helpers({
     squadNumberFieldName: function() {
         return this.atts.name + '.squadNumber'
     },

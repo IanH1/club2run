@@ -37,16 +37,14 @@
                     </thead>
                     <tbody>
                         {{#each notifications}}
-                            {{#if equals type "fixture"}}
-                                <tr>
-                                    <td>You have been selected for {{team.name}} V {{fixture.opponent}}</td>
-                                    <td>{{formatDateFromNow createdOn}}</td>
-                                    <td class="text-center">
-                                        <a href="#" class="hidden-xs btn btn-xs btn-primary respond">Respond</a>
-                                        <a href="#" class="hidden-xs btn btn-xs btn-danger delete">Delete</a>
-                                    </td>
-                                </tr>
-                            {{/if}}
+                            <tr>
+                                <td>{{description}}</td>
+                                <td>{{formatDateFromNow createdOn}}</td>
+                                <td class="text-center">
+                                    <a href="#" class="hidden-xs btn btn-xs btn-primary respond">Respond</a>
+                                    <a href="#" class="hidden-xs btn btn-xs btn-danger delete">Delete</a>
+                                </td>
+                            </tr>
                         {{/each}}
                     </tbody>
                 </table>
@@ -68,7 +66,7 @@
         <div class="box-header with-border">
             <h3 class="box-title">
                 <a class="show-message-board" data-toggle="collapse" data-parent="#accordion" href="#{{_id}}" aria-expanded="true" aria-controls="{{_id}}">
-                    {{team.name}} V {{fixture.opponent}}
+                    {{name}}
                 </a>
             </h3>
             <div class="box-tools pull-right">
@@ -115,9 +113,9 @@
         <form>
             <div class="input-group">
                 <input type="text" name="message" placeholder="Type Message ..." class="form-control">
-                    <span class="input-group-btn">
-                        <button type="submit" class="btn btn-success btn-flat">Send</button>
-                    </span>
+                <span class="input-group-btn">
+                    <button type="submit" class="btn btn-success btn-flat">Send</button>
+                </span>
             </div>
         </form>
     </div>
@@ -125,7 +123,7 @@
 
 <template name="calendarPanel">
     {{#if showEventModal}}
-        {{#if equals showEventType ""}}
+        {{#if not showEventType}}
             {{> eventViewModal}}
         {{/if}}
         {{#if equals showEventType "fixture"}}
@@ -143,7 +141,7 @@
             <h3 class="box-title">Calendar</h3>
         </div>
         <div class="box-body no-padding">
-            {{> fullcalendar header=headerOptions defaultView='agendaWeek' class="eventCalendar" events=events eventClick=eventClickHandler dayClick=dayClickHandler weekMode='liquid' minTime='08:00:00' maxTime='20:00:00'}}
+            {{> fullcalendar header=headerOptions defaultView='agendaWeek' class="eventCalendar" events=events eventClick=eventClickHandler dayClick=dayClickHandler weekMode='liquid'}}
         </div>
         <div class="box-footer text-black">
         </div>

@@ -18,7 +18,7 @@ Template.userList.events({
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {
-                        FlashMessages.sendSuccess("User successfully deleted.");
+                        FlashMessages.sendSuccess("User successfully removed.");
                         Router.go("userList");
                     }
                 });
@@ -26,6 +26,3 @@ Template.userList.events({
         });
     }
 });
-
-
-

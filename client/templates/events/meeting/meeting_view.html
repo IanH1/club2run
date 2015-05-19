@@ -34,11 +34,11 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    {{#if currentUserInvite}}
+                    {{#if currentAttendeeInvite}}
                         <div class="btn-group pull-left">
-                            <button type="button" class="btn btn-{{currentUserStatusClass}} dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                {{#if currentUserInvite.availability}}
-                                    {{currentUserInvite.availability}}
+                            <button type="button" class="btn btn-{{currentAttendeeStatusClass}} dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                {{#if currentAttendeeInvite.availability}}
+                                    {{currentAttendeeInvite.availability}}
                                 {{else}}
                                     My Availability
                                 {{/if}} <span class="caret"></span>

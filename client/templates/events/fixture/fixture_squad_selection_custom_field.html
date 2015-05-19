@@ -1,4 +1,4 @@
-<template name="afArrayField_squadSelectionCustomField">
+<template name="afArrayField_squadCustomField">
     {{#if afFieldIsInvalid name=this.atts.name}}
         <div class="panel-body has-error">
             <span class="help-block">{{{afFieldMessage name=this.atts.name}}}</span>
@@ -17,7 +17,7 @@
         <tbody>
             {{#afEachArrayItem name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
                 <tr>
-                    {{> afObjectField name=this.name template="squadSelectionCustomObjectField" playerOptions=../atts.playerOptions positionOptions=../atts.positionOptions disabled=../atts.disabled}}
+                    {{> afObjectField name=this.name template="squadCustomObjectField" playerOptions=../atts.playerOptions positionOptions=../atts.positionOptions disabled=../atts.disabled}}
                     <td class="text-center">{{#if not ../atts.disabled}}<button type="button" class="btn btn-primary autoform-remove-item"><i class="fa fa-minus"></i></button>{{/if}}</td>
                 </tr>
             {{/afEachArrayItem}}
@@ -34,7 +34,7 @@
     </table>
 </template>
 
-<template name="afObjectField_squadSelectionCustomObjectField">
+<template name="afObjectField_squadCustomObjectField">
     <td>{{> afFieldInput name=squadNumberFieldName disabled=this.atts.disabled label=false}}</td>
     <td>{{> afFieldInput name=userIdFieldName type="selectize" options=this.atts.playerOptions disabled=this.atts.disabled label=false}}</td>
     <td>{{> afFieldInput name=positionFieldName type="selectize" options=this.atts.positionOptions disabled=this.atts.disabled label=false}}</td>

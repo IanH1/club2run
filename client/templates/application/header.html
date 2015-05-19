@@ -44,7 +44,7 @@
                     {{#each messageBoards}}
                         <li>
                             <a href="#">
-                                {{team.name}} V {{fixture.opponent}}
+                                {{name}}
                                 <div class="pull-right">
                                     <span class="label label-success">
                                         {{#if messages.length}}
@@ -83,12 +83,7 @@
                     {{#each notifications limit=15 unreadFirst=true}}
                         <li>
                             <a href="#" class="notification-item">
-                                {{#if equals type "fixture"}}
-                                    {{fixture.opponent}}
-                                {{/if}}
-                                {{#if equals type "training"}}
-                                    {{trainingTeam.name}}
-                                {{/if}}
+                                {{description}}
                                 <div class="pull-right">
                                     <small>{{formatDateFromNow createdOn}}</small>
                                 </div>

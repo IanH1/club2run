@@ -7,7 +7,7 @@ Template.trainingViewModal.helpers({
     team: function() {
         if (Session.get("showEventId")) {
             var event = CalendarEvent.findOne(Session.get("showEventId"));
-            if (event && event.training && event.training.teamId) {
+            if (event && event.training.teamId) {
                 return Team.findOne(event.training.teamId);
             }
         }

@@ -8,30 +8,30 @@
         <div class="panel-body">
             <div class="row">
                 <div class="col-xs-12">
-                    {{> afQuickField name='title'}}
+                    {{> afQuickField name="title"}}
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-6">
-                    {{> afQuickField name='startDateTime' type='datetime-local' value=defaultStartDate}}
+                    {{> afQuickField name="startDateTime" type="datetime-local"}}
                 </div>
                 <div class="col-xs-6">
-                    {{> afQuickField name='endDateTime' type='datetime-local' value=defaultEndDate}}
+                    {{> afQuickField name="endDateTime" type="datetime-local"}}
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    {{> afQuickField name='details' rows=10}}
+                    {{> afQuickField name="details" rows=10}}
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    {{> afQuickField name='training.teamId' options=teamOptions}}
+                    {{> afQuickField name="training.teamId" options=teamOptions}}
                 </div>
             </div>
             <div class="row">
                 <div class="col-xs-12">
-                    {{> afQuickField name='training.coachIds' type="selectize" options=staffOptions multiple=true}}
+                    {{> afQuickField name="training.coachIds" type="selectize" options=staffOptions multiple=true}}
                 </div>
             </div>
         </div>

@@ -1,23 +1,3 @@
-var cssAvailabilityClass = function(availability) {
-    if (availability === "Accepted" || availability === "Available") {
-        return "primary";
-    } else if (availability === "Tentative") {
-        return "warning";
-    } else if (availability === "Declined" || availability === "Unavailable") {
-        return "danger";
-    } else {
-        return "default";
-    }
-};
-
-var updateMeetingInvite = function(meeting, availability) {
-    Meteor.call("updateMeetingInvite", meeting, availability, function(error) {
-        if (error) {
-            FlashMessages.sendError(error.reason);
-        }
-    });
-};
-
 Template.meetingViewModal.helpers({
     event: function() {
         if (Session.get("showEventId")) {
@@ -30,12 +10,12 @@ Template.meetingViewModal.helpers({
         }
     },
     attendeeStatusClass: function() {
-        return cssAvailabilityClass(this.availability);
+        return Meteor.UtilFunctions.cssAvailabilityClass(this.availability);
     },
-    currentUserInvite: function() {
+    currentAttendeeInvite: function() {
         if (Session.get("showEventId")) {
             var event = CalendarEvent.findOne(Session.get("showEventId"));
-            if (event && event.meeting && event.meeting.attendeeIds) {
+            if (event && event.meeting.attendeeIds) {
                 return _.find(event.meeting.attendeeIds, function(attendee) {
                     if (attendee.userId === Meteor.userId()) {
                         return attendee;
@@ -44,39 +24,39 @@ Template.meetingViewModal.helpers({
             }
         }
     },
-    currentUserStatusClass: function() {
+    currentAttendeeStatusClass: function() {
         if (Session.get("showEventId")) {
             var event = CalendarEvent.findOne(Session.get("showEventId"));
-            if (event && event.meeting && event.meeting.attendeeIds) {
+            if (event && event.meeting.attendeeIds) {
                 var invite = _.find(event.meeting.attendeeIds, function(attendee) {
                     if (attendee.userId === Meteor.userId()) {
                         return attendee;
                     }
                 });
-                return cssAvailabilityClass(invite.availability);
+                return Meteor.UtilFunctions.cssAvailabilityClass(invite.availability);
             }
         }
     }
 });
 
+var updateMeetingInvite = function(availability) {
+    var event = CalendarEvent.findOne(Session.get("showEventId"));
+    Meteor.call("updateMeetingInvite", event, availability, function(error) {
+        if (error) {
+            FlashMessages.sendError(error.reason);
+        }
+    });
+};
+
 Template.meetingViewModal.events({
     'click .accept': function() {
-        var meeting = CalendarEvent.findOne(Session.get("showEventId"));
-        if (meeting) {
-            updateMeetingInvite(meeting, "Accepted");
-        }
+        updateMeetingInvite("Accepted");
     },
     'click .tenative': function() {
-        var meeting = CalendarEvent.findOne(Session.get("showEventId"));
-        if (meeting) {
-            updateMeetingInvite(meeting, "Tentative");
-        }
+        updateMeetingInvite("Tentative");
     },
     'click .decline': function() {
-        var meeting = CalendarEvent.findOne(Session.get("showEventId"));
-        if (meeting) {
-            updateMeetingInvite(meeting, "Declined");
-        }
+        updateMeetingInvite("Declined");
     },
     'click .edit': function() {
         var id = Session.get("showEventId");
@@ -93,7 +73,7 @@ Template.meetingViewModal.events({
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {
-                        FlashMessages.sendSuccess("Training successfully deleted.");
+                        FlashMessages.sendSuccess("Meeting successfully deleted.");
                         Session.set("showEventId", null);
                         Session.set("showEventType", null);
                         Session.set("showEventModal", false);

@@ -125,14 +125,14 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">Latest Members</h3>
                     <div class="box-tools pull-right">
-                        <span class="label label-danger">{{users.count}} New Members</span>
+                        <span class="label label-danger">{{latestUsers.count}} New Members</span>
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                         <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
                     </div>
                 </div>
                 <div class="box-body no-padding">
                     <ul class="users-list clearfix">
-                        {{#each users}}
+                        {{#each latestUsers}}
                             <li>
                                 <img src="{{profileThumbnailSrc _id}}"/>
                                 <a class="users-list-name" href="#">{{profile.fullName}}</a>

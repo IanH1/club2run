@@ -9,12 +9,12 @@ Template.officialList.events({
         var official = this;
         bootbox.confirm("Are you sure you want to delete this official?", function(result) {
             if (result) {
-                Meteor.call('deleteOfficial', official, function(error) {
+                Meteor.call("deleteOfficial", official, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {
                         FlashMessages.sendSuccess("Official successfully deleted.");
-                        Router.go('officialList');
+                        Router.go("officialList");
                     }
                 });
             }
