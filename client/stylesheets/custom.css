@@ -19,11 +19,11 @@
 }
 
 #carousel {
-    border: 2px solid white;
+    border:   2px solid white;
+    width:    1150px;
     position: relative;
-    top: 0px;
-    left: -25px;
-    width: 1165px;
+    top:      0px;
+    left:     -5px;
 }
 
 #carousel div {
