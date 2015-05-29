@@ -1,66 +1,3 @@
-var cssAvailabilityClass = function(availability) {
-    if (availability === "Accepted" || availability === "Available") {
-        return "primary";
-    } else if (availability === "Tentative") {
-        return "warning";
-    } else if (availability === "Declined" || availability === "Unavailable") {
-        return "danger";
-    } else {
-        return "default";
-    }
-};
-
-var updateFixtureInvite = function(squadSelection, availability) {
-    Meteor.call("updateSquadSelectionInvite", squadSelection, availability, function(error) {
-        if (error) {
-            FlashMessages.sendError(error.reason);
-        }
-    });
-};
-
-var updateMeetingInvite = function(meetingId, availability) {
-    Meteor.call("updateMeetingInvite", meetingId, availability, function(error) {
-        if (error) {
-            FlashMessages.sendError(error.reason);
-        }
-    });
-};
-
-Template.notificationPanel.helpers({
-    notifications: function() {
-        return Notification.find();
-    },
-    fixture: function() {
-        return Fixture.findOne(this.fixtureId);
-    },
-    team: function() {
-        var fixture = Fixture.findOne(this.fixtureId);
-        if (fixture) {
-            return Team.findOne(fixture.teamId);
-        }
-    }
-});
-
-Template.notificationPanel.events({
-    'click .respond': function() {
-        Session.set('showEventId', this.fixtureId);
-        Session.set('showEventType', this.type);
-        Session.set('showEventModal', true);
-    },
-    'click .delete': function() {
-        var notification = this;
-        bootbox.confirm("Are you sure you want to delete this notification?", function(result) {
-            if (result) {
-                Meteor.call('deleteNotification', notification, function(error) {
-                    if (error) {
-                        FlashMessages.sendError(error.reason);
-                    }
-                });
-            }
-        });
-    }
-});
-
 Template.calendarPanel.rendered = function() {
     var eventCalendar = this.$('.eventCalendar');
     this.autorun(function() {
@@ -77,57 +14,63 @@ Template.calendarPanel.helpers({
         }
     },
     eventClickHandler: function() {
-        return function(calEvent) {
-            Session.set('showEventId', calEvent._id);
-            Session.set('showEventType', calEvent.type);
+        return function(calendarEvent) {
+            Session.set('showEventId', calendarEvent._id);
+            Session.set('showEventType', calendarEvent.type);
             Session.set('showEventModal', true);
         };
     },
     dayClickHandler: function() {
         return function(date, allDay, jsEvent, view) {
+            bootbox.confirm("Are you sure you want to create an event on " + date.format("MMMM Do YYYY, HH:mm:ss") + "?", function(result) {
+                if (result) {
+                    Session.set("eventDate", date.toDate());
+                    Router.go("eventCreate");
+                }
+            });
         };
     },
     events: function() {
         return function(start, end, tz, callback) {
             var events = [];
 
-            // Add the fixture events
-            Fixture.find().forEach(function(fixture) {
-                events.push({
-                    id: fixture._id,
-                    title: fixture.opponent,
-                    allDay: false,
-                    start: moment(fixture.startDateTime),
-                    end: moment(fixture.endDateTime),
-                    type: 'fixture'
-                })
+            // Fetch a list of calendar events that belong to the club
+            CalendarEvent.find().forEach(function(calendarEvent) {
+                if (calendarEvent.type === "fixture") {
+                    var homeTeam = Team.findOne(calendarEvent.fixture.homeTeamId);
+                    var awayTeam = Team.findOne(calendarEvent.fixture.awayTeamId);
+                    events.push({
+                        id: calendarEvent._id,
+                        type: calendarEvent.type,
+                        title: 'Fixture - ' + homeTeam.name + " V " + awayTeam.name,
+                        allDay: false,
+                        start: moment(calendarEvent.startDateTime),
+                        end: moment(calendarEvent.endDateTime),
+                        backgroundColor: Meteor.UtilFunctions.eventColour(calendarEvent.type)
+                    })
+                } else if (calendarEvent.type === "training") {
+                    var team = Team.findOne(calendarEvent.training.teamId);
+                    events.push({
+                        id: calendarEvent._id,
+                        type: calendarEvent.type,
+                        title: 'Training - ' + team.name,
+                        allDay: false,
+                        start: moment(calendarEvent.startDateTime),
+                        end: moment(calendarEvent.endDateTime),
+                        backgroundColor: Meteor.UtilFunctions.eventColour(calendarEvent.type)
+                    })
+                } else {
+                    events.push({
+                        id: calendarEvent._id,
+                        type: calendarEvent.type,
+                        title: calendarEvent.title,
+                        allDay: false,
+                        start: moment(calendarEvent.startDateTime),
+                        end: moment(calendarEvent.endDateTime),
+                        backgroundColor: Meteor.UtilFunctions.eventColour(calendarEvent.type)
+                    })
+                }
             });
-
-            // Add the meeting events
-            Meeting.find().forEach(function(meeting) {
-                events.push({
-                    id: meeting._id,
-                    title: meeting.subject,
-                    allDay: false,
-                    start: moment(meeting.startDateTime),
-                    end: moment(meeting.endDateTime),
-                    type: 'meeting'
-                })
-            });
-
-            // Add the training events
-            Training.find().forEach(function(training) {
-                var team = Team.findOne(training.teamId);
-                events.push({
-                    id: training._id,
-                    title: team.name + " Training",
-                    allDay: false,
-                    start: moment(training.startDateTime),
-                    end: moment(training.endDateTime),
-                    type: 'training'
-                })
-            });
-
             callback(events);
         };
     },
@@ -145,175 +88,30 @@ Template.calendarPanel.events({
     }
 });
 
-Template.eventFixtureModal.helpers({
-    fixture: function() {
-        if (Session.get("showEventId")) {
-            return Fixture.findOne(Session.get("showEventId"));
-        }
+Template.notificationPanel.helpers({
+    notifications: function() {
+        return Notification.find();
+    }
+});
+
+Template.notificationPanel.events({
+    'click .respond': function() {
+        var event = CalendarEvent.findOne(this.eventId);
+        Session.set('showEventId', this.eventId);
+        Session.set('showEventType', event.type);
+        Session.set('showEventModal', true);
     },
-    team: function() {
-        if (Session.get("showEventId")) {
-            var fixture = Fixture.findOne(Session.get("showEventId"));
-            if (fixture && fixture.teamId) {
-                return Team.findOne(fixture.teamId);
-            }
-        }
-    },
-    official: function() {
-        if (this.valueOf()) {
-            return Official.findOne(this.valueOf());
-        }
-    },
-    squadSelection: function() {
-        if (Session.get("showEventId")) {
-            return SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
-        }
-    },
-    player: function() {
-        if (this.userId) {
-            return Meteor.users.findOne(this.userId);
-        }
-    },
-    playerStatusClass: function() {
-        return cssAvailabilityClass(this.availability);
-    },
-    currentUserInvite: function() {
-        if (Session.get("showEventId")) {
-            var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
-            if (squadSelection && squadSelection.squad) {
-                return _.find(squadSelection.squad, function(player) {
-                    if (player.userId === Meteor.userId()) {
-                        return player;
+    'click .delete': function() {
+        var notification = this;
+        bootbox.confirm("Are you sure you want to delete this notification?", function(result) {
+            if (result) {
+                Meteor.call('deleteNotification', notification, function(error) {
+                    if (error) {
+                        FlashMessages.sendError(error.reason);
                     }
                 });
             }
-        }
-    },
-    currentUserStatusClass: function() {
-        if (Session.get("showEventId")) {
-            var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
-            if (squadSelection && squadSelection.squad) {
-                var invite = _.find(squadSelection.squad, function(player) {
-                    if (player.userId === Meteor.userId()) {
-                        return player;
-                    }
-                });
-                return cssAvailabilityClass(invite.availability);
-            }
-        }
-    }
-});
-
-Template.eventFixtureModal.events({
-    'click .accept': function() {
-        var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
-        if (squadSelection) {
-            updateFixtureInvite(squadSelection, "Available");
-        }
-    },
-    'click .tenative': function() {
-        var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
-        if (squadSelection) {
-            updateFixtureInvite(squadSelection, "Tentative");
-        }
-    },
-    'click .decline': function() {
-        var squadSelection = SquadSelection.findOne({ fixtureId: Session.get("showEventId") });
-        if (squadSelection) {
-            updateFixtureInvite(squadSelection, "Unavailable");
-        }
-    },
-    'click [data-dismiss="modal"]': function() {
-        Session.set('showEventId', null);
-        Session.set('showEventType', null);
-        Session.set('showEventModal', false);
-    }
-});
-
-Template.eventMeetingModal.helpers({
-    meeting: function() {
-        if (Session.get("showEventId")) {
-            return Meeting.findOne(Session.get("showEventId"));
-        }
-    },
-    attendee: function() {
-        if (this.userId) {
-            return Meteor.users.findOne(this.userId);
-        }
-    },
-    attendeeStatusClass: function() {
-        return cssAvailabilityClass(this.availability);
-    },
-    currentUserInvite: function() {
-        if (Session.get("showEventId")) {
-            var meeting = Meeting.findOne(Session.get("showEventId"));
-            if (meeting && meeting.attendeeIds) {
-                return _.find(meeting.attendeeIds, function(attendee) {
-                    if (attendee.userId === Meteor.userId()) {
-                        return attendee;
-                    }
-                });
-            }
-        }
-    },
-    currentUserStatusClass: function() {
-        if (Session.get("showEventId")) {
-            var meeting = Meeting.findOne(Session.get("showEventId"));
-            if (meeting && meeting.attendeeIds) {
-                var invite = _.find(meeting.attendeeIds, function(attendee) {
-                    if (attendee.userId === Meteor.userId()) {
-                        return attendee;
-                    }
-                });
-                return cssAvailabilityClass(invite.availability);
-            }
-        }
-    }
-});
-
-Template.eventMeetingModal.events({
-    'click .accept': function() {
-        updateMeetingInvite(Session.get("showEventId"), "Accepted");
-    },
-    'click .tenative': function() {
-        updateMeetingInvite(Session.get("showEventId"), "Tentative");
-    },
-    'click .decline': function() {
-        updateMeetingInvite(Session.get("showEventId"), "Declined");
-    },
-    'click [data-dismiss="modal"]': function() {
-        Session.set('showEventId', null);
-        Session.set('showEventType', null);
-        Session.set('showEventModal', false);
-    }
-});
-
-Template.eventTrainingModal.helpers({
-    training: function() {
-        if (Session.get("showEventId")) {
-            return Training.findOne(Session.get("showEventId"));
-        }
-    },
-    team: function() {
-        if (Session.get("showEventId")) {
-            var training = Training.findOne(Session.get("showEventId"));
-            if (training && training.teamId) {
-                return Team.findOne(training.teamId);
-            }
-        }
-    },
-    coach: function() {
-        if (this.valueOf()) {
-            return Staff.findOne(this.valueOf());
-        }
-    }
-});
-
-Template.eventTrainingModal.events({
-    'click [data-dismiss="modal"]': function() {
-        Session.set('showEventId', null);
-        Session.set('showEventType', null);
-        Session.set('showEventModal', false);
+        });
     }
 });
 
@@ -324,15 +122,6 @@ Template.messagePanel.helpers({
 });
 
 Template.messageBoard.helpers({
-    fixture: function() {
-        return Fixture.findOne(this.fixtureId);
-    },
-    team: function() {
-        var fixture = Fixture.findOne(this.fixtureId);
-        if (fixture) {
-            return Team.findOne(fixture.teamId);
-        }
-    }
 });
 
 Template.messageBoard.events({

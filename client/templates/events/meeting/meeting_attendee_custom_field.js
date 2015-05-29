@@ -1,4 +1,4 @@
-Template.afObjectField_meetingCustomObjectField.helpers({
+Template.afObjectField_meetingAttendeeCustomObjectField.helpers({
     userIdFieldName: function() {
         return this.atts.name + '.userId'
     },

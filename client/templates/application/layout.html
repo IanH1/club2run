@@ -12,7 +12,7 @@
         <div class="content-wrapper">
             {{#if currentUser}}
                 <section class="content-header">
-                    {{#if currentClub}}
+                    {{#if currentUser.profile.currentClubId}}
                         <h1>{{currentClub.name}}</h1>
                     {{else}}
                         <h1>No club selected</h1>
@@ -65,7 +65,7 @@
                     <i class="fa fa-dashboard"></i> <span>Home</span>
                 </a>
             </li>
-            {{#if isInRole 'admin' currentClub._id}}
+            {{#if isInRole 'admin' currentUser.profile.currentClubId}}
                 <li class="treeview">
                     <a href="{{pathFor 'dashboard'}}">
                         <i class="fa fa-dashboard"></i> <span>Admin Dashboard</span>
@@ -113,9 +113,11 @@
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="{{pathFor 'eventList'}}"><i class="fa fa-table"></i> View All</a></li>
-                        <li><a href="{{pathFor 'fixtureCreate'}}"><i class="fa fa-edit"></i> Create Fixture</a></li>
-                        <li><a href="{{pathFor 'meetingCreate'}}"><i class="fa fa-edit"></i> Create Meeting</a></li>
-                        <li><a href="{{pathFor 'trainingCreate'}}"><i class="fa fa-edit"></i> Create Training</a></li>
+                        <li><a href="{{pathFor 'eventCreate'}}"><i class="fa fa-edit"></i> Create Event</a></li>
+                        <li><a href="{{pathFor 'eventCreate' eventType="club"}}"><i class="fa fa-edit"></i> Create Club Event</a></li>
+                        <li><a href="{{pathFor 'eventCreate' eventType="fixture"}}"><i class="fa fa-edit"></i> Create Fixture</a></li>
+                        <li><a href="{{pathFor 'eventCreate' eventType="meeting"}}"><i class="fa fa-edit"></i> Create Meeting</a></li>
+                        <li><a href="{{pathFor 'eventCreate' eventType="training"}}"><i class="fa fa-edit"></i> Create Training</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -150,11 +152,16 @@
                 <ul class="treeview-menu">
                     <li><a href="{{pathFor 'clubJoin'}}"><i class="fa fa-plus"></i> Join a Club</a></li>
                 </ul>
-                {{#if isInRole 'admin' currentClub._id}}
+                {{#if isInRole 'admin' currentUser.profile.currentClubId}}
                     <ul class="treeview-menu">
                         <li><a href="{{pathFor 'clubEdit'}}"><i class="fa fa-edit"></i> Update Club</a></li>
                     </ul>
                 {{/if}}
+                {{#each clubs}}
+                    <ul class="treeview-menu">
+                        <li><a href="#" class="select-club"><i class="fa fa-edit"></i> Select {{name}}</a></li>
+                    </ul>
+                {{/each}}
             </li>
         </ul>
     </section>

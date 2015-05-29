@@ -39,8 +39,32 @@
         <div class="col-md-4 col-xs-6">
             <div class="small-box bg-yellow">
                 <div class="inner">
-                    <h3>{{eventCount}}</h3>
-                    <p>Events</p>
+                    <h3>{{fixtureCount}}</h3>
+                    <p>Fixtures</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="{{pathFor 'eventList'}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-6">
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>{{meetingCount}}</h3>
+                    <p>Meetings</p>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a href="{{pathFor 'eventList'}}" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+        <div class="col-md-4 col-xs-6">
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3>{{trainingCount}}</h3>
+                    <p>Training</p>
                 </div>
                 <div class="icon">
                     <i class="ion ion-person-add"></i>
@@ -97,6 +121,30 @@
             </div>
         </div>
         <div class="col-md-4 col-xs-6">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Latest Members</h3>
+                    <div class="box-tools pull-right">
+                        <span class="label label-danger">{{latestUsers.count}} New Members</span>
+                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                        <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </div>
+                </div>
+                <div class="box-body no-padding">
+                    <ul class="users-list clearfix">
+                        {{#each latestUsers}}
+                            <li>
+                                <img src="{{profileThumbnailSrc _id}}"/>
+                                <a class="users-list-name" href="#">{{profile.fullName}}</a>
+                                <span class="users-list-date">{{formatDate profile.createdOn}}</span>
+                            </li>
+                        {{/each}}
+                    </ul>
+                </div>
+                <div class="box-footer text-center">
+                    <a href="{{pathFor 'userList'}}" class="uppercase">View All Users</a>
+                </div>
+            </div>
         </div>
     </div>
 </template>

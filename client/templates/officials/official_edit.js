@@ -4,9 +4,11 @@ Template.officialEdit.events({
     }
 });
 
-AutoForm.addHooks('editOfficial', {
-    onSuccess: function() {
-        FlashMessages.sendSuccess("Successfully saved changes.");
-        Router.go("officialList");
+AutoForm.hooks({
+    editOfficial: {
+        onSuccess: function() {
+            FlashMessages.sendSuccess("Successfully saved changes.");
+            Router.go("officialList");
+        }
     }
 });

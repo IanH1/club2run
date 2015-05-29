@@ -1,8 +1,17 @@
-.profile-picture >img {
-    width: 50px;
-    height: 50px;
+.skin-blue .panel-primary  {
+    border-color: #3c8dbc !important;
+}
+
+.skin-blue .panel-primary > .panel-heading {
+    background-color: #3c8dbc !important;
+    border-color: #3c8dbc !important;
+}
+
+.profile-picture > img {
     border: 2px solid transparent;
     border-radius: 50% !important;
+    height: 50px;
+    width: 50px;
 }
 
 .profile-picture > img.online {
@@ -10,24 +19,24 @@
 }
 
 #carousel {
-    border:   2px solid white;
-    width:    1165px;
+    border: 2px solid white;
     position: relative;
-    top:      0px;
-    left:     -25px;
+    top: 0px;
+    left: -25px;
+    width: 1165px;
 }
 
 #carousel div {
-    width:    1150px;
+    width: 1150px;
 }
 
 .slick-prev:before, .slick-next:before {
-    color:    silver;
+    color: silver;
 }
 
 #iron-router-progress {
     background-color : #00ff00;
-    box-shadow       : 0 0 5px #00ff00;
+    box-shadow : 0 0 5px #00ff00;
 }
 
 #iron-router-progress.spinner:before {
@@ -35,10 +44,6 @@
 }
 
 .navbar-nav > .notifications-menu > .dropdown-menu > li .menu > li.new {
-    background-color: #d9edf7;
-}
-
-.todo-list > li.new {
     background-color: #d9edf7;
 }
 
@@ -61,19 +66,6 @@
     width: 400px;
 }
 
-.dataTables_length select.input-sm {
-    line-height: 20px;
-}
-
 .row-margin {
     margin-bottom: 10px
-}
-
-.skin-blue .panel-primary  {
-    border-color: #3c8dbc !important;
-}
-
-.skin-blue .panel-primary > .panel-heading {
-    background-color: #3c8dbc !important;
-    border-color: #3c8dbc !important;
 }

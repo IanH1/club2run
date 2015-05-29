@@ -1,5 +1,5 @@
 <template name="teamCreate">
-    {{#autoForm id='createTeam' schema=Schema.Team}}
+    {{#autoForm id='createTeam' schema=Schema.Team type="method" meteormethod="insertTeam"}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Team</h3>
@@ -33,10 +33,10 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Squad</h3>
+                <h3 class="panel-title">Players</h3>
             </div>
             <div class="panel-body">
-                {{> afArrayField name="squad" template="squadCustomField" positionOptions=positionOptions}}
+                {{> afArrayField name="players" template="playersCustomField" positionOptions=positionOptions}}
             </div>
         </div>
         <div>

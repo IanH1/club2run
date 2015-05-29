@@ -1,0 +1,60 @@
+<template name="meetingViewModal">
+    <div id="meetingViewModal" class="modal show fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">{{event.title}}</h4>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        <strong>Starts : </strong> {{formatDateTime event.startDateTime}}<br>
+                        <strong>Ends :</strong> {{formatDateTime event.endDateTime}}<br>
+                    </p>
+                    <p>{{event.details}}</p>
+                    <hr>
+                    <h4>Attendees</h4>
+                    <table class="table no-margin">
+                        <tbody>
+                        {{#each event.meeting.attendeeIds}}
+                            <tr>
+                                <td class="col-sm-1">
+                                        <span class="label label-{{attendeeStatusClass}}">
+                                            {{#if availability}}
+                                                {{availability}}
+                                            {{else}}
+                                                Pending
+                                            {{/if}}
+                                        </span>
+                                </td>
+                                <td>{{attendee.profile.fullName}}</td>
+                            </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    {{#if currentAttendeeInvite}}
+                        <div class="btn-group pull-left">
+                            <button type="button" class="btn btn-{{currentAttendeeStatusClass}} dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                {{#if currentAttendeeInvite.availability}}
+                                    {{currentAttendeeInvite.availability}}
+                                {{else}}
+                                    My Availability
+                                {{/if}} <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#" class="accept">Accept</a></li>
+                                <li><a href="#" class="tenative">Maybe</a></li>
+                                <li><a href="#" class="decline">Decline</a></li>
+                            </ul>
+                        </div>
+                    {{/if}}
+                    <button type="button" class="btn btn-default edit">Edit</button>
+                    <button type="button" class="btn btn-default delete">Delete</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

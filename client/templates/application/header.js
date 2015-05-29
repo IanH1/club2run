@@ -1,21 +1,12 @@
 Template._loginButtonsLoggedInDropdown.events({
     'click #login-buttons-edit-profile': function() {
-        Router.go('profile');
+        Router.go("profile");
     }
 });
 
 Template.messageDropdown.helpers({
     messageBoards: function() {
-        return MessageBoard.find({}, { sort: {createdOn: -1} });
-    },
-    fixture: function() {
-        return Fixture.findOne(this.fixtureId);
-    },
-    team: function() {
-        var fixture = Fixture.findOne(this.fixtureId);
-        if (fixture) {
-            return Team.findOne(fixture.teamId);
-        }
+        return MessageBoard.find({}, { sort: { createdOn: -1 } });
     }
 });
 
@@ -33,14 +24,5 @@ Template.notificationDropdown.helpers({
             order = { createdOn: -1 };
         }
         return Notification.find({}, { limit: limit, sort: order });
-    },
-    fixture: function() {
-        return Fixture.findOne(this.fixtureId);
-    },
-    team: function() {
-        var fixture = Fixture.findOne(this.fixtureId);
-        if (fixture) {
-            return Team.findOne(fixture.teamId);
-        }
     }
 });

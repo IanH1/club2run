@@ -14,11 +14,11 @@ Template.userList.events({
         var user = this;
         bootbox.confirm("Are you sure you want to remove this user from the club?", function(result) {
             if (result) {
-                Meteor.call("removeUser", user, Session.get("currentClub"), function(error) {
+                Meteor.call("removeUser", user, function(error) {
                     if (error) {
                         FlashMessages.sendError(error.reason);
                     } else {
-                        FlashMessages.sendSuccess("User successfully deleted.");
+                        FlashMessages.sendSuccess("User successfully removed.");
                         Router.go("userList");
                     }
                 });
@@ -26,6 +26,3 @@ Template.userList.events({
         });
     }
 });
-
-
-

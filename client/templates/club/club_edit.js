@@ -4,9 +4,11 @@ Template.clubEdit.events({
     }
 });
 
-AutoForm.addHooks('editClub', {
-    onSuccess: function() {
-        FlashMessages.sendSuccess("Club successfully updated.");
-        Router.go("home");
+AutoForm.hooks({
+    editClub: {
+        onSuccess: function() {
+            FlashMessages.sendSuccess("Successfully saved changes.");
+            Router.go("home");
+        }
     }
 });

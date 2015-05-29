@@ -1,4 +1,4 @@
-Template.registerHelper('formatDate', function(datetime) {
+Template.registerHelper("formatDate", function(datetime) {
     if (moment && datetime) {
         if (datetime.getDate() === new Date().getDate()) {
             return "Today";
@@ -10,7 +10,7 @@ Template.registerHelper('formatDate', function(datetime) {
     }
 });
 
-Template.registerHelper('formatTime', function(datetime) {
+Template.registerHelper("formatTime", function(datetime) {
     if (moment && datetime) {
         return moment(datetime).format("HH:mm:ss");
     } else {
@@ -18,7 +18,7 @@ Template.registerHelper('formatTime', function(datetime) {
     }
 });
 
-Template.registerHelper('formatDateTime', function(datetime) {
+Template.registerHelper("formatDateTime", function(datetime) {
     if (moment && datetime) {
         if (datetime.getDate() === new Date().getDate()) {
             return "Today " + moment(datetime).format("HH:mm:ss");
@@ -42,15 +42,15 @@ Template.registerHelper("checkedIf", function(value) {
     return value ? 'checked' : '';
 });
 
-Template.registerHelper('equals', function(value1, value2) {
+Template.registerHelper("equals", function(value1, value2) {
     return value1 === value2;
 });
 
-Template.registerHelper('not', function(value) {
+Template.registerHelper("not", function(value) {
     return (!value);
 });
 
-Template.registerHelper('trimString', function(value, length) {
+Template.registerHelper("trimString", function(value, length) {
     if (value && value.length > length) {
         return value.substring(0, length) + "..."
     } else {
@@ -58,7 +58,7 @@ Template.registerHelper('trimString', function(value, length) {
     }
 });
 
-Template.registerHelper('profileThumbnailSrc', function(_id) {
+Template.registerHelper("profileThumbnailSrc", function(_id) {
     if (typeof Meteor.users !== 'undefined') {
         if (Meteor.users.findOne(_id)) {
             var user = Meteor.users.findOne(_id);
@@ -69,7 +69,7 @@ Template.registerHelper('profileThumbnailSrc', function(_id) {
                 } else {
                     if (typeof ProfilePicture !== 'undefined' && ProfilePicture.findOne(user.profile.picture)) {
                         var picture = ProfilePicture.findOne(picture);
-                        return picture.url({ store: 'thumbs' });
+                        return picture.url({ store: "thumbs" });
                     }
                 }
             }

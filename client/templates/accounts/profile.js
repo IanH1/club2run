@@ -1,12 +1,14 @@
 Template.profile.events({
     'click .cancel': function() {
-        Router.go('home');
+        Router.go("home");
     }
 });
 
-AutoForm.addHooks('updateProfile', {
-    onSuccess: function() {
-        FlashMessages.sendSuccess("Successfully saved changes.");
-        Router.go('home');
+AutoForm.hooks({
+    updateUser: {
+        onSuccess: function() {
+            FlashMessages.sendSuccess("Successfully saved changes.");
+            Router.go("home");
+        }
     }
 });

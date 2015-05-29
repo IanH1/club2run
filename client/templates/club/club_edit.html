@@ -1,5 +1,5 @@
 <template name="clubEdit">
-    {{#autoForm id='editClub' schema=Schema.Club type="method" meteormethod="updateClub" doc=currentClub}}
+    {{#autoForm id="editClub" schema=Schema.Club type="method" meteormethod="updateClub" doc=currentClub}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">Club</h3>
@@ -7,30 +7,65 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12">
-                        {{> afQuickField name='name'}}
+                        {{> afQuickField name="name"}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='email'}}
+                        {{> afQuickField name="email"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='websiteUrl'}}
+                        {{> afQuickField name="websiteUrl"}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='telephone1'}}
+                        {{> afQuickField name="telephone1"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='telephone2'}}
+                        {{> afQuickField name="telephone2"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='opponents' type="selectize" options=opponentOptions multiple=true}}
                     </div>
                 </div>
             </div>
         </div>
-        {{> address}}
-        {{> afQuickField name='teamColours'}}
-        {{> afQuickField name='associations'}}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Location</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="address.line1"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="address.line2"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="address.city"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="address.county"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="address.postCode"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="address.country"}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{> afQuickField name="teamColours"}}
+        {{> afQuickField name="associations"}}
         <div>
             <button type="submit" class="btn btn-primary">Update</button>
             <button type="reset" class="btn btn-default">Reset</button>

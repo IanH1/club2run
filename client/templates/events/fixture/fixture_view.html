@@ -1,0 +1,74 @@
+<template name="fixtureViewModal">
+    <div id="fixtureViewModal" class="modal show fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h4 class="modal-title">{{homeTeam.name}} {{event.fixture.homeScore}} V {{awayTeam.name}} {{event.fixture.awayScore}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6 col-xs-6">
+                            <p>
+                                <strong>Meetup : </strong> {{formatDateTime event.meetupDateTime}}<br>
+                                <strong>Starts : </strong> {{formatDateTime event.startDateTime}}<br>
+                                <strong>Ends :</strong> {{formatDateTime event.endDateTime}}<br>
+                                <strong>Competition :</strong> {{event.fixture.competition}}<br>
+                                <strong>Officials :</strong>{{#each event.fixture.officialIds}}{{official.fullName}}<br>{{/each}}
+                            </p>
+                            <p>{{event.details}}</p>
+                        </div>
+                        <div class="col-md-6 col-xs-6">
+                            <h4>Squad Selection</h4>
+                            <table class="table no-margin">
+                                <tbody>
+                                    {{#each event.fixture.squad}}
+                                        <tr>
+                                            <td class="col-sm-1">{{this.squadNumber}}</td>
+                                            <td class="col-sm-5">
+                                                <span class="label label-{{playerStatusClass}}">
+                                                    {{#if availability}}
+                                                        {{availability}}
+                                                    {{else}}
+                                                        Pending
+                                                    {{/if}}
+                                                </span>
+                                            </td>
+                                            <td class="col-sm-5">{{player.profile.fullName}}</td>
+                                        </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    {{#if event.fixtureResultSubmitted}}
+                        <button type="button" class="btn btn-default report">Match Report</button>
+                    {{else}}
+                        {{#if currentUserInvite}}
+                            <div class="btn-group pull-left">
+                                <button type="button" class="btn btn-{{currentUserStatusClass}} dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                    {{#if currentUserInvite.availability}}
+                                        {{currentUserInvite.availability}}
+                                    {{else}}
+                                        My Availability
+                                    {{/if}} <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#" class="accept">Available</a></li>
+                                    <li><a href="#" class="tenative">Maybe</a></li>
+                                    <li><a href="#" class="decline">Unavailable</a></li>
+                                </ul>
+                            </div>
+                        {{/if}}
+                        <button type="button" class="btn btn-default result">Submit Result</button>
+                        <button type="button" class="btn btn-default edit">Edit</button>
+                        <button type="button" class="btn btn-default delete">Delete</button>
+                    {{/if}}
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

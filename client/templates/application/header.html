@@ -1,6 +1,6 @@
 <template name="header">
     <header class="main-header">
-        <a href="{{pathFor 'home'}}" class="logo"><b>Club2Run</b></a>
+        <a href="{{pathFor "home"}}" class="logo"><b>Club2Run</b></a>
         <nav class="navbar navbar-static-top" role="navigation">
             <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                 <span class="sr-only">Toggle navigation</span>
@@ -8,7 +8,7 @@
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     {{#if currentUser}}
-                        {{#if currentClub}}
+                        {{#if currentUser.profile.currentClubId}}
                             {{> messageDropdown}}
                             {{> notificationDropdown}}
                         {{/if}}
@@ -44,7 +44,7 @@
                     {{#each messageBoards}}
                         <li>
                             <a href="#">
-                                {{team.name}} V {{fixture.opponent}}
+                                {{name}}
                                 <div class="pull-right">
                                     <span class="label label-success">
                                         {{#if messages.length}}
@@ -60,7 +60,7 @@
                 </ul>
             </li>
             <li class="footer">
-                <a href="{{pathFor 'home'}}">See All Messages</a>
+                <a href="{{pathFor "home"}}">See All Messages</a>
             </li>
         </ul>
     </li>
@@ -83,9 +83,7 @@
                     {{#each notifications limit=15 unreadFirst=true}}
                         <li>
                             <a href="#" class="notification-item">
-                                {{#if equals type "fixture"}}
-                                    {{fixture.opponent}}
-                                {{/if}}
+                                {{description}}
                                 <div class="pull-right">
                                     <small>{{formatDateFromNow createdOn}}</small>
                                 </div>
@@ -95,7 +93,7 @@
                 </ul>
             </li>
             <li class="footer">
-                <a href="{{pathFor 'home'}}">View all notifications</a>
+                <a href="{{pathFor "home"}}">View all notifications</a>
             </li>
         </ul>
     </li>

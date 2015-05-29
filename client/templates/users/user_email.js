@@ -7,14 +7,17 @@ Template.userEmail.helpers({
 });
 
 Template.userEmail.events({
-    'click .cancel': function() {
-        Router.go('userList');
-    }
-});
+    "submit .email-user": function(event) {
+        event.preventDefault();
 
-AutoForm.addHooks('emailUser', {
-    onSuccess: function() {
+        // Send user email
+        Meteor.call("sendUserEmail", this.emails[0].address, event.target.subject.value, event.target.message.value);
+
+        // Display confirmation
         FlashMessages.sendSuccess("Email successfully sent.");
-        Router.go('userList');
+        Router.go("userList");
+    },
+    'click .cancel': function() {
+        Router.go("userList");
     }
 });

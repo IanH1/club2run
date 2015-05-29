@@ -1,6 +1,6 @@
 Template.teamEdit.events({
     'click .cancel': function() {
-        Router.go('teamList');
+        Router.go("teamList");
     }
 });
 

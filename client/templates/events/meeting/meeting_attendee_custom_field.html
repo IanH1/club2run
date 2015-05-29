@@ -1,4 +1,4 @@
-<template name="afArrayField_meetingCustomField">
+<template name="afArrayField_meetingAttendeeCustomField">
     <div class="form-group{{#if afFieldIsInvalid name=this.atts.name}} has-error{{/if}}">
         <label class="control-label" {{afFieldLabelAtts}}>{{afFieldLabelText name=this.atts.name}}</label>
         {{#if afFieldIsInvalid name=this.atts.name}}
@@ -10,7 +10,7 @@
             {{#afEachArrayItem name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
                 <li class="list-group-item autoform-array-item">
                     <div class="row">
-                        {{> afObjectField name=this.name template="meetingCustomObjectField"}}
+                        {{> afObjectField name=this.name template="meetingAttendeeCustomObjectField"}}
                         <div class="col-xs-1">
                             <div class="form-group">
                                 <label class="col-sm-12">&nbsp;</label>
@@ -31,7 +31,7 @@
     </div>
 </template>
 
-<template name="afObjectField_meetingCustomObjectField">
+<template name="afObjectField_meetingAttendeeCustomObjectField">
     {{#if afFieldIsInvalid name=this.atts.name}}
         <span class="help-block">{{{afFieldMessage name=this.atts.name}}}</span>
     {{/if}}

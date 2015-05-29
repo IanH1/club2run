@@ -1,0 +1,28 @@
+<template name="fixtureReport">
+    {{#autoForm id='editReport' schema=Schema.Article type="method" meteormethod="updateArticle" doc=this}}
+        {{> afFieldInput name='clubId' type="hidden"}}
+        {{> afFieldInput name='type' type="hidden"}}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Match Report</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name='headline'}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afFieldInput name='content' type='summernote' height=200}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="reset" class="btn btn-default">Reset</button>
+            <button type="button" class="btn btn-default cancel">Cancel</button>
+        </div>
+    {{/autoForm}}
+</template>
