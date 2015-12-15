@@ -1,5 +1,5 @@
-<template name="userCreate">
-    {{#autoForm id='createUser' schema=Schema.User type="method" meteormethod="insertUser"}}
+<template name="userEdit">
+    {{#autoForm id="userEdit" schema=Schema.User type="method" meteormethod="editUser" doc=this}}
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">User</h3>
@@ -7,31 +7,18 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='profile.firstName'}}
+                        {{> afQuickField name="profile.firstName"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='profile.lastName'}}
+                        {{> afQuickField name="profile.lastName"}}
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name='profile.gender' options="auto"}}
+                        {{> afQuickField name="profile.gender" options="auto"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name='profile.dateOfBirth'}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        {{> afQuickField name='profile.preferredContactMethod' options="auto"}}
-                    </div>
-                    <div class="col-xs-6">
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        {{> afQuickField name="emails.0.address" label="Email"}}
-                        {{> afFieldInput name="emails.0.verified" type="hidden" value="false"}}
+                        {{> afQuickField name="profile.dateOfBirth"}}
                     </div>
                 </div>
                 <div class="row">
@@ -44,10 +31,10 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
-                        {{> afQuickField name="profile.emergencyContactName"}}
+                        {{> afFieldInput name="profile.picture" type="fileUpload" collection="ProfilePicture" label="Avatar" remove-label="Remove"}}
                     </div>
                     <div class="col-xs-6">
-                        {{> afQuickField name="profile.emergencyContactTelephone"}}
+                        {{> afQuickField name="profile.preferredContactMethod" options="auto"}}
                     </div>
                 </div>
             </div>
@@ -83,33 +70,8 @@
                 </div>
             </div>
         </div>
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">Other</h3>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-xs-6">
-                        {{> afQuickField name="profile.ethinicity" options="auto"}}
-                    </div>
-                    <div class="col-xs-6">
-                        {{> afQuickField name="profile.disabilities"}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-6">
-                        {{> afQuickField name="profile.allergies"}}
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-12">
-                        {{> afQuickField name="profile.otherComments" rows=2}}
-                    </div>
-                </div>
-            </div>
-        </div>
         <div>
-            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="submit" class="btn btn-primary">Update</button>
             <button type="reset" class="btn btn-default">Reset</button>
             <button type="button" class="btn btn-default cancel">Cancel</button>
         </div>

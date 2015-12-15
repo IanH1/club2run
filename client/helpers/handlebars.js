@@ -76,7 +76,7 @@ Template.registerHelper("opponentOptions", function() {
 
 Template.registerHelper("positionOptions", function() {
     var options = [];
-    var club = Club.findOne();
+    var club = Club.findOne(Meteor.user().profile.currentClubId);
     if (club) {
         club.type.positions.forEach(function(obj) {
             options.push({

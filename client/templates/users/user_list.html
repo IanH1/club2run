@@ -21,7 +21,10 @@
                         <td>{{this.profile.homeTelephone}}</td>
                         <td>{{this.profile.mobileTelephone}}</td>
                         <td class="text-center">
+                        {{#if isInRole 'admin' currentUser.profile.currentClubId}}
+                            <a href="{{pathFor 'userEdit' _id=_id}}" class="hidden-xs btn btn-xs btn-primary">Edit</a>
                             <a href="#" class="hidden-xs btn btn-xs btn-danger delete">Remove</a>
+                        {{/if}}
                         </td>
                     </tr>
                 {{/each}}
