@@ -37,11 +37,19 @@
                         {{> afQuickField name="profile.preferredContactMethod" options="auto"}}
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.parentEmail1"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.parentEmail2"}}
+                    </div>
+                </div>  
             </div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Location</h3>
+                <h3 class="panel-title">Address</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -66,6 +74,31 @@
                     </div>
                     <div class="col-xs-6">
                         {{> afQuickField name="profile.address.country"}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Other</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.ethinicity" options="auto"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.disabilities"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.allergies"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name="profile.otherComments" rows=2}}
                     </div>
                 </div>
             </div>

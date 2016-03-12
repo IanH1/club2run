@@ -8,6 +8,7 @@ if (Roles.getAllRoles().count() === 0) {
     Roles.createRole("user");
 }
 
+
 // Club Type
 if (ClubType.find().count() === 0) {
     ClubType.insert({ name: "Football", numberOfPlayers: 15, positions: ["Goalkeeper", "Defender", "Midfielder", "Forward"] });
@@ -15,10 +16,14 @@ if (ClubType.find().count() === 0) {
     ClubType.insert({ name: "Hockey", numberOfPlayers: 15, positions: ["Goalkeeper", "Defender", "Midfielder", "Forward"] });
 }
 
+
 // Super Users
 if (Meteor.users.find().count() === 0) {
-    davidId = Accounts.createUser({ email: "davidmulligan@btopenworld.com", password: "password", profile: { firstName: "David", lastName: "Mulligan", fullName: "David Mulligan", name: "David Mulligan" }});
-    ianId = Accounts.createUser({ email: "ian@club2run.com", password: "password", profile: { firstName: "Ian", lastName: "Humphreys", fullName: "Ian Humphreys", name: "Ian Humphreys" }});
+    davidId = Accounts.createUser({ email: "davidmulligan@btopenworld.com", password: "password", 
+                            profile: { firstName: "David", lastName: "Mulligan", fullName: "David Mulligan", name: "David Mulligan",memberships:[] }});
+    ianId = Accounts.createUser({ email: "ian@club2run.com", password: "password", 
+                            profile: { firstName: "Ian", lastName: "Humphreys", fullName: "Ian Humphreys", name: "Ian Humphreys",memberships:[] }});
+
 
     Roles.addUsersToRoles(davidId, ["superuser"], Roles.GLOBAL_GROUP);
     Roles.addUsersToRoles(ianId, ["superuser"], Roles.GLOBAL_GROUP);
@@ -27,19 +32,10 @@ if (Meteor.users.find().count() === 0) {
     Meteor.users.update({ _id: ianId }, { $set: { 'emails.0.verified': true }});
 }
 
-// Setup test clubs
-if (Club.find().count() === 0) {
-
-    // Setup a general list of test clubs
-    type = ClubType.findOne({ name: "Rugby Union" });
-
-    for (var i = 0; i < 10; i++) {
-        var clubId = Club.insert({ name: "Club" + i, type: type });
-        Meteor.users.update({ _id: davidId }, { $push: { 'profile.clubIds': clubId }});
-        Meteor.users.update({ _id: ianId }, { $push: { 'profile.clubIds': clubId }});
-    }
-
     // Create a complete test club
+if (Club.find().count() === 0)
+{
+
     type = ClubType.findOne({ name: "Hockey" });
 
     clubId = Club.insert({
@@ -60,25 +56,29 @@ if (Club.find().count() === 0) {
             longitude: "",
             latitude: ""
         },
-        numberOfUsersLimit: 10,
-        opponents: []
+        numberOfUsersLimit: 300,
+        opponents: [],
+        member:[{type:"Junior",fee:135},{type:"Student",fee:150},{type:"Adult",fee:175},{type:"Veteran",fee:135},{type:"Social",fee:100},
+                {type:"Staff",fee:100},{type:"Honorary",fee:0},{type:"Guest", fee:0},{type:"Parent", fee:0}] 
     });
-
+  
     // Create a list of test opponenets
+
     for (var i = 0; i < 10; i++) {
         Club.update({ _id: clubId }, { $push: { opponents: Team.insert({ name: "Team" + i }, clubId) }});
     }
 
-    Meteor.users.update({ _id: davidId }, { $push: { 'profile.clubIds': clubId }});
-    Meteor.users.update({ _id: ianId }, { $push: { 'profile.clubIds': clubId }});
+    Meteor.users.update({_id: davidId},{$addToSet: {'profile.memberships':{clubId:clubId}}});   
+    Meteor.users.update({_id: ianId},{$addToSet: {'profile.memberships':{clubId:clubId}}});
 
     Roles.addUsersToRoles(davidId, ["admin", "user"], clubId);
     Roles.addUsersToRoles(ianId, ["admin", "user"], clubId);
 
     // Setup a general list of test users
     for (var i = 0; i < 10; i++) {
-        var user = Accounts.createUser({ email: "user" + i + "@test.com", password: "password", profile: { firstName: "User", lastName: "User" + i, fullName: "User User" + i, name: "User User" + i }});
-        Meteor.users.update({_id: user}, { $set: {'emails.0.verified': true, 'profile.clubId': [clubId] }});
+        var user = Accounts.createUser({ email: "user" + i + "@test.com", password: "password", 
+                                         profile: { firstName: "User", lastName: "User" + i, fullName: "User User" + i, name: "User User" + i }});
+        Meteor.users.update({_id: user}, { $set: {'emails.0.verified': true}});
         Roles.addUsersToRoles(user, ["user"], clubId);
     }
 }

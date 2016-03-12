@@ -35,7 +35,7 @@ Template.userUpload.events({
 
                 // Construct a user object
                 var user = {
-                    profile: { firstName: item[0], lastName: item[1] },
+                    profile: { firstName: item[0], lastName: item[1],mobileTelephone: item[3],address:{line1: item[4], line2: item[5], postCode: item[6]}},
                     emails: [{ address: item[2], verified: false }]
                 };
 

@@ -80,7 +80,20 @@ Template.registerHelper("positionOptions", function() {
     if (club) {
         club.type.positions.forEach(function(obj) {
             options.push({
-                label: obj, value: obj
+                label: obj.type, value: obj._id
+            })
+        });
+    }
+    return options;
+});
+
+Template.registerHelper("memberTypeOptions", function() {
+    var options = [];
+    var club = Club.findOne(Meteor.user().profile.currentClubId);
+    if (club && club.member) {
+        club.member.forEach(function(obj) {
+            options.push({
+                label: obj.type, value: obj.type
             })
         });
     }

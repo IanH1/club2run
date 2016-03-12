@@ -11,7 +11,7 @@ Template.navigationMenu.helpers({
         }
     },
     clubs: function() {
-        return Club.find({ _id: {$in: Meteor.user().profile.clubIds }});
+        return Club.find({ _id: {$in: _.pluck(Meteor.user().profile.memberships, 'clubId')}});
     }
 });
 

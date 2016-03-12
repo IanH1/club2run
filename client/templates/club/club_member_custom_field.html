@@ -1,0 +1,35 @@
+<template name="afArrayField_memberCustomField">
+    {{#if afFieldIsInvalid name=this.atts.name}}
+        <div class="panel-body has-error">
+            <span class="help-block">{{{afFieldMessage name=this.atts.name}}}</span>
+        </div>
+    {{/if}}
+    <table class="table no-margin">
+        <thead>
+            <tr>
+                <td class="col-sm-6">Member Type</td>
+                <td class="col-sm-6">Annual Fee</td>
+            </tr>
+        </thead>
+        <tbody>
+            {{#afEachArrayItem name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
+                <tr>
+                    {{> afObjectField name=this.name template="memberCustomObjectField"}}
+                    <td class="text-center"><button type="button" class="btn btn-primary autoform-remove-item"><i class="fa fa-minus"></i></button></td>
+                </tr>
+            {{/afEachArrayItem}}
+        </tbody>
+        {{#if afArrayFieldHasLessThanMaximum name=this.atts.name minCount=this.atts.minCount maxCount=this.atts.maxCount}}
+            <tfoot>
+                <tr>
+                    <td colspan="4"><button type="button" class="btn btn-primary autoform-add-item" data-autoform-field="{{this.atts.name}}" data-autoform-minCount="{{this.atts.minCount}}" data-autoform-maxCount="{{this.atts.maxCount}}"><i class="fa fa-plus"></i></button></td>
+                </tr>
+            </tfoot>
+        {{/if}}
+    </table>
+</template>
+
+<template name="afObjectField_memberCustomObjectField">
+    <td>{{> afFieldInput name=memberTypeFieldName label=false}}</td>
+    <td>{{> afFieldInput name=memberFeeFieldName}}</td>
+</template>

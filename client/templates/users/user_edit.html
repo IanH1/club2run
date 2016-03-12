@@ -31,6 +31,14 @@
                 </div>
                 <div class="row">
                     <div class="col-xs-6">
+                        {{> afQuickField name="profile.parentEmail1"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.parentEmail2"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
                         {{> afFieldInput name="profile.picture" type="fileUpload" collection="ProfilePicture" label="Avatar" remove-label="Remove"}}
                     </div>
                     <div class="col-xs-6">
@@ -41,7 +49,7 @@
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Location</h3>
+                <h3 class="panel-title">Address</h3>
             </div>
             <div class="panel-body">
                 <div class="row">
@@ -70,10 +78,60 @@
                 </div>
             </div>
         </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Other</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.ethinicity" options="auto"}}
+                    </div>
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.disabilities"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        {{> afQuickField name="profile.allergies"}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        {{> afQuickField name="profile.otherComments" rows=2}}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">Membership Details</h3>
+            </div>
+            <div class="panel-body">
+                {{> afObjectField name="profile.memberships" template="membershipCustomObjectField" }}
+            </div>
+        </div>
         <div>
             <button type="submit" class="btn btn-primary">Update</button>
             <button type="reset" class="btn btn-default">Reset</button>
             <button type="button" class="btn btn-default cancel">Cancel</button>
         </div>
     {{/autoForm}}
+</template>
+
+<template name="afObjectField_membershipCustomObjectField">
+    <div class="row">
+        <div class="col-xs-0">
+            {{> afFieldInput name=membershipClubFieldName type="hidden"}}
+        </div>
+        <div class="col-xs-4">
+            {{> afQuickField name=membershipTypeFieldName type="select" options=memberTypeOptions}}   
+        </div>
+        <div class="col-xs-4">
+            {{> afQuickField name=membershipStatusFieldName type="selectize" options="auto" }}
+        </div>
+        <div class="col-xs-4">
+            {{> afQuickField name=membershipEndDateName}}
+        </div>
+    </div>
 </template>

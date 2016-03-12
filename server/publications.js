@@ -45,7 +45,7 @@ Meteor.publishComposite("club", function(clubId) {
         }, {
             find: function(club) {
                 if (Roles.userIsInRole(this.userId, ["admin"], clubId)) {
-                    return Meteor.users.find({ 'profile.clubIds': club._id }, { sort: {name: 1 }});
+                    return Meteor.users.find({ 'profile.memberships.clubId': club._id }, { sort: {name: 1 }});
                 }
             }
         }, {
@@ -86,10 +86,11 @@ Meteor.publish('clubs', function() {
     return Club.find();
 });
 
+
 Meteor.publish('clubsForUser', function() {
     var user = Meteor.users.findOne(this.userId);
     if (user) {
-        return Club.find({ _id: {$in: user.profile.clubIds }});
+        return Club.find({ _id: {$in: _.pluck(user.profile.memberships, 'clubId')}});
     }
 });
 
